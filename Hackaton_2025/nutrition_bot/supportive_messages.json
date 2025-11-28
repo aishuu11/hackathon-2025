@@ -1,0 +1,33 @@
+{
+  "guilt": [
+    "One snack or heavy meal doesn’t erase your progress. What matters is the pattern over weeks, not one day.",
+    "You don’t need to punish yourself for eating. Let’s look at one small change you can make at your next meal instead.",
+    "Feeling guilty after eating is very common, but the guilt itself doesn’t help. Knowledge and small actions do."
+  ],
+  "praise": [
+    "Love that you’re asking questions instead of trusting random posts online. That’s already a big win.",
+    "Nice choice – this kind of balanced meal makes it much easier to reach your goals over time.",
+    "You’re building skills, not following a 3-day fad. That’s how real change starts."
+  ],
+  "encouragement": [
+    "You don’t have to be perfect to get healthier. You just have to be slightly more consistent than last month.",
+    "Small changes in food, sleep and movement compound over time like interest in a savings account.",
+    "Even reading this information is progress – most people never question the nutrition myths they are told."
+  ],
+  "dangerous_myth": [
+    "I’m glad you asked before trying that. Some of these trends can genuinely harm your health.",
+    "Your body is not a science experiment for extreme detoxes. Let’s find a safer strategy that still fits your goals."
+  ],
+  "healthy_choice": [
+    "This is a really solid option – high in nutrients and pretty filling for the calories.",
+    "Choosing this more often and keeping treats as occasional is a powerful long-term strategy."
+  ],
+  "relapse_or_slip": [
+    "One off-plan meal doesn’t mean you failed. Treat it as data, not drama, and we adjust the next few choices.",
+    "Imagine zooming out to a whole month – this one moment will barely show up if you keep going."
+  ],
+  "info_overload": [
+    "Nutrition online can feel overwhelming because you’re seeing hundreds of opinions at once. Focusing on a few solid habits beats chasing every new rule.",
+    "If you’re feeling overloaded, we can zoom back to basics: more plants, enough protein, fewer sugary drinks and consistent sleep."
+  ]
+}
