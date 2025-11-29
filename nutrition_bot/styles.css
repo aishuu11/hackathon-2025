@@ -272,21 +272,35 @@ body {
 /* VRM Container */
 .vrm-container {
     height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
-    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(138, 43, 226, 0.4);
     position: relative;
+    overflow: hidden;
 }
 
-.vrm-placeholder {
+#vrmCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 15px;
+}
+
+.vrm-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 10;
 }
 
-.vrm-placeholder p {
+.vrm-loading.hidden {
+    display: none;
+}
+
+.vrm-loading p {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-family: 'Orbitron', monospace;

@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nutrition Bot - Myth Buster</title>
+    <title>VRM Chat - Nutrition Bot</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Three.js and VRM libraries -->
+    <script src="https://unpkg.com/three@0.164.1/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.164.1/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://unpkg.com/three@0.164.1/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/@pixiv/three-vrm@2.1.3/lib/three-vrm.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -28,10 +33,11 @@
                         <h2>VRM Avatar</h2>
                     </div>
                     <div class="vrm-container" id="vrmContainer">
-                        <div class="vrm-placeholder">
-                            <p>VRM Avatar will be loaded here</p>
+                        <canvas id="vrmCanvas" style="width: 100%; height: 100%; border-radius: 15px;"></canvas>
+                        <div class="vrm-loading" id="vrmLoading">
+                            <p>Loading VRM Avatar...</p>
                             <div class="upload-hint">
-                                <span>Ready for VRM file import</span>
+                                <span>Please wait...</span>
                             </div>
                         </div>
                     </div>

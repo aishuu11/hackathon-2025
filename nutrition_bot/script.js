@@ -1,3 +1,200 @@
+// VRM Manager Class
+class VRMManager {
+    constructor() {
+        this.scene = null;
+        this.camera = null;
+        this.renderer = null;
+        this.vrm = null;
+        this.controls = null;
+        this.clock = new THREE.Clock();
+        this.mixer = null;
+        
+        this.init();
+    }
+
+    async init() {
+        const canvas = document.getElementById('vrmCanvas');
+        const container = document.getElementById('vrmContainer');
+        const loading = document.getElementById('vrmLoading');
+
+        if (!canvas) {
+            console.error('VRM Canvas not found');
+            return;
+        }
+
+        try {
+            // Scene setup
+            this.scene = new THREE.Scene();
+            this.scene.background = new THREE.Color(0x212121);
+
+            // Camera setup
+            this.camera = new THREE.PerspectiveCamera(
+                75,
+                container.clientWidth / container.clientHeight,
+                0.1,
+                1000
+            );
+            this.camera.position.set(0, 1.4, 1.5);
+
+            // Renderer setup
+            this.renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas, 
+                antialias: true 
+            });
+            this.renderer.setSize(container.clientWidth, container.clientHeight);
+            this.renderer.setPixelRatio(window.devicePixelRatio);
+            this.renderer.shadowMap.enabled = true;
+            this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            this.scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(1, 1, 1);
+            directionalLight.castShadow = true;
+            this.scene.add(directionalLight);
+
+            // Controls
+            this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+            this.controls.target.set(0, 1, 0);
+            this.controls.enableDamping = true;
+            this.controls.dampingFactor = 0.05;
+            this.controls.minDistance = 1;
+            this.controls.maxDistance = 10;
+
+            // Load VRM
+            await this.loadVRM('./avaturn_avatar.vrm');
+            
+            if (loading) loading.classList.add('hidden');
+            this.animate();
+
+            // Handle window resize
+            window.addEventListener('resize', () => this.onWindowResize());
+
+        } catch (error) {
+            console.error('Error initializing VRM viewer:', error);
+            if (loading) {
+                loading.innerHTML = '<p>Failed to load VRM Avatar</p><div class="upload-hint"><span>Check console for details</span></div>';
+            }
+        }
+    }
+
+    async loadVRM(url) {
+        const loader = new THREE.GLTFLoader();
+        
+        if (typeof THREE.VRMLoaderPlugin !== 'undefined') {
+            loader.register((parser) => {
+                return new THREE.VRMLoaderPlugin(parser);
+            });
+        }
+
+        return new Promise((resolve, reject) => {
+            loader.load(
+                url,
+                (gltf) => {
+                    try {
+                        if (gltf.userData.vrm) {
+                            // VRM model
+                            this.vrm = gltf.userData.vrm;
+                            this.scene.add(this.vrm.scene);
+                            console.log('VRM loaded successfully');
+                        } else {
+                            // Regular GLTF model
+                            this.scene.add(gltf.scene);
+                            this.vrm = { scene: gltf.scene };
+                            console.log('GLTF model loaded successfully');
+                        }
+
+                        // Set up animations if available
+                        if (gltf.animations && gltf.animations.length > 0) {
+                            this.mixer = new THREE.AnimationMixer(gltf.scene);
+                            gltf.animations.forEach((clip) => {
+                                const action = this.mixer.clipAction(clip);
+                                action.play();
+                            });
+                        }
+
+                        resolve(this.vrm);
+                    } catch (error) {
+                        reject(error);
+                    }
+                },
+                (progress) => {
+                    const percent = (progress.loaded / progress.total * 100).toFixed(2);
+                    console.log(`Loading progress: ${percent}%`);
+                },
+                (error) => {
+                    console.error('Error loading VRM:', error);
+                    reject(error);
+                }
+            );
+        });
+    }
+
+    animate() {
+        requestAnimationFrame(() => this.animate());
+
+        const deltaTime = this.clock.getDelta();
+
+        // Update mixer for animations
+        if (this.mixer) {
+            this.mixer.update(deltaTime);
+        }
+
+        // Update VRM
+        if (this.vrm && this.vrm.update) {
+            this.vrm.update(deltaTime);
+        }
+
+        // Update controls
+        if (this.controls) {
+            this.controls.update();
+        }
+
+        // Render
+        if (this.renderer && this.scene && this.camera) {
+            this.renderer.render(this.scene, this.camera);
+        }
+    }
+
+    onWindowResize() {
+        const container = document.getElementById('vrmContainer');
+        if (!container || !this.camera || !this.renderer) return;
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(width, height);
+    }
+
+    triggerExpression(expressionName) {
+        if (this.vrm && this.vrm.expressionManager) {
+            try {
+                // Reset all expressions first
+                const expressionManager = this.vrm.expressionManager;
+                Object.keys(expressionManager.expressionMap || {}).forEach(key => {
+                    expressionManager.setValue(key, 0);
+                });
+                
+                // Set the desired expression
+                expressionManager.setValue(expressionName, 1.0);
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    if (this.vrm && this.vrm.expressionManager) {
+                        expressionManager.setValue(expressionName, 0);
+                    }
+                }, 3000);
+            } catch (error) {
+                console.log('Expression not available:', expressionName);
+            }
+        }
+    }
+}
+
 // Nutrition Bot JavaScript
 class NutritionBot {
     constructor() {
@@ -5,10 +202,19 @@ class NutritionBot {
         this.myths = {};
         this.supportiveMessages = {};
         this.config = {};
+        this.vrmManager = null;
         
         this.initializeBot();
         this.loadData();
         this.setupEventListeners();
+        this.initVRM();
+    }
+
+    initVRM() {
+        // Initialize VRM after a short delay to ensure DOM is ready
+        setTimeout(() => {
+            this.vrmManager = new VRMManager();
+        }, 500);
     }
 
     async loadData() {
@@ -166,6 +372,16 @@ ${food.healthier_swaps.map(swap => `• ${swap}`).join('\n')}` : ''}
         `;
         this.chatMessages.appendChild(messageElement);
         this.scrollChatToBottom();
+        
+        // Trigger VRM expression when bot responds
+        if (this.vrmManager) {
+            // Trigger expressions based on message content
+            if (message.includes('👍') || message.includes('✅') || message.includes('great') || message.includes('excellent')) {
+                this.vrmManager.triggerExpression('happy');
+            } else {
+                this.vrmManager.triggerExpression('neutral');
+            }
+        }
     }
 
     scrollChatToBottom() {
