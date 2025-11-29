@@ -257,59 +257,7 @@ class NutritionBot {
         });
     }
 
-    findFoodKey(query) {
-        // Direct match
-        if (this.foods[query]) return query;
-
-        // Search in display names and partial matches
-        for (const [key, food] of Object.entries(this.foods)) {
-            if (food.display_name.toLowerCase().includes(query) || 
-                key.includes(query) ||
-                query.includes(key.replace(/_/g, ' '))) {
-                return key;
-            }
-        }
-        return null;
-    }
-
-    analyzeFood(foodQuery) {
-        // Search for food in database
-        const foodKey = this.findFoodKey(foodQuery);
-        
-        if (foodKey && this.foods[foodKey]) {
-            const food = this.foods[foodKey];
-            const trafficLightColors = {
-                green: '🟢',
-                amber: '🟡', 
-                red: '🔴'
-            };
-
-            const analysisMessage = `
-🍽️ **${food.display_name}** Analysis:
-
-**Serving:** ${food.serving_description}
-**Calories:** ${food.calories_per_serving} kcal
-**Category:** ${food.verdict}
-
-**Nutrition Traffic Lights:**
-Sugar: ${trafficLightColors[food.traffic_light.sugar]} | Fat: ${trafficLightColors[food.traffic_light.fat]} | Sodium: ${trafficLightColors[food.traffic_light.sodium]}
-
-**Macros:** ${food.macros.protein_g}g protein, ${food.macros.carbs_g}g carbs, ${food.macros.fat_g}g fat
-
-**Analysis:** ${food.notes}
-
-${food.healthier_swaps && food.healthier_swaps.length > 0 ? 
-`**Healthier Options:**
-${food.healthier_swaps.map(swap => `• ${swap}`).join('\n')}` : ''}
-            `;
-            
-            this.addBotMessage(analysisMessage);
-        } else {
-            this.addBotMessage(`Sorry, I don't have specific data for "${foodQuery}" in my database yet. Try asking about bubble tea, nasi lemak, or oats. You can also ask me general nutrition questions!`);
-        }
-    }
-
-    sendChatMessage() {
+    async sendChatMessage() {
         const chatInput = document.getElementById('chatInput');
         const message = chatInput.value.trim();
 
@@ -318,35 +266,75 @@ ${food.healthier_swaps.map(swap => `• ${swap}`).join('\n')}` : ''}
         this.addUserMessage(message);
         chatInput.value = '';
 
-        // Simple response logic - can be enhanced with AI/NLP
-        setTimeout(() => {
-            this.processUserMessage(message);
-        }, 1000);
+        // Add a typing indicator
+        const typingIndicator = this.addTypingIndicator();
+
+        try {
+            // Call the Python backend API
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            
+            // Remove typing indicator
+            typingIndicator.remove();
+            
+            // Display the response from the Python chatbot
+            this.displayChatbotResponse(data);
+
+        } catch (error) {
+            console.error('Error communicating with chatbot:', error);
+            typingIndicator.remove();
+            this.addBotMessage('Sorry, I\'m having trouble connecting to my brain right now. Please try again in a moment.');
+        }
     }
 
-    processUserMessage(message) {
-        const lowerMessage = message.toLowerCase();
-        
-        // Simple keyword-based responses
-        if (lowerMessage.includes('sugar') || lowerMessage.includes('sweet')) {
-            this.addBotMessage('Sugar can be part of a balanced diet, but it\'s important to be mindful of added sugars. Natural sugars in fruits come with fiber and nutrients, while added sugars in processed foods provide empty calories.');
-        } else if (lowerMessage.includes('carb') || lowerMessage.includes('carbohydrate')) {
-            this.addBotMessage('Carbohydrates are not the enemy! They\'re your body\'s preferred energy source. Focus on complex carbs like whole grains, which provide sustained energy and important nutrients.');
-        } else if (lowerMessage.includes('fat') || lowerMessage.includes('oil')) {
-            this.addBotMessage('Healthy fats are essential for your body! Foods like avocados, nuts, and olive oil provide important fatty acids. It\'s trans fats and excessive saturated fats you should limit.');
-        } else if (lowerMessage.includes('detox') || lowerMessage.includes('cleanse')) {
-            this.addBotMessage('Your liver and kidneys are amazing detox organs that work 24/7! There\'s no scientific evidence that detox diets or cleanses provide additional benefits beyond what your body already does naturally.');
-        } else if (lowerMessage.includes('protein')) {
-            this.addBotMessage('Protein is crucial for muscle maintenance and many body functions. Most people get enough protein, but if you\'re active, you might need a bit more. Good sources include lean meats, fish, eggs, legumes, and dairy.');
-        } else {
-            // Generic helpful response
-            const responses = [
-                'That\'s an interesting nutrition question! Could you be more specific so I can provide better guidance?',
-                'I\'d love to help with that! Nutrition science is constantly evolving, and I try to base my advice on current evidence.',
-                'Great question! Remember, the best diet is one that\'s sustainable, balanced, and fits your lifestyle.',
-                'Thanks for asking! If you have specific foods you\'d like to know about, try the food analysis panel above.'
-            ];
-            this.addBotMessage(responses[Math.floor(Math.random() * responses.length)]);
+    displayChatbotResponse(data) {
+        // Display the main response
+        this.addBotMessage(data.response);
+
+        // Display supportive message if available
+        if (data.supportive_message) {
+            setTimeout(() => {
+                this.addBotMessage(`💚 ${data.supportive_message}`);
+            }, 500);
+        }
+
+        // Apply UI effects if available
+        if (data.ui_effects) {
+            this.applyUIEffects(data.ui_effects);
+        }
+    }
+
+    addTypingIndicator() {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message bot-message typing-indicator';
+        messageElement.innerHTML = `
+            <div class="message-content">
+                <p>Thinking<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+            </div>
+        `;
+        this.chatMessages.appendChild(messageElement);
+        this.scrollChatToBottom();
+        return messageElement;
+    }
+
+    applyUIEffects(effects) {
+        // Apply visual effects based on chatbot response
+        if (effects.hologram_color) {
+            console.log('UI Effect: hologram_color =', effects.hologram_color);
+        }
+        if (effects.avatar_mood) {
+            console.log('UI Effect: avatar_mood =', effects.avatar_mood);
         }
     }
 
@@ -355,7 +343,7 @@ ${food.healthier_swaps.map(swap => `• ${swap}`).join('\n')}` : ''}
         messageElement.className = 'message user-message';
         messageElement.innerHTML = `
             <div class="message-content">
-                <p>${message}</p>
+                <p>${this.escapeHtml(message)}</p>
             </div>
         `;
         this.chatMessages.appendChild(messageElement);
@@ -365,9 +353,13 @@ ${food.healthier_swaps.map(swap => `• ${swap}`).join('\n')}` : ''}
     addBotMessage(message) {
         const messageElement = document.createElement('div');
         messageElement.className = 'message bot-message';
+        
+        // Convert markdown-style formatting to HTML
+        const formattedMessage = this.formatMessage(message);
+        
         messageElement.innerHTML = `
             <div class="message-content">
-                <p>${message}</p>
+                ${formattedMessage}
             </div>
         `;
         this.chatMessages.appendChild(messageElement);
@@ -384,12 +376,52 @@ ${food.healthier_swaps.map(swap => `• ${swap}`).join('\n')}` : ''}
         }
     }
 
+    formatMessage(message) {
+        // Convert **bold** to <strong>
+        message = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // Convert bullet points • to proper list items
+        const lines = message.split('\n');
+        let formatted = '';
+        let inList = false;
+        
+        for (let line of lines) {
+            line = line.trim();
+            if (line.startsWith('•')) {
+                if (!inList) {
+                    formatted += '<ul>';
+                    inList = true;
+                }
+                formatted += `<li>${line.substring(1).trim()}</li>`;
+            } else {
+                if (inList) {
+                    formatted += '</ul>';
+                    inList = false;
+                }
+                if (line) {
+                    formatted += `<p>${line}</p>`;
+                }
+            }
+        }
+        
+        if (inList) {
+            formatted += '</ul>';
+        }
+        
+        return formatted;
+    }
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
     scrollChatToBottom() {
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
 
     showMessage(message, type = 'info') {
-        // You can implement toast notifications here
         console.log(`${type}: ${message}`);
     }
 }
@@ -399,161 +431,69 @@ document.addEventListener('DOMContentLoaded', () => {
     new NutritionBot();
 });
 
-// Add some CSS for the new elements via JavaScript
+// Add additional CSS for typing indicator and better formatting
 const additionalCSS = `
-    .food-analysis {
-        color: #ffffff;
+    .typing-indicator .dots span {
+        animation: blink 1.4s infinite;
+        opacity: 0;
     }
     
-    .food-analysis h3 {
-        color: #00ffff;
-        margin-bottom: 1rem;
-        font-family: 'Orbitron', monospace;
+    .typing-indicator .dots span:nth-child(1) {
+        animation-delay: 0s;
     }
     
-    .food-analysis h4 {
-        color: #ff00ff;
-        margin: 1.5rem 0 0.5rem 0;
-        font-size: 1.1rem;
+    .typing-indicator .dots span:nth-child(2) {
+        animation-delay: 0.2s;
     }
     
-    .food-category {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        margin-bottom: 1rem;
-    processUserMessage(message) {
-        const lowerMessage = message.toLowerCase();
-        
-        // Check if user is asking about a specific food
-        const foodKey = this.findFoodKey(lowerMessage);
-        if (foodKey && this.foods[foodKey]) {
-            this.analyzeFood(lowerMessage);
-            return;
+    .typing-indicator .dots span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    
+    @keyframes blink {
+        0%, 20% {
+            opacity: 0;
         }
-
-        // Simple keyword-based responses
-        if (lowerMessage.includes('sugar') || lowerMessage.includes('sweet')) {
-            this.addBotMessage('Sugar can be part of a balanced diet, but it\'s important to be mindful of added sugars. Natural sugars in fruits come with fiber and nutrients, while added sugars in processed foods provide empty calories.');
-        } else if (lowerMessage.includes('carb') || lowerMessage.includes('carbohydrate')) {
-            this.addBotMessage('Carbohydrates are not the enemy! They\'re your body\'s preferred energy source. Focus on complex carbs like whole grains, which provide sustained energy and important nutrients.');
-        } else if (lowerMessage.includes('fat') || lowerMessage.includes('oil')) {
-            this.addBotMessage('Healthy fats are essential for your body! Foods like avocados, nuts, and olive oil provide important fatty acids. It\'s trans fats and excessive saturated fats you should limit.');
-        } else if (lowerMessage.includes('detox') || lowerMessage.includes('cleanse')) {
-            this.addBotMessage('Your liver and kidneys are amazing detox organs that work 24/7! There\'s no scientific evidence that detox diets or cleanses provide additional benefits beyond what your body already does naturally.');
-        } else if (lowerMessage.includes('protein')) {
-            this.addBotMessage('Protein is crucial for muscle maintenance and many body functions. Most people get enough protein, but if you\'re active, you might need a bit more. Good sources include lean meats, fish, eggs, legumes, and dairy.');
-        } else {
-            // Generic helpful response
-            const responses = [
-                'That\'s an interesting nutrition question! Could you be more specific so I can provide better guidance?',
-                'I\'d love to help with that! Nutrition science is constantly evolving, and I try to base my advice on current evidence.',
-                'Great question! Remember, the best diet is one that\'s sustainable, balanced, and fits your lifestyle.',
-                'Thanks for asking! If you have specific foods you\'d like to know about, just mention them in your message and I\'ll analyze them for you!'
-            ];
-            this.addBotMessage(responses[Math.floor(Math.random() * responses.length)]);
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
         }
     }
     
-    .traffic-lights {
-        margin-bottom: 1rem;
-    }
-    
-    .lights {
-        display: flex;
-        gap: 1rem;
-    }
-    
-    .light {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .light-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        display: inline-block;
-    }
-    
-    .macro-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1rem;
-        border-radius: 10px;
-    }
-    
-    .healthier-swaps ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-    
-    .healthier-swaps li {
-        background: rgba(0, 255, 0, 0.1);
+    .message-content ul {
         margin: 0.5rem 0;
-        padding: 0.5rem;
-        border-left: 3px solid #00ff00;
-        border-radius: 5px;
+        padding-left: 1.5rem;
     }
     
-    .message {
-        margin-bottom: 1rem;
+    .message-content li {
+        margin: 0.3rem 0;
     }
     
-    .message-content {
-        max-width: 80%;
-        padding: 1rem;
-        border-radius: 15px;
+    .message-content p {
+        margin: 0.5rem 0;
     }
     
-    .user-message .message-content {
-        background: linear-gradient(135deg, #00ffff, #0099cc);
+    .message-content p:first-child {
+        margin-top: 0;
+    }
+    
+    .message-content p:last-child {
+        margin-bottom: 0;
+    }
+    
+    .message-content strong {
+        color: #00ffff;
+        font-weight: 600;
+    }
+    
+    .bot-message .message-content strong {
+        color: #00ffff;
+    }
+    
+    .user-message .message-content strong {
         color: #000;
-        margin-left: auto;
-    }
-    
-    .bot-message .message-content {
-        background: rgba(255, 255, 255, 0.1);
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .error {
-        color: #ff4444;
-        font-style: italic;
-    }
-    
-    .no-result {
-        text-align: center;
-        color: rgba(255, 255, 255, 0.7);
-    }
-    
-    .myth-analysis {
-        color: #ffffff;
-    }
-    
-    .myth-analysis h3 {
-        color: #ff00ff;
-        margin-bottom: 1rem;
-        font-family: 'Orbitron', monospace;
-    }
-    
-    .query {
-        background: rgba(255, 0, 255, 0.1);
-        padding: 1rem;
-        border-radius: 10px;
-        margin-bottom: 1rem;
-        border: 1px solid rgba(255, 0, 255, 0.3);
-    }
-    
-    .response {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1rem;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 `;
 
