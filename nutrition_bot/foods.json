@@ -1,0 +1,323 @@
+{
+  "bubble_tea": {
+    "display_name": "Bubble tea",
+    "category": "drink",
+    "tags": ["youth", "trendy", "high_sugar"],
+    "serving_description": "700 ml cup with pearls at full sugar level",
+    "calories_per_serving": 469,
+    "macros": {
+      "protein_g": 3,
+      "carbs_g": 80,
+      "fat_g": 5
+    },
+    "sugar_g": 44,
+    "fibre_g": 1,
+    "sodium_mg": 50,
+    "verdict": "treat",
+    "traffic_light": {
+      "sugar": "red",
+      "fat": "amber",
+      "sodium": "green"
+    },
+    "notes": "Large bubble tea with toppings is very high in sugar and calories while providing little protein or fibre. Taken frequently it can easily exceed daily sugar recommendations and contribute to weight gain and dental issues.",
+    "healthier_swaps": [
+      "Choose 0–25% sugar instead of full sweetness",
+      "Skip pearls or heavy toppings, or share a cup with a friend",
+      "Pick the smallest serving size instead of upsizing",
+      "Limit bubble tea to an occasional treat rather than a daily habit"
+    ],
+    "nutrition_flags": {
+      "high_sugar": true,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [
+      "poor_blood_sugar_control",
+      "weight_loss_high_priority"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF4B6E"
+    },
+    "evidence": {
+      "statistic": "A 700 ml bubble tea with toppings can contain around 469 kcal and roughly 11 teaspoons of sugar.",
+      "source_name": "Mount Alvernia Hospital & Singapore Health Promotion Board resources",
+      "year": 2024,
+      "url": "https://mtalvernia.sg/education/whats-in-my-bubble-tea/"
+    }
+  },
+  "nasi_lemak": {
+    "display_name": "Nasi lemak",
+    "category": "rice_dish",
+    "tags": ["local_food", "coconut_rice"],
+    "serving_description": "1 plate with coconut rice, fried chicken or fish, egg, sambal and peanuts",
+    "calories_per_serving": 550,
+    "macros": {
+      "protein_g": 15,
+      "carbs_g": 58,
+      "fat_g": 28
+    },
+    "sugar_g": 4,
+    "fibre_g": 3,
+    "sodium_mg": 900,
+    "verdict": "occasional_indulgence",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "red",
+      "sodium": "red"
+    },
+    "notes": "Because of coconut milk rice, fried items and sambal, nasi lemak is energy-dense and high in saturated fat and sodium. Eating it often without adjustments can make a calorie deficit hard to maintain.",
+    "healthier_swaps": [
+      "Ask for less rice and more cucumber or vegetables",
+      "Choose grilled or non-fried protein where available",
+      "Go easy on sambal and gravy",
+      "Balance the rest of the day with lighter meals"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "hypertension",
+      "high_cholesterol"
+    ],
+    "ui_effects": {
+      "hologram_style": "caution",
+      "base_color": "#FF9F1C"
+    },
+    "evidence": {
+      "statistic": "Calorie charts place one plate of nasi lemak roughly between 494 and 600 kcal depending on ingredients.",
+      "source_name": "Local calorie charts and nutrition databases",
+      "year": 2020,
+      "url": "https://healthscreening.com.sg/food-calories-chart/"
+    }
+  },
+  "chicken_rice": {
+    "display_name": "Chicken rice",
+    "category": "rice_dish",
+    "tags": ["local_food"],
+    "serving_description": "1 plate Hainanese chicken rice with skin, fragrant rice and sauces",
+    "calories_per_serving": 630,
+    "macros": {
+      "protein_g": 25,
+      "carbs_g": 75,
+      "fat_g": 23
+    },
+    "sugar_g": 3,
+    "fibre_g": 2,
+    "sodium_mg": 1200,
+    "verdict": "moderation",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "amber",
+      "sodium": "red"
+    },
+    "notes": "Chicken rice provides protein but is also high in calories and sodium due to the fragrant rice cooked with fat and the sauces. Regular large portions can slow weight-loss progress.",
+    "healthier_swaps": [
+      "Ask for more chicken and less rice",
+      "Remove the skin to reduce saturated fat",
+      "Use less soy sauce and dark sauce",
+      "Add a side of vegetables or soup"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "hypertension",
+      "fluid_restriction"
+    ],
+    "ui_effects": {
+      "hologram_style": "caution",
+      "base_color": "#FFC857"
+    },
+    "evidence": {
+      "statistic": "One serving of chicken rice is commonly estimated at 600–670 kcal with high sodium content.",
+      "source_name": "HealthHub Singapore and local nutrition charts",
+      "year": 2024,
+      "url": "https://www.healthhub.sg"
+    }
+  },
+  "fried_chicken": {
+    "display_name": "Fried chicken",
+    "category": "fried_food",
+    "tags": ["fast_food"],
+    "serving_description": "1 medium piece of deep-fried chicken with skin",
+    "calories_per_serving": 300,
+    "macros": {
+      "protein_g": 20,
+      "carbs_g": 10,
+      "fat_g": 20
+    },
+    "sugar_g": 0,
+    "fibre_g": 0,
+    "sodium_mg": 600,
+    "verdict": "treat",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "red",
+      "sodium": "amber"
+    },
+    "notes": "Fried chicken offers protein but also a lot of added fat and sodium from the batter and deep-frying. Frequent intake can raise cardiovascular risk and make a calorie deficit harder.",
+    "healthier_swaps": [
+      "Choose grilled or roasted chicken more often",
+      "Remove skin and visible batter where possible",
+      "Avoid pairing with sugary drinks and large fries"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "high_cholesterol",
+      "heart_disease"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF6B6B"
+    },
+    "evidence": {
+      "statistic": "Fast-food style fried chicken portions typically provide 250–350 kcal per piece with high fat and sodium.",
+      "source_name": "Chain restaurant nutrition tables",
+      "year": 2023,
+      "url": "https://www.healthline.com/nutrition"
+    }
+  },
+  "soft_drink_can": {
+    "display_name": "Soft drink (330 ml can)",
+    "category": "drink",
+    "tags": ["high_sugar"],
+    "serving_description": "1 can of regular sugar-sweetened soft drink",
+    "calories_per_serving": 140,
+    "macros": {
+      "protein_g": 0,
+      "carbs_g": 35,
+      "fat_g": 0
+    },
+    "sugar_g": 35,
+    "fibre_g": 0,
+    "sodium_mg": 40,
+    "verdict": "treat",
+    "traffic_light": {
+      "sugar": "red",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Soft drinks provide a lot of sugar and calories in liquid form without fibre or nutrients, making it very easy to overconsume them without feeling full.",
+    "healthier_swaps": [
+      "Switch to water, sparkling water or unsweetened tea most of the time",
+      "If you drink soft drinks, keep them as an occasional treat and choose smaller cans",
+      "Try flavoured water or zero-sugar drinks if appropriate for your health"
+    ],
+    "nutrition_flags": {
+      "high_sugar": true,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [
+      "diabetes",
+      "weight_loss_high_priority"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF4B6E"
+    },
+    "evidence": {
+      "statistic": "In Singapore, more than half of daily sugar intake comes from beverages, and average sugar intake is about 58 g per day.",
+      "source_name": "Singapore Health Promotion Board – Nutri-Grade information",
+      "year": 2021,
+      "url": "https://www.hpb.gov.sg/healthy-living/food-beverage/nutri-grade"
+    }
+  },
+  "greek_yogurt_plain_low_fat": {
+    "display_name": "Greek yogurt (plain, low-fat)",
+    "category": "dairy",
+    "tags": ["high_protein", "snack"],
+    "serving_description": "170 g tub of plain low-fat Greek yogurt",
+    "calories_per_serving": 100,
+    "macros": {
+      "protein_g": 17,
+      "carbs_g": 6,
+      "fat_g": 0
+    },
+    "sugar_g": 6,
+    "fibre_g": 0,
+    "sodium_mg": 60,
+    "verdict": "good_choice",
+    "traffic_light": {
+      "sugar": "amber",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Plain Greek yogurt is high in protein and relatively low in calories, making it a good base for snacks and breakfasts when combined with fruit, nuts or oats.",
+    "healthier_swaps": [
+      "Choose plain versions and add your own fruit instead of pre-sweetened flavours",
+      "Use yogurt instead of cream in some recipes",
+      "Pair with berries and a small handful of nuts for a balanced snack"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [
+      "lactose_intolerance"
+    ],
+    "ui_effects": {
+      "hologram_style": "positive",
+      "base_color": "#4CAF50"
+    },
+    "evidence": {
+      "statistic": "Typical plain Greek yogurt tubs provide around 15–20 g protein per 100–120 kcal serving.",
+      "source_name": "Common supermarket nutrition labels",
+      "year": 2024,
+      "url": "https://fdc.nal.usda.gov"
+    }
+  },
+  "oatmeal_with_milk": {
+    "display_name": "Oatmeal with milk",
+    "category": "breakfast",
+    "tags": ["whole_grain", "high_fibre"],
+    "serving_description": "1 bowl of rolled oats cooked with low-fat milk (about 40 g dry oats)",
+    "calories_per_serving": 220,
+    "macros": {
+      "protein_g": 10,
+      "carbs_g": 32,
+      "fat_g": 6
+    },
+    "sugar_g": 8,
+    "fibre_g": 4,
+    "sodium_mg": 80,
+    "verdict": "good_choice",
+    "traffic_light": {
+      "sugar": "amber",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Oats provide fibre and slow-release carbohydrates that help with fullness and stable energy. Without too much added sugar, they support both weight control and training.",
+    "healthier_swaps": [
+      "Sweeten lightly with fruit instead of large amounts of sugar or syrup",
+      "Add protein powder, yogurt or nuts if you need more protein and staying power",
+      "Avoid instant flavoured sachets that are high in added sugar"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [],
+    "ui_effects": {
+      "hologram_style": "positive",
+      "base_color": "#4CAF50"
+    },
+    "evidence": {
+      "statistic": "Randomised trials link higher whole-grain and oat intake with better cholesterol and satiety.",
+      "source_name": "Systematic reviews of whole grains and metabolic health",
+      "year": 2021,
+      "url": "https://pubmed.ncbi.nlm.nih.gov"
+    }
+  }
+}

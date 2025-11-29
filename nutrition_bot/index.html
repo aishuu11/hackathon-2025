@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Bot - Myth Buster</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="background-shapes">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+            <div class="cube cube-1"></div>
+            <div class="cube cube-2"></div>
+        </div>
+        
+        <header class="header">
+            <h1 class="title">Nutrition Bot</h1>
+            <p class="subtitle">Debunking nutrition myths with science</p>
+        </header>
+
+        <main class="main-content">
+            <div class="panels-container">
+                <div class="glass-panel panel-left">
+                    <div class="panel-header">
+                        <h2>VRM Avatar</h2>
+                    </div>
+                    <div class="vrm-container" id="vrmContainer">
+                        <div class="vrm-placeholder">
+                            <p>VRM Avatar will be loaded here</p>
+                            <div class="upload-hint">
+                                <span>Ready for VRM file import</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel panel-right">
+                    <div class="panel-header">
+                        <h2>Nutrition Chat</h2>
+                    </div>
+                    <div class="chat-content">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="welcome-message">
+                                <p>Welcome! I'm here to help you separate nutrition facts from fiction. Ask me about any food or nutrition myth!</p>
+                            </div>
+                        </div>
+                        <div class="chat-input-container">
+                            <input type="text" id="chatInput" placeholder="Type your question..." class="futuristic-input">
+                            <button id="sendMessage" class="neon-button">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
