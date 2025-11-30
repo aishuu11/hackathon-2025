@@ -1,0 +1,630 @@
+[
+  {
+    "id": "carbs_make_you_fat",
+    "label": "Carbohydrates automatically make you fat",
+    "alt_phrases": [
+      "carbs make you fat",
+      "rice makes you fat",
+      "pasta makes you gain weight",
+      "eating carbs causes weight gain",
+      "bread is the reason I'm fat"
+    ],
+    "category": "carbohydrates",
+    "tags": ["tiktok", "weight_loss", "young_adults"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "medium",
+    "harm_level": 3,
+    "impact_tag": "mindset_shift",
+    "explanation": "Carbohydrates by themselves do not automatically cause fat gain. Weight changes are driven mainly by your overall calorie balance over time. Whole-grain and high-fibre carbohydrate foods are consistently linked with better long-term health when eaten in sensible portions.",
+    "evidence": {
+      "statistic": "Many national guidelines recommend roughly 45–65% of daily energy to come from carbohydrates as part of a balanced diet.",
+      "quote": "Eating a potato, a bowl of pasta, or any type of carbohydrate-rich food won't automatically make you fatter.",
+      "source_name": "Better Health Channel – Weight loss: common myths",
+      "source_type": "government_health_site",
+      "year": 2023,
+      "url": "https://www.betterhealth.vic.gov.au/health/healthyliving/weight-loss-common-myths"
+    },
+    "nutrition_flags": {
+      "encourages_over_restriction": true,
+      "fear_based": true
+    },
+    "tips": {
+      "weight_loss": "Keep portions of rice, noodles and bread reasonable and combine them with protein and vegetables instead of cutting all carbs completely.",
+      "muscle_gain": "Use carbs like rice, pasta, potatoes and fruit around workouts to fuel training while still keeping an eye on total calories.",
+      "general": "Prioritise high-fibre carbs such as brown rice, oats, whole grains, fruit and legumes, and avoid overdoing sugary drinks and sweets."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF4B6E",
+      "meter_value": 0.3,
+      "avatar_mood": "firm",
+      "alert_icon": "info"
+    },
+    "follow_up_questions": [
+      "Do you want help building a balanced meal with carbs, protein and vegetables?",
+      "Which carb food do you feel most worried about right now?"
+    ],
+    "sources": [
+      "Better Health Channel – Weight loss: common myths",
+      "British Dietetic Association – Carbohydrates Food Fact Sheet"
+    ]
+  },
+  {
+    "id": "carbs_at_night_cause_more_fat_gain",
+    "label": "Eating carbohydrates at night causes more fat gain than eating them earlier",
+    "alt_phrases": [
+      "carbs at night make you fat",
+      "no carbs after 6pm",
+      "rice after 8pm goes straight to fat",
+      "eating late at night always causes weight gain"
+    ],
+    "category": "meal_timing",
+    "tags": ["timing", "weight_loss"],
+    "verdict": "partially_true",
+    "verdict_strength": "moderate",
+    "risk": "low",
+    "harm_level": 2,
+    "impact_tag": "habit_change",
+    "explanation": "There is no magic time when carbs suddenly turn into fat, but late-night eating is often linked with mindless snacking, larger portions and highly processed foods. These habits can increase total calorie intake and contribute to weight gain over time, especially when combined with poor sleep.",
+    "evidence": {
+      "statistic": "Observational studies report that people who eat a larger share of their calories late at night generally consume more total energy and have higher body weight.",
+      "quote": "There is no scientific evidence to show that eating carbohydrates in the evening causes weight gain; the body metabolises carbohydrate in the same way regardless of the time of day or night.",
+      "source_name": "Centre for Clinical Interventions – Carbohydrates: Myths and Facts",
+      "source_type": "clinical_information_sheet",
+      "year": 2018,
+      "url": "https://www.cci.health.wa.gov.au"
+    },
+    "nutrition_flags": {
+      "encourages_regular_meals": true
+    },
+    "tips": {
+      "weight_loss": "Keep your main meals earlier in the day where you can, avoid heavy late-night snacking, and leave 2–3 hours between your last large meal and sleep.",
+      "muscle_gain": "If you train at night, a moderate carb-protein snack like yogurt with fruit or a sandwich can support recovery as long as it fits into your daily calories.",
+      "general": "Worry less about the clock and more about what and how much you are eating across the whole day and week."
+    },
+    "ui_effects": {
+      "hologram_color": "#FFC857",
+      "meter_value": 0.55,
+      "avatar_mood": "thoughtful",
+      "alert_icon": "neutral"
+    },
+    "follow_up_questions": [
+      "What does your usual late-night eating pattern look like?",
+      "Would it help if I suggested lighter evening snack options?"
+    ],
+    "sources": [
+      "Clinical reviews on late eating and obesity risk",
+      "CCI – Carbohydrates: Myths and Facts"
+    ]
+  },
+  {
+    "id": "detox_teas_cleanse_and_burn_fat",
+    "label": "Detox or slimming teas safely cleanse your body and burn fat",
+    "alt_phrases": [
+      "detox tea removes toxins",
+      "teatox helps you lose weight quickly",
+      "slimming teas melt belly fat",
+      "skinny tea is a safe weight-loss shortcut"
+    ],
+    "category": "detox",
+    "tags": ["tiktok", "instagram", "supplements", "young_women"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "high",
+    "harm_level": 5,
+    "impact_tag": "safety_warning",
+    "explanation": "Detox and slimming teas are often marketed as a fast, natural way to lose weight and remove toxins. In reality, many contain stimulant laxatives, strong herbs and high caffeine. These can cause diarrhoea, dehydration, cramps and electrolyte imbalances. Any quick weight loss is mainly from water and stool, not body fat, and long-term use can harm digestive health.",
+    "evidence": {
+      "statistic": "Reports describe frequent side effects such as diarrhoea, abdominal pain and dehydration in people misusing detox products.",
+      "quote": "“Detoxification” programs may include laxatives, which can cause diarrhea. Acute diarrhea can lead to dehydration and malabsorption.",
+      "source_name": "NCCIH – Detoxes and cleanses: what you need to know",
+      "source_type": "national_health_agency",
+      "year": 2022,
+      "url": "https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know"
+    },
+    "nutrition_flags": {
+      "dangerous_behaviour": true
+    },
+    "tips": {
+      "weight_loss": "Avoid detox teas and focus instead on a small, sustainable calorie deficit, balanced meals, sleep and movement. Your liver and kidneys already detox your body.",
+      "muscle_gain": "Steer clear of laxative-based products that can interfere with nutrient absorption. Support performance with enough calories, protein and fluids.",
+      "general": "Be cautious with any product that promises rapid weight loss or ‘detox’ without lifestyle change. Discuss supplements with a qualified professional if you are unsure."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF2E63",
+      "meter_value": 0.1,
+      "avatar_mood": "angry",
+      "alert_icon": "warning"
+    },
+    "follow_up_questions": [
+      "Have you or your friends ever tried detox teas before?",
+      "Would you like safer ideas for getting back on track after a holiday or heavy meal?"
+    ],
+    "sources": [
+      "NCCIH – Detoxes and cleanses",
+      "Brown University Health – The truth about detox teas",
+      "Healthline – Detox tea side effects"
+    ]
+  },
+  {
+    "id": "spot_reduction_belly_fat",
+    "label": "You can burn fat from one spot, like only your belly, by training that area",
+    "alt_phrases": [
+      "do crunches to burn belly fat",
+      "arm workouts melt arm fat",
+      "thigh exercises remove thigh fat",
+      "targeted exercises burn fat in that area"
+    ],
+    "category": "fat_loss",
+    "tags": ["gym", "tiktok", "body_image"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "low",
+    "harm_level": 2,
+    "impact_tag": "mindset_shift",
+    "explanation": "Exercise can strengthen and grow specific muscles, but your body draws fat from overall stores, not just from the area you are working. Studies repeatedly show that training one limb or region does not selectively remove fat there. Fat loss happens across the body when you maintain a calorie deficit and keep moving.",
+    "evidence": {
+      "statistic": "Trials where participants trained one limb more than the other found similar fat loss on both sides, even though only one was exercised.",
+      "quote": "The theory of spot reduction has not been proven effective by scientific studies.",
+      "source_name": "Healthline – Targeted Weight Loss: Myth or Reality?",
+      "source_type": "health_information_site",
+      "year": 2018,
+      "url": "https://www.healthline.com/nutrition/targeted-weight-loss"
+    },
+    "nutrition_flags": {
+      "body_image_pressure": true
+    },
+    "tips": {
+      "weight_loss": "Use full-body strength training and moderate cardio, and focus on patience. Over time your waist and other areas lean out together.",
+      "muscle_gain": "Train specific areas to build shape, but remember that definition appears mainly when your overall body fat comes down.",
+      "general": "Avoid products that promise ‘fat loss only from belly’ or ‘only from thighs’. They usually overpromise what is physically possible."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF9F1C",
+      "meter_value": 0.3,
+      "avatar_mood": "explaining",
+      "alert_icon": "info"
+    },
+    "follow_up_questions": [
+      "Is there any area you feel most insecure about right now?",
+      "Do you want help designing a more balanced activity plan instead of targeting just one body part?"
+    ],
+    "sources": [
+      "Healthline – Targeted Weight Loss",
+      "University outreach explaining spot-reduction myth"
+    ]
+  },
+  {
+    "id": "superfoods_cure_disease_or_detox",
+    "label": "Superfoods or single ingredients can detox or cure disease by themselves",
+    "alt_phrases": [
+      "this superfood will detox your body",
+      "eating kale or goji berries cures everything",
+      "one food can reverse disease",
+      "a single superfood can fix a bad diet"
+    ],
+    "category": "superfoods",
+    "tags": ["marketing", "social_media", "supplements"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "medium",
+    "harm_level": 3,
+    "impact_tag": "mindset_shift",
+    "explanation": "Foods like berries, nuts and leafy greens are healthy and nutrient-dense, but no single food can detox your body or cure serious disease on its own. Long-term health is shaped by your overall eating pattern, physical activity, sleep and other habits.",
+    "evidence": {
+      "statistic": "Cancer and heart-health guidelines emphasise overall dietary patterns rather than any one ‘superfood’.",
+      "quote": "No single food has the ability to undo the effect of an unhealthy diet or lifestyle.",
+      "source_name": "Breakthrough Cancer Research – The Truth About Food and Cancer",
+      "source_type": "cancer_charity_booklet",
+      "year": 2022,
+      "url": "https://breakthroughcancerresearch.ie"
+    },
+    "nutrition_flags": {
+      "encourages_over_restriction": false
+    },
+    "tips": {
+      "weight_loss": "Build meals mostly from ordinary whole foods you can afford and enjoy, instead of chasing expensive ‘superfoods’. Consistency beats hype.",
+      "muscle_gain": "Focus on meeting your calorie and protein needs first; then add fruits, vegetables and healthy fats for micronutrients.",
+      "general": "Think in terms of ‘super patterns’ not superfoods: variety, colour, fibre and balance across the week."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF9AE1",
+      "meter_value": 0.4,
+      "avatar_mood": "gentle",
+      "alert_icon": "info"
+    },
+    "follow_up_questions": [
+      "Have you ever bought a food just because it was labelled a ‘superfood’?",
+      "Would it help if I suggested a budget-friendly ‘super plate’ instead of one magic food?"
+    ],
+    "sources": [
+      "Breakthrough Cancer Research – Truth about food and cancer"
+    ]
+  },
+  {
+    "id": "skip_meals_to_lose_weight_faster",
+    "label": "Skipping meals is the best way to lose weight quickly",
+    "alt_phrases": [
+      "if I skip meals I'll lose weight faster",
+      "just starving myself for a few days is fine",
+      "not eating breakfast will make me slim",
+      "the less I eat the better my metabolism"
+    ],
+    "category": "restriction",
+    "tags": ["disordered_eating", "teenagers", "tiktok"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "high",
+    "harm_level": 5,
+    "impact_tag": "safety_warning",
+    "explanation": "Simply skipping meals can lead to intense hunger, binge-eating later, low energy, poor focus and a difficult relationship with food. Research shows that extreme restriction is hard to maintain and often leads to weight regain. A small, sustainable calorie deficit with regular meals is safer and more effective.",
+    "evidence": {
+      "statistic": "Long-term studies find that extreme diets have high dropout rates and are linked with weight cycling and disordered eating.",
+      "quote": "Skipping meals is not recommended as a strategy for healthy weight control.",
+      "source_name": "Multiple national health guidelines on weight management",
+      "source_type": "guideline_summary",
+      "year": 2021,
+      "url": "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight"
+    },
+    "nutrition_flags": {
+      "dangerous_behaviour": true,
+      "disordered_eating_risk": true
+    },
+    "tips": {
+      "weight_loss": "Aim for regular, balanced meals that keep you comfortably full, with a modest calorie deficit. This is far more sustainable than skipping meals completely.",
+      "muscle_gain": "Skipping meals makes it harder to eat enough protein and calories to build muscle. Spread your intake across the day instead.",
+      "general": "If you feel stuck in a restrict–binge cycle, consider talking with a healthcare professional for support."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF1744",
+      "meter_value": 0.15,
+      "avatar_mood": "concerned",
+      "alert_icon": "warning"
+    },
+    "follow_up_questions": [
+      "Have you noticed yourself swinging between not eating and then overeating later?",
+      "Would it help if I suggested a more balanced day of meals instead of skipping?"
+    ],
+    "sources": [
+      "WHO and national guidelines on healthy weight management"
+    ]
+  },
+  {
+    "id": "fruit_sugar_same_as_soft_drink",
+    "label": "Sugar from fruit is just as bad as sugar from soft drinks",
+    "alt_phrases": [
+      "fruit sugar is just as bad",
+      "fruits are unhealthy because of sugar",
+      "you should avoid fruit when dieting",
+      "eating fruit is the same as drinking soda"
+    ],
+    "category": "sugar",
+    "tags": ["weight_loss", "keto", "confusion"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "medium",
+    "harm_level": 3,
+    "impact_tag": "mindset_shift",
+    "explanation": "Whole fruits do contain natural sugars, but they also provide fibre, water, vitamins and protective plant compounds. These slow digestion, improve fullness and are linked with better heart and gut health. Sugary drinks, on the other hand, deliver sugar and calories very quickly without fibre or lasting fullness.",
+    "evidence": {
+      "statistic": "Large cohort studies show that higher intake of whole fruit is associated with lower risk of type 2 diabetes, while higher intake of sugar-sweetened beverages is associated with higher risk.",
+      "quote": "Sugar in whole fruit comes packaged with fibre and nutrients and is not linked with the same health risks as sugar-sweetened beverages when eaten in normal amounts.",
+      "source_name": "Harvard T.H. Chan School of Public Health – Fruit and Diabetes",
+      "source_type": "university_public_health_site",
+      "year": 2021,
+      "url": "https://www.hsph.harvard.edu/nutritionsource/fruit/"
+    },
+    "nutrition_flags": {
+      "fear_based": true
+    },
+    "tips": {
+      "weight_loss": "Enjoy 1–3 servings of whole fruit per day as part of meals or snacks, and cut back on sugary drinks first if you want to reduce sugar.",
+      "muscle_gain": "Use fruit as a convenient carb source before or after workouts rather than relying on sweets or drinks.",
+      "general": "Fruit juice and dried fruit are more concentrated; keep portions smaller compared with whole fruit."
+    },
+    "ui_effects": {
+      "hologram_color": "#4CAF50",
+      "meter_value": 0.8,
+      "avatar_mood": "happy",
+      "alert_icon": "check"
+    },
+    "follow_up_questions": [
+      "Which fruits do you actually enjoy eating?",
+      "Do you want examples of affordable fruit portions that fit your goals?"
+    ],
+    "sources": [
+      "Harvard T.H. Chan – Fruit and Diabetes"
+    ]
+  },
+  {
+    "id": "eight_glasses_water_daily",
+    "label": "You must drink exactly 8 glasses of water every day",
+    "alt_phrases": [
+      "need 8 glasses of water a day",
+      "have to drink 2 liters of water daily",
+      "not drinking enough water if less than 8 glasses",
+      "8 cups of water is the rule"
+    ],
+    "category": "hydration",
+    "tags": ["health_myths", "common_belief"],
+    "verdict": "partially_true",
+    "verdict_strength": "moderate",
+    "risk": "low",
+    "harm_level": 2,
+    "impact_tag": "mindset_shift",
+    "explanation": "Hydration needs vary widely based on activity level, climate, body size, and diet. While staying hydrated is important, the '8 glasses' rule is not based on strong evidence. You can meet fluid needs through water, other beverages, and water-rich foods. Thirst is generally a reliable guide.",
+    "evidence": {
+      "statistic": "Fluid needs vary from about 2.7 liters for women to 3.7 liters for men per day, including all beverages and food sources.",
+      "quote": "There is no scientific evidence supporting the 8 glasses per day recommendation as a universal requirement.",
+      "source_name": "National Academies of Sciences – Dietary Reference Intakes for Water",
+      "source_type": "scientific_institution",
+      "year": 2004,
+      "url": "https://www.nationalacademies.org"
+    },
+    "nutrition_flags": {
+      "fear_based": false
+    },
+    "tips": {
+      "weight_loss": "Drinking water before meals can help with fullness, but focus on overall hydration from various sources rather than hitting a specific number.",
+      "muscle_gain": "Stay well-hydrated around workouts. Drink when thirsty and monitor urine color—pale yellow indicates good hydration.",
+      "general": "Let thirst guide you, drink more in hot weather or when exercising, and remember that fruits, vegetables, soups and other beverages count toward hydration."
+    },
+    "ui_effects": {
+      "hologram_color": "#4FC3F7",
+      "meter_value": 0.65,
+      "avatar_mood": "calm",
+      "alert_icon": "info"
+    },
+    "follow_up_questions": [
+      "Do you find it hard to drink water throughout the day?",
+      "Would tips for increasing your fluid intake help?"
+    ],
+    "sources": [
+      "National Academies – Dietary Reference Intakes for Water",
+      "Mayo Clinic – Water: How much should you drink every day?"
+    ]
+  },
+  {
+    "id": "gluten_free_healthier_for_everyone",
+    "label": "Gluten-free diets are healthier for everyone",
+    "alt_phrases": [
+      "gluten free is better for health",
+      "everyone should avoid gluten",
+      "gluten causes inflammation in everyone",
+      "gluten free helps you lose weight"
+    ],
+    "category": "gluten",
+    "tags": ["diet_trends", "food_sensitivity"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "medium",
+    "harm_level": 3,
+    "impact_tag": "mindset_shift",
+    "explanation": "Gluten-free diets are essential for people with celiac disease or diagnosed gluten sensitivity, but there's no evidence they're healthier for the general population. Gluten-free products are often lower in fiber and nutrients, and can be more expensive and processed.",
+    "evidence": {
+      "statistic": "Only about 1% of the population has celiac disease, and another 0.5-13% may have non-celiac gluten sensitivity.",
+      "quote": "There is no evidence that following a gluten-free diet has any significant benefits in the general population.",
+      "source_name": "Harvard Health Publishing – Ditch the gluten, improve your health?",
+      "source_type": "medical_school_publication",
+      "year": 2021,
+      "url": "https://www.health.harvard.edu"
+    },
+    "nutrition_flags": {
+      "encourages_over_restriction": true,
+      "fear_based": true
+    },
+    "tips": {
+      "weight_loss": "Weight loss from going gluten-free usually comes from cutting out processed foods and reducing overall calories, not from removing gluten itself.",
+      "muscle_gain": "Whole grain foods with gluten like bread, pasta and oats can be valuable carb sources for training. Don't avoid them without medical reason.",
+      "general": "Only avoid gluten if you have celiac disease, diagnosed sensitivity, or under medical advice. Whole grains are beneficial for most people."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF9F1C",
+      "meter_value": 0.35,
+      "avatar_mood": "explaining",
+      "alert_icon": "info"
+    },
+    "follow_up_questions": [
+      "Have you been diagnosed with celiac disease or gluten sensitivity?",
+      "What made you think about going gluten-free?"
+    ],
+    "sources": [
+      "Harvard Health – Ditch the gluten, improve your health?",
+      "Celiac Disease Foundation"
+    ]
+  },
+  {
+    "id": "microwave_destroys_nutrients",
+    "label": "Microwaving food destroys all its nutrients",
+    "alt_phrases": [
+      "microwave kills nutrients",
+      "microwaved food is unhealthy",
+      "microwave radiation ruins food",
+      "never microwave vegetables"
+    ],
+    "category": "cooking_methods",
+    "tags": ["kitchen_myths", "food_preparation"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "low",
+    "harm_level": 2,
+    "impact_tag": "mindset_shift",
+    "explanation": "Microwaving is actually one of the best cooking methods for preserving nutrients because it uses less water and shorter cooking times. All cooking methods cause some nutrient loss, but microwaving often preserves more nutrients than boiling or frying.",
+    "evidence": {
+      "statistic": "Studies show microwaving vegetables can retain more vitamin C and other nutrients compared to boiling.",
+      "quote": "Microwaving is a safe and efficient cooking method that can preserve nutrients better than some conventional cooking methods.",
+      "source_name": "Harvard Health Publishing – Microwave cooking and nutrition",
+      "source_type": "medical_school_publication",
+      "year": 2019,
+      "url": "https://www.health.harvard.edu"
+    },
+    "nutrition_flags": {
+      "fear_based": true
+    },
+    "tips": {
+      "weight_loss": "Use the microwave to quickly prepare healthy meals like steamed vegetables, reducing the temptation to order takeout.",
+      "muscle_gain": "Microwave meal prep containers for convenient, nutrient-dense meals throughout the week.",
+      "general": "Use minimal water when microwaving vegetables, cover them to trap steam, and avoid overcooking for best nutrient retention."
+    },
+    "ui_effects": {
+      "hologram_color": "#4CAF50",
+      "meter_value": 0.8,
+      "avatar_mood": "happy",
+      "alert_icon": "check"
+    },
+    "follow_up_questions": [
+      "Do you avoid using the microwave for health reasons?",
+      "Would quick microwave meal ideas be helpful?"
+    ],
+    "sources": [
+      "Harvard Health – Microwave cooking and nutrition",
+      "FDA – Microwave Oven Safety"
+    ]
+  },
+  {
+    "id": "eating_late_always_causes_weight_gain",
+    "label": "Eating anything after 6 PM or 8 PM causes weight gain",
+    "alt_phrases": [
+      "no eating after 6pm",
+      "eating late at night makes you fat",
+      "dinner after 8pm turns to fat",
+      "late night eating always bad"
+    ],
+    "category": "meal_timing",
+    "tags": ["timing", "weight_loss", "common_belief"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "medium",
+    "harm_level": 3,
+    "impact_tag": "habit_change",
+    "explanation": "Your body doesn't have a magical cutoff time where calories suddenly count more. What matters is your total daily calorie intake and the quality of foods you eat. However, late-night eating is often associated with mindless snacking, larger portions, and less nutritious choices, which can lead to excess calories.",
+    "evidence": {
+      "statistic": "Studies show that weight gain is related to total calorie intake and meal quality, not specifically the time of eating.",
+      "quote": "A calorie is a calorie regardless of when you eat it, but eating patterns and food choices late at night often differ from daytime eating.",
+      "source_name": "British Dietetic Association – Food Fact Sheet on healthy eating",
+      "source_type": "professional_dietetic_association",
+      "year": 2022,
+      "url": "https://www.bda.uk.com"
+    },
+    "nutrition_flags": {
+      "encourages_over_restriction": true,
+      "fear_based": true
+    },
+    "tips": {
+      "weight_loss": "Focus on eating regular, balanced meals throughout the day. If you're hungry at night, have a small planned snack rather than feeling deprived.",
+      "muscle_gain": "A protein-rich snack before bed can support muscle recovery. Total daily protein and calories matter more than specific timing.",
+      "general": "Plan your meals to match your schedule and hunger patterns. If you naturally eat dinner later, that's fine as long as overall intake is balanced."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF9F1C",
+      "meter_value": 0.4,
+      "avatar_mood": "explaining",
+      "alert_icon": "info"
+    },
+    "follow_up_questions": [
+      "What time do you usually eat dinner?",
+      "Do you find yourself snacking late at night out of boredom or actual hunger?"
+    ],
+    "sources": [
+      "British Dietetic Association – Food Fact Sheets",
+      "Research reviews on meal timing and weight"
+    ]
+  },
+  {
+    "id": "negative_calorie_foods",
+    "label": "Some foods have negative calories and burn more than they provide",
+    "alt_phrases": [
+      "celery has negative calories",
+      "negative calorie foods exist",
+      "eating ice burns calories so it's weight loss food",
+      "certain foods burn fat just by eating them"
+    ],
+    "category": "metabolism",
+    "tags": ["weight_loss", "social_media", "pseudoscience"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "low",
+    "harm_level": 2,
+    "impact_tag": "mindset_shift",
+    "explanation": "No food has negative calories. While digesting food does use energy (thermic effect of food), it's only about 10-30% of the calories consumed, never exceeding 100%. Foods like celery are very low in calories, but you still net positive calories from eating them.",
+    "evidence": {
+      "statistic": "The thermic effect of food accounts for roughly 10% of total daily energy expenditure, with protein having the highest effect at 20-30%.",
+      "quote": "The concept of negative-calorie foods is a myth. All foods provide net positive energy.",
+      "source_name": "Mayo Clinic – Metabolism and weight loss: How you burn calories",
+      "source_type": "medical_institution",
+      "year": 2021,
+      "url": "https://www.mayoclinic.org"
+    },
+    "nutrition_flags": {
+      "fear_based": false
+    },
+    "tips": {
+      "weight_loss": "Low-calorie foods like vegetables are great for weight loss because they're filling and nutritious, not because they have negative calories.",
+      "muscle_gain": "Focus on nutrient-dense foods that support your training, not on myths about calorie burning.",
+      "general": "Eat more vegetables because they're nutritious and help with fullness, but don't expect them to magically burn fat."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF9F1C",
+      "meter_value": 0.4,
+      "avatar_mood": "gentle",
+      "alert_icon": "info"
+    },
+    "follow_up_questions": [
+      "Are you trying to find quick weight loss tricks?",
+      "Would you like evidence-based tips for sustainable weight loss instead?"
+    ],
+    "sources": [
+      "Mayo Clinic – Metabolism and weight loss",
+      "Scientific reviews on thermic effect of food"
+    ]
+  },
+  {
+    "id": "juice_cleanses_detox",
+    "label": "Juice cleanses detoxify your body and reset your system",
+    "alt_phrases": [
+      "juice cleanse is healthy",
+      "detox juice fast removes toxins",
+      "juice cleanse resets metabolism",
+      "need to do a cleanse to be healthy"
+    ],
+    "category": "detox",
+    "tags": ["social_media", "weight_loss", "dangerous"],
+    "verdict": "myth",
+    "verdict_strength": "strong",
+    "risk": "high",
+    "harm_level": 5,
+    "impact_tag": "safety_warning",
+    "explanation": "Your liver and kidneys naturally detoxify your body 24/7—you don't need juice cleanses to do this. Juice cleanses are very low in protein, fiber, and essential nutrients. They can cause fatigue, muscle loss, blood sugar swings, and disordered eating patterns. Any weight lost is mostly water and will return.",
+    "evidence": {
+      "statistic": "No scientific evidence supports the use of detox diets for toxin elimination or weight management beyond normal body functions.",
+      "quote": "The best 'detox' is to stop consuming harmful substances and let your liver and kidneys do their job.",
+      "source_name": "British Dietetic Association – Food Facts on Detox Diets",
+      "source_type": "professional_dietetic_association",
+      "year": 2020,
+      "url": "https://www.bda.uk.com"
+    },
+    "nutrition_flags": {
+      "dangerous_behaviour": true,
+      "encourages_over_restriction": true
+    },
+    "tips": {
+      "weight_loss": "Skip the juice cleanse. Focus on whole foods, adequate protein, vegetables, and moderate calorie deficit for sustainable results.",
+      "muscle_gain": "Juice cleanses will cause muscle loss due to extremely low protein and calories. Avoid them completely.",
+      "general": "Support your body's natural detox systems by staying hydrated, eating fiber-rich foods, limiting alcohol, and getting enough sleep."
+    },
+    "ui_effects": {
+      "hologram_color": "#FF2E63",
+      "meter_value": 0.1,
+      "avatar_mood": "angry",
+      "alert_icon": "warning"
+    },
+    "follow_up_questions": [
+      "Are you feeling pressure to do a cleanse from social media?",
+      "Would you like to know how to actually support your body's natural detox systems?"
+    ],
+    "sources": [
+      "British Dietetic Association – Detox diets",
+      "NCCIH – Detoxes and cleanses"
+    ]
+  }
+]

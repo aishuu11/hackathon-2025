@@ -1,0 +1,855 @@
+{
+  "bubble_tea": {
+    "display_name": "Bubble tea",
+    "keywords": ["bubble tea", "bbt", "pearl milk tea", "boba tea", "milk tea"],
+    "category": "drink",
+    "tags": ["youth", "trendy", "high_sugar"],
+    "serving_description": "700 ml cup with pearls at full sugar level",
+    "calories_per_serving": 469,
+    "macros": {
+      "protein_g": 3,
+      "carbs_g": 80,
+      "fat_g": 5
+    },
+    "sugar_g": 44,
+    "fibre_g": 1,
+    "sodium_mg": 50,
+    "verdict": "treat",
+    "traffic_light": {
+      "sugar": "red",
+      "fat": "amber",
+      "sodium": "green"
+    },
+    "notes": "Large bubble tea with toppings is very high in sugar and calories while providing little protein or fibre. Taken frequently it can easily exceed daily sugar recommendations and contribute to weight gain and dental issues.",
+    "common_myths": [
+      "Bubble tea is healthy because it has milk and tea",
+      "The pearls are good fiber"
+    ],
+    "healthier_swaps": [
+      "Choose 0–25% sugar instead of full sweetness",
+      "Skip pearls or heavy toppings, or share a cup with a friend",
+      "Pick the smallest serving size instead of upsizing",
+      "Limit bubble tea to an occasional treat rather than a daily habit"
+    ],
+    "nutrition_flags": {
+      "high_sugar": true,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [
+      "poor_blood_sugar_control",
+      "weight_loss_high_priority"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF4B6E"
+    },
+    "evidence": {
+      "statistic": "A 700 ml bubble tea with toppings can contain around 469 kcal and roughly 11 teaspoons of sugar.",
+      "source_name": "Mount Alvernia Hospital & Singapore Health Promotion Board resources",
+      "year": 2024,
+      "url": "https://mtalvernia.sg/education/whats-in-my-bubble-tea/"
+    }
+  },
+  "nasi_lemak": {
+    "display_name": "Nasi lemak",
+    "keywords": ["nasi lemak", "coconut rice", "lemak rice"],
+    "category": "rice_dish",
+    "tags": ["local_food", "coconut_rice"],
+    "serving_description": "1 plate with coconut rice, fried chicken or fish, egg, sambal and peanuts",
+    "calories_per_serving": 550,
+    "macros": {
+      "protein_g": 15,
+      "carbs_g": 58,
+      "fat_g": 28
+    },
+    "sugar_g": 4,
+    "fibre_g": 3,
+    "sodium_mg": 900,
+    "verdict": "occasional_indulgence",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "red",
+      "sodium": "red"
+    },
+    "notes": "Because of coconut milk rice, fried items and sambal, nasi lemak is energy-dense and high in saturated fat and sodium. Eating it often without adjustments can make a calorie deficit hard to maintain.",
+    "common_myths": [
+      "Nasi lemak is a balanced meal because it has all food groups",
+      "Eating it for breakfast is healthier than other times"
+    ],
+    "healthier_swaps": [
+      "Ask for less rice and more cucumber or vegetables",
+      "Choose grilled or non-fried protein where available",
+      "Go easy on sambal and gravy",
+      "Balance the rest of the day with lighter meals"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "hypertension",
+      "high_cholesterol"
+    ],
+    "ui_effects": {
+      "hologram_style": "caution",
+      "base_color": "#FF9F1C"
+    },
+    "evidence": {
+      "statistic": "Calorie charts place one plate of nasi lemak roughly between 494 and 600 kcal depending on ingredients.",
+      "source_name": "Local calorie charts and nutrition databases",
+      "year": 2020,
+      "url": "https://healthscreening.com.sg/food-calories-chart/"
+    }
+  },
+  "chicken_rice": {
+    "display_name": "Chicken rice",
+    "keywords": ["chicken rice", "hainanese chicken rice", "chicken and rice", "chiken rice"],
+    "category": "rice_dish",
+    "tags": ["local_food"],
+    "serving_description": "1 plate Hainanese chicken rice with skin, fragrant rice and sauces",
+    "calories_per_serving": 630,
+    "macros": {
+      "protein_g": 25,
+      "carbs_g": 75,
+      "fat_g": 23
+    },
+    "sugar_g": 3,
+    "fibre_g": 2,
+    "sodium_mg": 1200,
+    "verdict": "moderation",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "amber",
+      "sodium": "red"
+    },
+    "notes": "Chicken rice provides protein but is also high in calories and sodium due to the fragrant rice cooked with fat and the sauces. Regular large portions can slow weight-loss progress.",
+    "common_myths": [
+      "Chicken rice is healthy because it's steamed chicken",
+      "The rice is plain and low in calories"
+    ],
+    "healthier_swaps": [
+      "Ask for more chicken and less rice",
+      "Remove the skin to reduce saturated fat",
+      "Use less soy sauce and dark sauce",
+      "Add a side of vegetables or soup"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "hypertension",
+      "fluid_restriction"
+    ],
+    "ui_effects": {
+      "hologram_style": "caution",
+      "base_color": "#FFC857"
+    },
+    "evidence": {
+      "statistic": "One serving of chicken rice is commonly estimated at 600–670 kcal with high sodium content.",
+      "source_name": "HealthHub Singapore and local nutrition charts",
+      "year": 2024,
+      "url": "https://www.healthhub.sg"
+    }
+  },
+  "fried_chicken": {
+    "display_name": "Fried chicken",
+    "keywords": ["fried chicken", "deep fried chicken", "crispy chicken", "kfc"],
+    "category": "fried_food",
+    "tags": ["fast_food"],
+    "serving_description": "1 medium piece of deep-fried chicken with skin",
+    "calories_per_serving": 300,
+    "macros": {
+      "protein_g": 20,
+      "carbs_g": 10,
+      "fat_g": 20
+    },
+    "sugar_g": 0,
+    "fibre_g": 0,
+    "sodium_mg": 600,
+    "verdict": "treat",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "red",
+      "sodium": "amber"
+    },
+    "notes": "Fried chicken offers protein but also a lot of added fat and sodium from the batter and deep-frying. Frequent intake can raise cardiovascular risk and make a calorie deficit harder.",
+    "common_myths": [
+      "It's fine as long as I remove the skin",
+      "Fried chicken is just protein so it's healthy"
+    ],
+    "healthier_swaps": [
+      "Choose grilled or roasted chicken more often",
+      "Remove skin and visible batter where possible",
+      "Avoid pairing with sugary drinks and large fries"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "high_cholesterol",
+      "heart_disease"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF6B6B"
+    },
+    "evidence": {
+      "statistic": "Fast-food style fried chicken portions typically provide 250–350 kcal per piece with high fat and sodium.",
+      "source_name": "Chain restaurant nutrition tables",
+      "year": 2023,
+      "url": "https://www.healthline.com/nutrition"
+    }
+  },
+  "soft_drink_can": {
+    "display_name": "Soft drink (330 ml can)",
+    "category": "drink",
+    "tags": ["high_sugar"],
+    "serving_description": "1 can of regular sugar-sweetened soft drink",
+    "calories_per_serving": 140,
+    "macros": {
+      "protein_g": 0,
+      "carbs_g": 35,
+      "fat_g": 0
+    },
+    "sugar_g": 35,
+    "fibre_g": 0,
+    "sodium_mg": 40,
+    "verdict": "treat",
+    "traffic_light": {
+      "sugar": "red",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Soft drinks provide a lot of sugar and calories in liquid form without fibre or nutrients, making it very easy to overconsume them without feeling full.",
+    "common_myths": [
+      "Diet soda is completely safe to drink unlimited amounts",
+      "One can a day won't hurt"
+    ],
+    "healthier_swaps": [
+      "Switch to water, sparkling water or unsweetened tea most of the time",
+      "If you drink soft drinks, keep them as an occasional treat and choose smaller cans",
+      "Try flavoured water or zero-sugar drinks if appropriate for your health"
+    ],
+    "nutrition_flags": {
+      "high_sugar": true,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [
+      "diabetes",
+      "weight_loss_high_priority"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF4B6E"
+    },
+    "evidence": {
+      "statistic": "In Singapore, more than half of daily sugar intake comes from beverages, and average sugar intake is about 58 g per day.",
+      "source_name": "Singapore Health Promotion Board – Nutri-Grade information",
+      "year": 2021,
+      "url": "https://www.hpb.gov.sg/healthy-living/food-beverage/nutri-grade"
+    }
+  },
+  "greek_yogurt_plain_low_fat": {
+    "display_name": "Greek yogurt (plain, low-fat)",
+    "category": "dairy",
+    "tags": ["high_protein", "snack"],
+    "serving_description": "170 g tub of plain low-fat Greek yogurt",
+    "calories_per_serving": 100,
+    "macros": {
+      "protein_g": 17,
+      "carbs_g": 6,
+      "fat_g": 0
+    },
+    "sugar_g": 6,
+    "fibre_g": 0,
+    "sodium_mg": 60,
+    "verdict": "good_choice",
+    "traffic_light": {
+      "sugar": "amber",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Plain Greek yogurt is high in protein and relatively low in calories, making it a good base for snacks and breakfasts when combined with fruit, nuts or oats.",
+    "common_myths": [
+      "All yogurt is the same",
+      "Flavored yogurt is just as healthy as plain"
+    ],
+    "healthier_swaps": [
+      "Choose plain versions and add your own fruit instead of pre-sweetened flavours",
+      "Use yogurt instead of cream in some recipes",
+      "Pair with berries and a small handful of nuts for a balanced snack"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [
+      "lactose_intolerance"
+    ],
+    "ui_effects": {
+      "hologram_style": "positive",
+      "base_color": "#4CAF50"
+    },
+    "evidence": {
+      "statistic": "Typical plain Greek yogurt tubs provide around 15–20 g protein per 100–120 kcal serving.",
+      "source_name": "Common supermarket nutrition labels",
+      "year": 2024,
+      "url": "https://fdc.nal.usda.gov"
+    }
+  },
+  "oatmeal_with_milk": {
+    "display_name": "Oatmeal with milk",
+    "category": "breakfast",
+    "tags": ["whole_grain", "high_fibre"],
+    "serving_description": "1 bowl of rolled oats cooked with low-fat milk (about 40 g dry oats)",
+    "calories_per_serving": 220,
+    "macros": {
+      "protein_g": 10,
+      "carbs_g": 32,
+      "fat_g": 6
+    },
+    "sugar_g": 8,
+    "fibre_g": 4,
+    "sodium_mg": 80,
+    "verdict": "good_choice",
+    "traffic_light": {
+      "sugar": "amber",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Oats provide fibre and slow-release carbohydrates that help with fullness and stable energy. Without too much added sugar, they support both weight control and training.",
+    "common_myths": [
+      "Oats are boring and tasteless",
+      "Instant oats are just as healthy as regular oats"
+    ],
+    "healthier_swaps": [
+      "Sweeten lightly with fruit instead of large amounts of sugar or syrup",
+      "Add protein powder, yogurt or nuts if you need more protein and staying power",
+      "Avoid instant flavoured sachets that are high in added sugar"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [],
+    "ui_effects": {
+      "hologram_style": "positive",
+      "base_color": "#4CAF50"
+    },
+    "evidence": {
+      "statistic": "Randomised trials link higher whole-grain and oat intake with better cholesterol and satiety.",
+      "source_name": "Systematic reviews of whole grains and metabolic health",
+      "year": 2021,
+      "url": "https://pubmed.ncbi.nlm.nih.gov"
+    }
+  },
+  "char_kway_teow": {
+    "display_name": "Char kway teow",
+    "category": "noodle_dish",
+    "tags": ["local_food", "stir_fried"],
+    "serving_description": "1 plate of fried flat rice noodles with egg, cockles, Chinese sausage and bean sprouts",
+    "calories_per_serving": 740,
+    "macros": {
+      "protein_g": 20,
+      "carbs_g": 80,
+      "fat_g": 35
+    },
+    "sugar_g": 5,
+    "fibre_g": 3,
+    "sodium_mg": 1400,
+    "verdict": "occasional_indulgence",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "red",
+      "sodium": "red"
+    },
+    "notes": "Char kway teow is stir-fried with a lot of oil and dark soy sauce, making it very high in fat and sodium. One plate can contain most of your daily sodium limit.",
+    "common_myths": [
+      "It's healthy because it has vegetables",
+      "The noodles are the unhealthy part, not the oil"
+    ],
+    "healthier_swaps": [
+      "Ask for less oil when ordering",
+      "Share a plate with a friend and add a side of vegetables",
+      "Skip the Chinese sausage to reduce saturated fat",
+      "Balance with lighter meals for the rest of the day"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "hypertension",
+      "heart_disease",
+      "weight_loss_high_priority"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF4B6E"
+    },
+    "evidence": {
+      "statistic": "A typical plate of char kway teow contains 700-800 kcal and can exceed 1400 mg sodium.",
+      "source_name": "Health Promotion Board Singapore nutrition database",
+      "year": 2023,
+      "url": "https://www.healthhub.sg"
+    }
+  },
+  "laksa": {
+    "display_name": "Laksa",
+    "category": "noodle_dish",
+    "tags": ["local_food", "coconut_curry"],
+    "serving_description": "1 bowl of curry laksa with noodles, tofu puffs, prawns and cockles",
+    "calories_per_serving": 590,
+    "macros": {
+      "protein_g": 18,
+      "carbs_g": 60,
+      "fat_g": 28
+    },
+    "sugar_g": 6,
+    "fibre_g": 4,
+    "sodium_mg": 1100,
+    "verdict": "occasional_indulgence",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "red",
+      "sodium": "red"
+    },
+    "notes": "Laksa's rich coconut curry base makes it high in saturated fat and sodium. The gravy alone can account for much of the calories.",
+    "common_myths": [
+      "Laksa is light because it's a soup",
+      "The spices make it burn fat"
+    ],
+    "healthier_swaps": [
+      "Ask for less gravy or don't finish all the soup",
+      "Choose more seafood and vegetables, less tofu puffs",
+      "Pair with plain water instead of sugary drinks",
+      "Keep it as an occasional meal, not weekly"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "hypertension",
+      "high_cholesterol"
+    ],
+    "ui_effects": {
+      "hologram_style": "caution",
+      "base_color": "#FF9F1C"
+    },
+    "evidence": {
+      "statistic": "A bowl of laksa typically provides 500-650 kcal with high saturated fat from coconut milk.",
+      "source_name": "Singapore nutrition charts and HPB resources",
+      "year": 2024,
+      "url": "https://www.healthhub.sg"
+    }
+  },
+  "roti_prata_plain": {
+    "display_name": "Roti prata (plain)",
+    "category": "bread",
+    "tags": ["local_food", "breakfast"],
+    "serving_description": "2 pieces of plain roti prata with curry",
+    "calories_per_serving": 360,
+    "macros": {
+      "protein_g": 8,
+      "carbs_g": 45,
+      "fat_g": 16
+    },
+    "sugar_g": 2,
+    "fibre_g": 2,
+    "sodium_mg": 420,
+    "verdict": "moderation",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "amber",
+      "sodium": "amber"
+    },
+    "notes": "Roti prata is made with ghee or oil, making it calorie-dense. Two pieces can be a significant portion of daily calories, especially when eaten with sugar or sweet fillings.",
+    "common_myths": [
+      "Plain prata is low-calorie because it's just bread",
+      "Eating prata with curry makes it healthier"
+    ],
+    "healthier_swaps": [
+      "Limit to 1 piece instead of 2 or 3",
+      "Pair with curry for dipping instead of drizzling sugar",
+      "Add a side of vegetables or egg for protein",
+      "Choose thosai as a lighter alternative when available"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "weight_loss_high_priority"
+    ],
+    "ui_effects": {
+      "hologram_style": "caution",
+      "base_color": "#FFC857"
+    },
+    "evidence": {
+      "statistic": "Two pieces of plain prata provide approximately 300-400 kcal depending on size and oil used.",
+      "source_name": "Local hawker food nutrition charts",
+      "year": 2023,
+      "url": "https://healthscreening.com.sg/food-calories-chart/"
+    }
+  },
+  "instant_noodles": {
+    "display_name": "Instant noodles",
+    "category": "noodle_dish",
+    "tags": ["convenience_food", "student_food"],
+    "serving_description": "1 packet of instant noodles with full seasoning",
+    "calories_per_serving": 380,
+    "macros": {
+      "protein_g": 9,
+      "carbs_g": 52,
+      "fat_g": 14
+    },
+    "sugar_g": 2,
+    "fibre_g": 2,
+    "sodium_mg": 1820,
+    "verdict": "treat",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "amber",
+      "sodium": "red"
+    },
+    "notes": "Instant noodles are extremely high in sodium, with one packet often exceeding 80% of the daily recommended limit. They're also low in protein, fibre and micronutrients.",
+    "common_myths": [
+      "Instant noodles are cheap and harmless",
+      "The soup is the healthy part",
+      "It's fine to eat daily as long as you add vegetables"
+    ],
+    "healthier_swaps": [
+      "Use only half the seasoning packet",
+      "Add an egg, tofu or lean meat for protein",
+      "Load up with vegetables like bok choy, mushrooms and carrots",
+      "Choose lower-sodium brands or fresh noodles when possible"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [
+      "hypertension",
+      "kidney_disease",
+      "fluid_retention"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF6B6B"
+    },
+    "evidence": {
+      "statistic": "Regular instant noodle consumption has been linked with increased metabolic syndrome risk in some studies.",
+      "source_name": "Journal of Nutrition research on instant noodle consumption patterns",
+      "year": 2014,
+      "url": "https://pubmed.ncbi.nlm.nih.gov"
+    }
+  },
+  "kaya_toast_set": {
+    "display_name": "Kaya toast set",
+    "category": "breakfast",
+    "tags": ["local_food", "traditional"],
+    "serving_description": "2 slices kaya toast with butter, 2 soft-boiled eggs and coffee with condensed milk",
+    "calories_per_serving": 470,
+    "macros": {
+      "protein_g": 16,
+      "carbs_g": 48,
+      "fat_g": 22
+    },
+    "sugar_g": 18,
+    "fibre_g": 2,
+    "sodium_mg": 650,
+    "verdict": "occasional_indulgence",
+    "traffic_light": {
+      "sugar": "red",
+      "fat": "amber",
+      "sodium": "amber"
+    },
+    "notes": "A traditional kaya toast set contains significant sugar from kaya spread and condensed milk in the coffee. The eggs provide protein, but overall it's a high-calorie, high-sugar breakfast.",
+    "common_myths": [
+      "Eggs make this a healthy breakfast",
+      "Kaya is healthier than jam because it's made from coconut"
+    ],
+    "healthier_swaps": [
+      "Ask for less butter or skip it entirely",
+      "Request kopi-c (coffee with evaporated milk) instead of kopi (condensed milk)",
+      "Spread kaya thinly or choose 1 slice instead of 2",
+      "Add a side of fruit for more nutrients"
+    ],
+    "nutrition_flags": {
+      "high_sugar": true,
+      "high_sodium": false,
+      "high_saturated_fat": true
+    },
+    "not_recommended_for": [
+      "diabetes",
+      "weight_loss_high_priority"
+    ],
+    "ui_effects": {
+      "hologram_style": "caution",
+      "base_color": "#FF9F1C"
+    },
+    "evidence": {
+      "statistic": "A typical kaya toast breakfast set provides 400-500 kcal with 15-20g sugar.",
+      "source_name": "Singapore breakfast nutrition analysis",
+      "year": 2023,
+      "url": "https://www.healthhub.sg"
+    }
+  },
+  "potato_chips": {
+    "display_name": "Potato chips",
+    "category": "snack",
+    "tags": ["processed_snack", "high_sodium"],
+    "serving_description": "1 small packet (28g) of regular potato chips",
+    "calories_per_serving": 150,
+    "macros": {
+      "protein_g": 2,
+      "carbs_g": 15,
+      "fat_g": 10
+    },
+    "sugar_g": 0,
+    "fibre_g": 1,
+    "sodium_mg": 170,
+    "verdict": "treat",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "red",
+      "sodium": "amber"
+    },
+    "notes": "Potato chips are energy-dense and easy to overconsume. One small packet has limited nutrients and can lead to eating multiple servings without feeling satisfied.",
+    "common_myths": [
+      "Baked chips are much healthier than fried",
+      "It's just potatoes so it can't be that bad"
+    ],
+    "healthier_swaps": [
+      "Portion out a small amount instead of eating from the bag",
+      "Choose air-popped popcorn or roasted chickpeas",
+      "Pair with protein like cheese or nuts to increase satiety",
+      "Save chips for occasional treats, not daily snacks"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": true,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [
+      "hypertension",
+      "weight_loss_high_priority"
+    ],
+    "ui_effects": {
+      "hologram_style": "warning",
+      "base_color": "#FF6B6B"
+    },
+    "evidence": {
+      "statistic": "Ultra-processed snack foods are associated with higher calorie intake and weight gain in observational studies.",
+      "source_name": "Research on ultra-processed foods and health outcomes",
+      "year": 2022,
+      "url": "https://pubmed.ncbi.nlm.nih.gov"
+    }
+  },
+  "mixed_vegetable_salad": {
+    "display_name": "Mixed vegetable salad",
+    "category": "salad",
+    "tags": ["vegetables", "high_fibre"],
+    "serving_description": "1 large bowl of mixed greens, tomatoes, cucumbers, carrots with light vinaigrette",
+    "calories_per_serving": 120,
+    "macros": {
+      "protein_g": 3,
+      "carbs_g": 15,
+      "fat_g": 6
+    },
+    "sugar_g": 7,
+    "fibre_g": 5,
+    "sodium_mg": 180,
+    "verdict": "good_choice",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Vegetable salads are low in calories and high in fibre, vitamins and minerals. They help with fullness and provide important nutrients for overall health.",
+    "common_myths": [
+      "Salads don't fill you up",
+      "All salads are healthy even with lots of dressing"
+    ],
+    "healthier_swaps": [
+      "Add grilled chicken, tofu, or beans for protein",
+      "Use dressing on the side and dip your fork",
+      "Include a variety of colorful vegetables for different nutrients",
+      "Top with seeds or nuts for healthy fats and crunch"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [],
+    "ui_effects": {
+      "hologram_style": "positive",
+      "base_color": "#4CAF50"
+    },
+    "evidence": {
+      "statistic": "Higher vegetable intake is consistently associated with lower risk of chronic diseases and better weight management.",
+      "source_name": "WHO and national dietary guidelines on vegetables",
+      "year": 2023,
+      "url": "https://www.who.int"
+    }
+  },
+  "grilled_chicken_breast": {
+    "display_name": "Grilled chicken breast",
+    "category": "protein",
+    "tags": ["lean_protein", "high_protein"],
+    "serving_description": "1 medium skinless grilled chicken breast (150g)",
+    "calories_per_serving": 165,
+    "macros": {
+      "protein_g": 31,
+      "carbs_g": 0,
+      "fat_g": 3.6
+    },
+    "sugar_g": 0,
+    "fibre_g": 0,
+    "sodium_mg": 85,
+    "verdict": "good_choice",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Grilled chicken breast is one of the best lean protein sources. It's high in protein, low in fat, and versatile for many meals.",
+    "common_myths": [
+      "You need to eat chicken breast every day to build muscle",
+      "Chicken breast is boring and tasteless"
+    ],
+    "healthier_swaps": [
+      "Season with herbs and spices instead of heavy sauces",
+      "Marinate to keep it moist and flavorful",
+      "Pair with whole grains and vegetables for a balanced meal",
+      "Rotate with fish, tofu or legumes for variety"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [],
+    "ui_effects": {
+      "hologram_style": "positive",
+      "base_color": "#4CAF50"
+    },
+    "evidence": {
+      "statistic": "Lean poultry is recommended as a primary protein source in most healthy eating patterns worldwide.",
+      "source_name": "Dietary Guidelines for Americans and similar international guidelines",
+      "year": 2020,
+      "url": "https://www.dietaryguidelines.gov"
+    }
+  },
+  "salmon_grilled": {
+    "display_name": "Grilled salmon",
+    "category": "protein",
+    "tags": ["omega_3", "high_protein"],
+    "serving_description": "1 medium fillet of grilled salmon (150g)",
+    "calories_per_serving": 280,
+    "macros": {
+      "protein_g": 34,
+      "carbs_g": 0,
+      "fat_g": 15
+    },
+    "sugar_g": 0,
+    "fibre_g": 0,
+    "sodium_mg": 90,
+    "verdict": "good_choice",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Salmon is rich in omega-3 fatty acids, which support heart and brain health. It's an excellent protein source despite being higher in calories than white fish.",
+    "common_myths": [
+      "Salmon is too fatty and will make you gain weight",
+      "All fish are the same nutritionally"
+    ],
+    "healthier_swaps": [
+      "Choose wild-caught when available and affordable",
+      "Grill, bake or steam instead of frying",
+      "Pair with vegetables and brown rice for a complete meal",
+      "Aim for 2-3 servings of fatty fish per week"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [],
+    "ui_effects": {
+      "hologram_style": "positive",
+      "base_color": "#4CAF50"
+    },
+    "evidence": {
+      "statistic": "Regular consumption of omega-3 rich fish is associated with reduced cardiovascular disease risk.",
+      "source_name": "American Heart Association fish consumption recommendations",
+      "year": 2022,
+      "url": "https://www.heart.org"
+    }
+  },
+  "brown_rice_cooked": {
+    "display_name": "Brown rice (cooked)",
+    "category": "carbohydrate",
+    "tags": ["whole_grain", "high_fibre"],
+    "serving_description": "1 cup (195g) of cooked brown rice",
+    "calories_per_serving": 215,
+    "macros": {
+      "protein_g": 5,
+      "carbs_g": 45,
+      "fat_g": 1.6
+    },
+    "sugar_g": 0.7,
+    "fibre_g": 3.5,
+    "sodium_mg": 10,
+    "verdict": "good_choice",
+    "traffic_light": {
+      "sugar": "green",
+      "fat": "green",
+      "sodium": "green"
+    },
+    "notes": "Brown rice is a whole grain that provides more fibre, vitamins and minerals than white rice. It helps with sustained energy and digestive health.",
+    "common_myths": [
+      "Brown rice is always better than white rice for everyone",
+      "You must completely replace white rice with brown rice"
+    ],
+    "healthier_swaps": [
+      "Mix brown and white rice if you prefer the taste",
+      "Control portions to 1/2 to 1 cup per meal",
+      "Pair with plenty of protein and vegetables",
+      "Try other whole grains like quinoa or barley for variety"
+    ],
+    "nutrition_flags": {
+      "high_sugar": false,
+      "high_sodium": false,
+      "high_saturated_fat": false
+    },
+    "not_recommended_for": [],
+    "ui_effects": {
+      "hologram_style": "positive",
+      "base_color": "#4CAF50"
+    },
+    "evidence": {
+      "statistic": "Whole grain consumption is associated with lower risk of type 2 diabetes and cardiovascular disease.",
+      "source_name": "Meta-analyses of whole grain intake and health outcomes",
+      "year": 2021,
+      "url": "https://pubmed.ncbi.nlm.nih.gov"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "similarity_thresholds": {
+    "myth": 0.6,
+    "food": 0.55
+  },
+  "max_suggestions": 3,
+  "default_ui_colors": {
+    "myth": "#FF4B6E",
+    "fact": "#4CAF50",
+    "uncertain": "#FFC857"
+  },
+  "risk_to_meter": {
+    "low": 0.7,
+    "medium": 0.5,
+    "high": 0.2
+  },
+  "avatar_moods": {
+    "myth_high_risk": "angry",
+    "myth_medium_risk": "firm",
+    "myth_low_risk": "explaining",
+    "fact_positive": "happy",
+    "uncertain": "confused"
+  }
+}
