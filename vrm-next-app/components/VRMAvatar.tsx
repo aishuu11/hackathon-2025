@@ -12,9 +12,11 @@ import { OrbitControls } from 'three-stdlib';
 interface VRMAvatarProps {
   isTyping?: boolean;
   isWaving?: boolean;
+  calories?: number | null;
+  foodName?: string;
 }
 
-export default function VRMAvatar({ isTyping = false, isWaving = false }: VRMAvatarProps) {
+export default function VRMAvatar({ isTyping = false, isWaving = false, calories = null, foodName = '' }: VRMAvatarProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loading, setLoading] = useState(true);
@@ -30,6 +32,179 @@ export default function VRMAvatar({ isTyping = false, isWaving = false }: VRMAva
   const isTypingRef = useRef<boolean>(false);
   const isWavingRef = useRef<boolean>(false);
   const waveStartTimeRef = useRef<number>(0);
+  const calorieHologramRef = useRef<THREE.Group | null>(null);
+  const hologramAnchorRef = useRef<THREE.Group | null>(null);
+  const hologramColorRef = useRef<THREE.Color>(new THREE.Color(0x00ffff));
+  const targetColorRef = useRef<THREE.Color>(new THREE.Color(0x00ffff));
+  
+  // Helper function to get color based on nutrition score (calories)
+  const getNutritionColor = (calories: number): number => {
+    // Green for low calories (healthy), red for high calories (unhealthy)
+    if (calories < 200) return 0x00ff00; // Bright green - very healthy
+    if (calories < 350) return 0x88ff00; // Yellow-green - healthy
+    if (calories < 500) return 0xffff00; // Yellow - moderate
+    if (calories < 650) return 0xff8800; // Orange - high
+    return 0xff0000; // Red - very high
+  };
+  
+  // Helper function to create calorie hologram on left hand
+  const createCalorieHologram = (vrm: any, calories: number, foodName: string): THREE.Group => {
+    const leftHandBone = vrm.humanoid.getBoneNode('leftHand');
+    
+    // Remove existing hologram and anchor if any
+    if (hologramAnchorRef.current && leftHandBone) {
+      leftHandBone.remove(hologramAnchorRef.current);
+      hologramAnchorRef.current = null;
+      calorieHologramRef.current = null;
+    }
+    
+    if (!leftHandBone) {
+      console.warn('Left hand bone not found');
+      return new THREE.Group();
+    }
+
+    // Create anchor group to isolate hologram from hand bone rotation
+    const hologramAnchor = new THREE.Group();
+    hologramAnchor.position.set(0, 0, 0); // Will be updated in animation loop
+    leftHandBone.add(hologramAnchor);
+    hologramAnchorRef.current = hologramAnchor;
+
+    const hologramGroup = new THREE.Group();
+    
+    // Get color based on nutrition score
+    const nutritionColor = getNutritionColor(calories);
+    targetColorRef.current.setHex(nutritionColor);
+    
+    // Create hologram panel (background) - color based on nutrition
+    const panelGeometry = new THREE.PlaneGeometry(0.25, 0.15);
+    const panelMaterial = new THREE.MeshBasicMaterial({
+      color: nutritionColor,
+      transparent: true,
+      opacity: 0.35,
+      side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      emissive: nutritionColor,
+      emissiveIntensity: 0.5
+    });
+    const panel = new THREE.Mesh(panelGeometry, panelMaterial);
+    hologramGroup.add(panel);
+    
+    // Create border - matches nutrition color
+    const borderGeometry = new THREE.EdgesGeometry(panelGeometry);
+    const borderMaterial = new THREE.LineBasicMaterial({ color: nutritionColor, linewidth: 3 });
+    const border = new THREE.LineSegments(borderGeometry, borderMaterial);
+    hologramGroup.add(border);
+    
+    // Create 3D text using canvas texture
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 256;
+    const ctx = canvas.getContext('2d');
+    
+    if (ctx) {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Get color as CSS string
+      const colorString = '#' + nutritionColor.toString(16).padStart(6, '0');
+      
+      // Draw pulsing circle
+      ctx.strokeStyle = colorString;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, 90, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      // Draw inner ring
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, 70, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      // Draw sci-fi scanlines
+      ctx.strokeStyle = colorString + '33';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < canvas.height; i += 8) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(canvas.width, i);
+        ctx.stroke();
+      }
+      
+      // Draw small icons (corner brackets)
+      ctx.strokeStyle = colorString;
+      ctx.lineWidth = 3;
+      // Top-left bracket
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2 - 100, canvas.height / 2 - 70);
+      ctx.lineTo(canvas.width / 2 - 110, canvas.height / 2 - 70);
+      ctx.lineTo(canvas.width / 2 - 110, canvas.height / 2 - 80);
+      ctx.stroke();
+      // Top-right bracket
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2 + 100, canvas.height / 2 - 70);
+      ctx.lineTo(canvas.width / 2 + 110, canvas.height / 2 - 70);
+      ctx.lineTo(canvas.width / 2 + 110, canvas.height / 2 - 80);
+      ctx.stroke();
+      // Bottom-left bracket
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2 - 100, canvas.height / 2 + 70);
+      ctx.lineTo(canvas.width / 2 - 110, canvas.height / 2 + 70);
+      ctx.lineTo(canvas.width / 2 - 110, canvas.height / 2 + 80);
+      ctx.stroke();
+      // Bottom-right bracket
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2 + 100, canvas.height / 2 + 70);
+      ctx.lineTo(canvas.width / 2 + 110, canvas.height / 2 + 70);
+      ctx.lineTo(canvas.width / 2 + 110, canvas.height / 2 + 80);
+      ctx.stroke();
+      
+      // Draw tiny orbiting dots
+      for (let i = 0; i < 8; i++) {
+        const angle = (i / 8) * Math.PI * 2;
+        const x = canvas.width / 2 + Math.cos(angle) * 95;
+        const y = canvas.height / 2 + Math.sin(angle) * 95;
+        ctx.fillStyle = colorString;
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Draw main text
+      ctx.fillStyle = colorString;
+      ctx.font = 'bold 80px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`${calories}`, canvas.width / 2, canvas.height / 2 - 30);
+      
+      ctx.font = '40px Arial';
+      ctx.fillText('calories', canvas.width / 2, canvas.height / 2 + 40);
+    }
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    const textMaterial = new THREE.MeshBasicMaterial({
+      map: texture,
+      transparent: true,
+      opacity: 0.35,
+      side: THREE.DoubleSide,
+      depthWrite: false
+    });
+    const textMesh = new THREE.Mesh(new THREE.PlaneGeometry(0.24, 0.14), textMaterial);
+    textMesh.position.z = 0.001; // Slightly in front of background
+    hologramGroup.add(textMesh);
+    
+    // Reset rotation and apply stable tilt
+    hologramGroup.rotation.set(0, 0, 0);
+    hologramGroup.rotation.x = -0.4; // Gentle forward tilt
+    hologramGroup.scale.set(1.5, 1.5, 1.5); // Larger for better visibility
+    
+    // Attach hologram to anchor (not directly to hand bone)
+    hologramAnchor.add(hologramGroup);
+    console.log(`✓ Calorie hologram created: ${calories} cal for ${foodName}`);
+    
+    return hologramGroup;
+  };
   
   // Update ref when isTyping changes
   useEffect(() => {
@@ -51,6 +226,44 @@ export default function VRMAvatar({ isTyping = false, isWaving = false }: VRMAva
       }, 2000);
     }
   }, [isWaving]);
+
+  // Update calorie hologram when calories change
+  useEffect(() => {
+    if (vrmRef.current && calories !== null && calories > 0) {
+      const hologram = createCalorieHologram(vrmRef.current, calories, foodName);
+      calorieHologramRef.current = hologram;
+      
+      // Update color refs for smooth transition
+      const getNutritionColor = (cal: number): number => {
+        if (cal < 200) return 0x00ff00;
+        if (cal < 350) return 0x88ff00;
+        if (cal < 500) return 0xffff00;
+        if (cal < 650) return 0xff8800;
+        return 0xff0000;
+      };
+      
+      const nutritionColor = getNutritionColor(calories);
+      
+      // Initialize both refs to the new color (hologramColorRef will smoothly transition)
+      if (targetColorRef.current) {
+        targetColorRef.current.setHex(nutritionColor);
+      }
+      
+      // If this is the first hologram, set current color immediately
+      // Otherwise, let the animation loop smoothly transition
+      if (!hologramColorRef.current || hologramColorRef.current.getHex() === 0x00ffff) {
+        hologramColorRef.current.setHex(nutritionColor);
+      }
+    } else if (vrmRef.current && calorieHologramRef.current && calories === null) {
+      // Remove hologram if calories cleared
+      const leftHandBone = vrmRef.current.humanoid.getBoneNode('leftHand');
+      if (leftHandBone) {
+        leftHandBone.remove(calorieHologramRef.current);
+        calorieHologramRef.current = null;
+        console.log('✓ Calorie hologram removed');
+      }
+    }
+  }, [calories, foodName]);
 
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return;
@@ -151,21 +364,34 @@ export default function VRMAvatar({ isTyping = false, isWaving = false }: VRMAva
               const rightUpperArm = vrm.humanoid.getNormalizedBoneNode('rightUpperArm');
               const leftLowerArm = vrm.humanoid.getNormalizedBoneNode('leftLowerArm');
               const rightLowerArm = vrm.humanoid.getNormalizedBoneNode('rightLowerArm');
-              const leftHand = vrm.humanoid.getNormalizedBoneNode('leftHand');
+              const leftHand = vrm.humanoid.getBoneNode('leftHand');
               const rightHand = vrm.humanoid.getNormalizedBoneNode('rightHand');
               
               // Left arm - hanging down naturally
               if (leftUpperArm) {
                 leftUpperArm.rotation.x = 0.3; // Slight forward
                 leftUpperArm.rotation.y = 0.1; // Slight inward
-                leftUpperArm.rotation.z = 1.4; // DOWN - positive brings left arm down
+                leftUpperArm.rotation.z = 0.1; // Relaxed position
               }
               if (leftLowerArm) {
-                leftLowerArm.rotation.z = -0.2; // Slight bend
+                leftLowerArm.rotation.z = -0.1; // Relaxed bend
+                leftLowerArm.rotation.x = -0.15; // Slight rotation
               }
+              
+              // Rotate left hand and finger bases to create palm-up holding pose
               if (leftHand) {
-                leftHand.rotation.x = 0.2; // Natural angle
+                leftHand.rotation.x = -0.4; // Rotate hand upward
               }
+              
+              const leftIndex1 = vrm.humanoid.getBoneNode('leftIndexProximal');
+              const leftMiddle1 = vrm.humanoid.getBoneNode('leftMiddleProximal');
+              const leftRing1 = vrm.humanoid.getBoneNode('leftRingProximal');
+              const leftThumb1 = vrm.humanoid.getBoneNode('leftThumbProximal');
+              
+              if (leftIndex1) leftIndex1.rotation.x = -0.6; // Curl fingers downward
+              if (leftMiddle1) leftMiddle1.rotation.x = -0.6;
+              if (leftRing1) leftRing1.rotation.x = -0.6;
+              if (leftThumb1) leftThumb1.rotation.x = -0.3; // Thumb slightly less curved
               
               // Right arm - hanging down naturally
               if (rightUpperArm) {
@@ -175,9 +401,6 @@ export default function VRMAvatar({ isTyping = false, isWaving = false }: VRMAva
               }
               if (rightLowerArm) {
                 rightLowerArm.rotation.z = 0.2; // Slight bend
-              }
-              if (rightHand) {
-                rightHand.rotation.x = 0.2; // Natural angle
               }
             }
             
@@ -490,6 +713,73 @@ export default function VRMAvatar({ isTyping = false, isWaving = false }: VRMAva
       // Update VRM
       if (vrmRef.current) {
         vrmRef.current.update(deltaTime);
+      }
+
+      // Animate calorie hologram - position IN FRONT of palm using world coordinates
+      if (calorieHologramRef.current && cameraRef.current && vrmRef.current) {
+        const leftHandBone = vrmRef.current.humanoid.getBoneNode('leftHand');
+        
+        if (leftHandBone) {
+          // 1. Get world position of hand bone
+          const handWorldPos = new THREE.Vector3();
+          leftHandBone.getWorldPosition(handWorldPos);
+          
+          // 2. Get camera-facing direction (from hand toward camera)
+          const forward = new THREE.Vector3();
+          forward.subVectors(cameraRef.current.position, handWorldPos).normalize().multiplyScalar(0.15);
+          
+          // 3. Compute final world position for hologram (in front of palm)
+          const finalPos = handWorldPos.clone().add(forward);
+          
+          // 4. Convert world position to local coordinates of hand bone
+          leftHandBone.worldToLocal(finalPos);
+          
+          // 5. Set hologram anchor position in local space
+          if (hologramAnchorRef.current) {
+            hologramAnchorRef.current.position.copy(finalPos);
+            
+            // 6. Add upward offset (higher to sit above palm, not in wrist)
+            hologramAnchorRef.current.position.y += 0.18;
+          }
+          
+          // Gentle floating animation on hologram itself
+          const floatOffset = Math.sin(time * 2) * 0.01;
+          const rotationWiggle = Math.sin(time * 1.5) * 0.03; // Small rotation wiggle
+          calorieHologramRef.current.position.y = floatOffset;
+          
+          // 7. Make hologram face the camera
+          calorieHologramRef.current.lookAt(cameraRef.current.position);
+          
+          // Add forward tilt for more natural viewing angle (10-20 degrees)
+          calorieHologramRef.current.rotation.x -= 0.26; // ~15 degrees forward tilt
+          
+          // Add subtle rotation wiggle for floating effect
+          calorieHologramRef.current.rotation.z += rotationWiggle;
+          
+          // Smooth color transition animation
+          if (hologramColorRef.current && targetColorRef.current) {
+            hologramColorRef.current.lerp(targetColorRef.current, 0.05);
+            
+            const panel = calorieHologramRef.current.children[0];
+            const border = calorieHologramRef.current.children[1];
+            
+            if (panel instanceof THREE.Mesh && panel.material instanceof THREE.MeshBasicMaterial) {
+              panel.material.color.copy(hologramColorRef.current);
+              
+              if (panel.material.emissive) {
+                panel.material.emissive.copy(hologramColorRef.current);
+              }
+              
+              // Subtle glow pulse on background panel
+              const pulseIntensity = 0.3 + Math.sin(time * 3) * 0.05;
+              panel.material.opacity = pulseIntensity;
+            }
+            
+            if (border instanceof THREE.Mesh && border.material instanceof THREE.MeshBasicMaterial) {
+              border.material.color.copy(hologramColorRef.current);
+            }
+          }
+        }
       }
 
       // Update controls

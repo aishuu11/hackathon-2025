@@ -7,6 +7,7 @@ import ChatBot from '../components/ChatBot';
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
   const [isWaving, setIsWaving] = useState(false);
+  const [calorieData, setCalorieData] = useState<{ calories: number | null; foodName: string }>({ calories: null, foodName: '' });
 
   const handleGreeting = () => {
     console.log('Greeting received! Triggering wave...');
@@ -15,6 +16,11 @@ export default function Home() {
     setTimeout(() => {
       setIsWaving(false);
     }, 2100); // Slightly longer than animation duration
+  };
+
+  const handleCaloriesDetected = (calories: number | null, foodName: string) => {
+    console.log('Calories detected:', calories, 'for', foodName);
+    setCalorieData({ calories, foodName });
   };
 
   return (
@@ -38,14 +44,14 @@ export default function Home() {
             <div className="panel-header">
               <h2>VRM Avatar</h2>
             </div>
-            <VRMAvatar isTyping={isTyping} isWaving={isWaving} />
+            <VRMAvatar isTyping={isTyping} isWaving={isWaving} calories={calorieData.calories} foodName={calorieData.foodName} />
           </div>
 
           <div className="glass-panel panel-right">
             <div className="panel-header">
               <h2>Nutrition Chat</h2>
             </div>
-            <ChatBot onTypingChange={setIsTyping} onGreeting={handleGreeting} />
+            <ChatBot onTypingChange={setIsTyping} onGreeting={handleGreeting} onCaloriesDetected={handleCaloriesDetected} />
           </div>
         </div>
       </main>

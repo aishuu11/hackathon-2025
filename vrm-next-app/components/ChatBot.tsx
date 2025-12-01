@@ -10,9 +10,10 @@ interface Message {
 interface ChatBotProps {
   onTypingChange?: (isTyping: boolean) => void;
   onGreeting?: () => void;
+  onCaloriesDetected?: (calories: number | null, foodName: string) => void;
 }
 
-export default function ChatBot({ onTypingChange, onGreeting }: ChatBotProps) {
+export default function ChatBot({ onTypingChange, onGreeting, onCaloriesDetected }: ChatBotProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -56,9 +57,23 @@ export default function ChatBot({ onTypingChange, onGreeting }: ChatBotProps) {
 
       const data = await response.json();
       
+      // Extract calorie information from response
+      const botText = data.response || data.message || 'Sorry, I could not process that.';
+      
+      // Parse calories from response (look for "calories_per_serving": number pattern)
+      const calorieMatch = botText.match(/calories[^\d]*?(\d+)/i);
+      if (calorieMatch && onCaloriesDetected) {
+        const calories = parseInt(calorieMatch[1]);
+        // Try to extract food name from user's message
+        const foodName = currentInput.toLowerCase().replace(/calories|how many|what|about|in|a|the/g, '').trim();
+        onCaloriesDetected(calories, foodName || 'food');
+      } else if (onCaloriesDetected) {
+        onCaloriesDetected(null, '');
+      }
+      
       // Add bot response
       const botMessage: Message = { 
-        text: data.response || data.message || 'Sorry, I could not process that.', 
+        text: botText, 
         type: 'bot' 
       };
       setMessages(prev => [...prev, botMessage]);
