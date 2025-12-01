@@ -1,9 +1,22 @@
 'use client';
 
+import { useState } from 'react';
 import VRMAvatar from '../components/VRMAvatar';
 import ChatBot from '../components/ChatBot';
 
 export default function Home() {
+  const [isTyping, setIsTyping] = useState(false);
+  const [isWaving, setIsWaving] = useState(false);
+
+  const handleGreeting = () => {
+    console.log('Greeting received! Triggering wave...');
+    setIsWaving(true);
+    // Reset after animation completes
+    setTimeout(() => {
+      setIsWaving(false);
+    }, 2100); // Slightly longer than animation duration
+  };
+
   return (
     <div className="container">
       <div className="background-shapes">
@@ -25,14 +38,14 @@ export default function Home() {
             <div className="panel-header">
               <h2>VRM Avatar</h2>
             </div>
-            <VRMAvatar />
+            <VRMAvatar isTyping={isTyping} isWaving={isWaving} />
           </div>
 
           <div className="glass-panel panel-right">
             <div className="panel-header">
               <h2>Nutrition Chat</h2>
             </div>
-            <ChatBot />
+            <ChatBot onTypingChange={setIsTyping} onGreeting={handleGreeting} />
           </div>
         </div>
       </main>

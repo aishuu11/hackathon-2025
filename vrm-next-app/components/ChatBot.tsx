@@ -7,10 +7,16 @@ interface Message {
   type: 'user' | 'bot';
 }
 
-export default function ChatBot() {
+interface ChatBotProps {
+  onTypingChange?: (isTyping: boolean) => void;
+  onGreeting?: () => void;
+}
+
+export default function ChatBot({ onTypingChange, onGreeting }: ChatBotProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     // Scroll to bottom when messages change
@@ -19,6 +25,13 @@ export default function ChatBot() {
 
   const handleSend = async () => {
     if (!input.trim()) return;
+
+    // Check for greetings
+    const greetingPattern = /\b(hi|hello|hey|hola|greetings|howdy|yo|sup|what's up|whats up)\b/i;
+    if (greetingPattern.test(input)) {
+      console.log('Greeting detected! Triggering wave animation');
+      onGreeting?.();
+    }
 
     // Add user message
     const userMessage: Message = { text: input, type: 'user' };
@@ -29,7 +42,7 @@ export default function ChatBot() {
 
     try {
       // Call the backend API
-      const response = await fetch('http://localhost:8000/api/chat', {
+      const response = await fetch('http://localhost:3001/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +66,7 @@ export default function ChatBot() {
       console.error('Error calling API:', error);
       // Fallback error message
       const errorMessage: Message = { 
-        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 8000.', 
+        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 3001.', 
         type: 'bot' 
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -83,7 +96,31 @@ export default function ChatBot() {
         <input
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+            const hasText = e.target.value.length > 0;
+            
+            // Clear previous timeout
+            if (typingTimeoutRef.current) {
+              clearTimeout(typingTimeoutRef.current);
+            }
+            
+            // Set typing to true immediately when typing
+            if (hasText) {
+              onTypingChange?.(true);
+              console.log('User is typing...');
+              
+              // Set a timeout to detect when user stops typing (1 second of inactivity)
+              typingTimeoutRef.current = setTimeout(() => {
+                onTypingChange?.(false);
+                console.log('User stopped typing');
+              }, 1000);
+            } else {
+              // If input is empty, immediately stop typing
+              onTypingChange?.(false);
+              console.log('Input cleared');
+            }
+          }}
           onKeyPress={handleKeyPress}
           placeholder="Type your question..."
           className="futuristic-input"
