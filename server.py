@@ -71,7 +71,7 @@ def profile():
         }), 500
 
 if __name__ == "__main__":
-    PORT = 3001
+    PORT = 5000
     print(f"🚀 Server running at http://localhost:{PORT}/")
     print(f"📁 Serving files from: nutrition_bot/")
     print(f"🤖 Chatbot API endpoint: http://localhost:{PORT}/api/chat")

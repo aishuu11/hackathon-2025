@@ -10,7 +10,7 @@ interface Message {
 interface ChatBotProps {
   onTypingChange?: (isTyping: boolean) => void;
   onGreeting?: () => void;
-  onCaloriesDetected?: (calories: number | null, foodName: string) => void;
+  onCaloriesDetected?: (calories: number, foodName: string) => void;
 }
 
 export default function ChatBot({ onTypingChange, onGreeting, onCaloriesDetected }: ChatBotProps) {
@@ -43,7 +43,7 @@ export default function ChatBot({ onTypingChange, onGreeting, onCaloriesDetected
 
     try {
       // Call the backend API
-      const response = await fetch('http://localhost:3001/api/chat', {
+      const response = await fetch('http://localhost:5000/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,31 +57,26 @@ export default function ChatBot({ onTypingChange, onGreeting, onCaloriesDetected
 
       const data = await response.json();
       
-      // Extract calorie information from response
-      const botText = data.response || data.message || 'Sorry, I could not process that.';
-      
-      // Parse calories from response (look for "calories_per_serving": number pattern)
-      const calorieMatch = botText.match(/calories[^\d]*?(\d+)/i);
-      if (calorieMatch && onCaloriesDetected) {
-        const calories = parseInt(calorieMatch[1]);
-        // Try to extract food name from user's message
-        const foodName = currentInput.toLowerCase().replace(/calories|how many|what|about|in|a|the/g, '').trim();
-        onCaloriesDetected(calories, foodName || 'food');
-      } else if (onCaloriesDetected) {
-        onCaloriesDetected(null, '');
-      }
-      
       // Add bot response
       const botMessage: Message = { 
-        text: botText, 
+        text: data.response || data.message || 'Sorry, I could not process that.', 
         type: 'bot' 
       };
       setMessages(prev => [...prev, botMessage]);
+      
+      // Extract calories from response
+      const calorieMatch = botMessage.text.match(/(\d+)\s*(?:kcal|calories|cal)/i);
+      if (calorieMatch && onCaloriesDetected) {
+        const calories = parseInt(calorieMatch[1], 10);
+        // Try to extract food name from the user's input or response
+        const foodName = currentInput.trim() || 'Food';
+        onCaloriesDetected(calories, foodName);
+      }
     } catch (error) {
       console.error('Error calling API:', error);
       // Fallback error message
       const errorMessage: Message = { 
-        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 3001.', 
+        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 5000.', 
         type: 'bot' 
       };
       setMessages(prev => [...prev, errorMessage]);

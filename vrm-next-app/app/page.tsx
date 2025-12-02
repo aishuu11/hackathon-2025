@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import VRMAvatar from '../components/VRMAvatar';
-import LayeredChat from '../components/LayeredChat';
+import ChatBot from '../components/ChatBot';
 
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
   const [isWaving, setIsWaving] = useState(false);
-  const [calorieData, setCalorieData] = useState<{ calories: number | null; foodName: string }>({ calories: null, foodName: '' });
+  const [calorieData, setCalorieData] = useState<{ calories: number; foodName: string } | null>(null);
 
   const handleGreeting = () => {
     console.log('Greeting received! Triggering wave...');
@@ -18,8 +18,8 @@ export default function Home() {
     }, 2100); // Slightly longer than animation duration
   };
 
-  const handleCaloriesDetected = (calories: number | null, foodName: string) => {
-    console.log('Calories detected:', calories, 'for', foodName);
+  const handleCaloriesDetected = (calories: number, foodName: string) => {
+    console.log(`Calories detected: ${calories} for ${foodName}`);
     setCalorieData({ calories, foodName });
   };
 
@@ -40,18 +40,23 @@ export default function Home() {
 
       <main className="main-content">
         <div className="panels-container">
-          <div className="glass-panel panel-left">
+          {/* <div className="glass-panel panel-left">
             <div className="panel-header">
               <h2>VRM Avatar</h2>
             </div>
-            <VRMAvatar isTyping={isTyping} isWaving={isWaving} calories={calorieData.calories} foodName={calorieData.foodName} />
-          </div>
+            <VRMAvatar isTyping={isTyping} isWaving={isWaving} />
+          </div> */}
+          <VRMAvatar isTyping={isTyping} isWaving={isWaving} />
 
           <div className="glass-panel panel-right">
             <div className="panel-header">
               <h2>Nutrition Chat</h2>
             </div>
-            <LayeredChat onTypingChange={setIsTyping} onGreeting={handleGreeting} onCaloriesDetected={handleCaloriesDetected} />
+            <ChatBot 
+              onTypingChange={setIsTyping} 
+              onGreeting={handleGreeting}
+              onCaloriesDetected={handleCaloriesDetected}
+            />
           </div>
         </div>
       </main>
