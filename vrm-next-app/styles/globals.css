@@ -289,10 +289,10 @@ body {
 
 /* VRM Container */
 .vrm-container {
-    height: 500px;
-    background: rgba(0, 0, 0, 0.3);
+    height: 700px;
+    background: transparent;
     border-radius: 15px;
-    border: 2px solid rgba(138, 43, 226, 0.4);
+    border: none;
     position: relative;
     overflow: hidden;
 }

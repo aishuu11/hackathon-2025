@@ -34,12 +34,13 @@ export default function Home() {
 
       <main className="main-content">
         <div className="panels-container">
-          <div className="glass-panel panel-left">
+          {/* <div className="glass-panel panel-left">
             <div className="panel-header">
               <h2>VRM Avatar</h2>
             </div>
             <VRMAvatar isTyping={isTyping} isWaving={isWaving} />
-          </div>
+          </div> */}
+          <VRMAvatar isTyping={isTyping} isWaving={isWaving} />
 
           <div className="glass-panel panel-right">
             <div className="panel-header">

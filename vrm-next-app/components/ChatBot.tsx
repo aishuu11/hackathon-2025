@@ -42,7 +42,7 @@ export default function ChatBot({ onTypingChange, onGreeting }: ChatBotProps) {
 
     try {
       // Call the backend API
-      const response = await fetch('http://localhost:3001/api/chat', {
+      const response = await fetch('http://localhost:5000/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export default function ChatBot({ onTypingChange, onGreeting }: ChatBotProps) {
       console.error('Error calling API:', error);
       // Fallback error message
       const errorMessage: Message = { 
-        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 3001.', 
+        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 5000.', 
         type: 'bot' 
       };
       setMessages(prev => [...prev, errorMessage]);
