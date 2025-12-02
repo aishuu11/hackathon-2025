@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import VRMAvatar from '../components/VRMAvatar';
-import ChatBot from '../components/ChatBot';
+import LayeredChat from '../components/LayeredChat';
 
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
@@ -18,9 +18,13 @@ export default function Home() {
     }, 2100); // Slightly longer than animation duration
   };
 
-  const handleCaloriesDetected = (calories: number, foodName: string) => {
+  const handleCaloriesDetected = (calories: number | null, foodName: string) => {
     console.log(`Calories detected: ${calories} for ${foodName}`);
-    setCalorieData({ calories, foodName });
+    if (calories !== null) {
+      setCalorieData({ calories, foodName });
+    } else {
+      setCalorieData(null);
+    }
   };
 
   return (
@@ -46,13 +50,18 @@ export default function Home() {
             </div>
             <VRMAvatar isTyping={isTyping} isWaving={isWaving} />
           </div> */}
-          <VRMAvatar isTyping={isTyping} isWaving={isWaving} />
+          <VRMAvatar 
+            isTyping={isTyping} 
+            isWaving={isWaving}
+            calories={calorieData?.calories ?? null}
+            foodName={calorieData?.foodName ?? ''}
+          />
 
           <div className="glass-panel panel-right">
             <div className="panel-header">
               <h2>Nutrition Chat</h2>
             </div>
-            <ChatBot 
+            <LayeredChat 
               onTypingChange={setIsTyping} 
               onGreeting={handleGreeting}
               onCaloriesDetected={handleCaloriesDetected}
