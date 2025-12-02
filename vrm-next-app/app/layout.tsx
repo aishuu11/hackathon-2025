@@ -1,5 +1,6 @@
-import '../styles/globals.css'
+import '../styles/globals-superhello.css'
 import '../styles/layered-chat.css'
+import '../styles/superhello.css'
 
 export const metadata = {
   title: 'VRM Chat - Nutrition Bot',

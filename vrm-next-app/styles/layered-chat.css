@@ -1,58 +1,33 @@
-/* ==================== LAYERED CHAT THEME SYSTEM ==================== */
+/* ==================== LAYERED CHAT THEME SYSTEM - SUPER HELLO ==================== */
 
 :root {
-  /* Neon Theme */
-  --neon-bg-primary: linear-gradient(135deg, #0c011d 0%, #060047 50%, #0c011d 100%);
-  --neon-card-bg: rgba(15, 5, 40, 0.6);
-  --neon-card-border: rgba(0, 234, 255, 0.3);
-  --neon-card-glow-user: 0 0 20px rgba(0, 150, 255, 0.4), 0 0 40px rgba(0, 150, 255, 0.2);
-  --neon-card-glow-bot: 0 0 20px rgba(138, 43, 226, 0.4), 0 0 40px rgba(138, 43, 226, 0.2);
-  --neon-input-bg: rgba(255, 255, 255, 0.05);
-  --neon-input-border: rgba(0, 255, 255, 0.3);
-  --neon-input-glow: 0 0 20px rgba(0, 255, 255, 0.3);
-  --neon-button-bg: linear-gradient(135deg, #00ffff, #ff00ff);
-  --neon-text: #ffffff;
-  --neon-text-secondary: rgba(255, 255, 255, 0.7);
+  /* Super Hello Comic Theme */
+  --comic-bg-primary: #F7D774;
+  --comic-card-bg: #FFF4D7;
+  --comic-card-border: #000000;
+  --comic-card-shadow: 6px 6px 0 #000;
+  --comic-input-bg: #ffffff;
+  --comic-input-border: #000000;
+  --comic-input-shadow: 4px 4px 0 #000;
+  --comic-button-bg: #F7A547;
+  --comic-text: #000000;
+  --comic-text-secondary: #333333;
+  --comic-pink: #ECA7FF;
+  --comic-yellow: #F7D774;
+  --comic-beige: #FFF4D7;
 
-  /* Medical Theme */
-  --medical-bg-primary: linear-gradient(135deg, #e8f4ff 0%, #f0f8ff 50%, #e8f4ff 100%);
-  --medical-card-bg: rgba(255, 255, 255, 0.8);
-  --medical-card-border: rgba(0, 122, 204, 0.3);
-  --medical-card-glow-user: 0 2px 8px rgba(0, 122, 204, 0.15);
-  --medical-card-glow-bot: 0 2px 8px rgba(100, 100, 255, 0.15);
-  --medical-input-bg: rgba(255, 255, 255, 0.9);
-  --medical-input-border: rgba(0, 122, 204, 0.4);
-  --medical-input-glow: 0 0 0 3px rgba(0, 122, 204, 0.1);
-  --medical-button-bg: linear-gradient(135deg, #007acc, #0066b3);
-  --medical-text: #1a1a2e;
-  --medical-text-secondary: rgba(26, 26, 46, 0.7);
-
-  /* Default to Neon Theme */
-  --bg-primary: var(--neon-bg-primary);
-  --card-bg: var(--neon-card-bg);
-  --card-border: var(--neon-card-border);
-  --card-glow-user: var(--neon-card-glow-user);
-  --card-glow-bot: var(--neon-card-glow-bot);
-  --input-bg: var(--neon-input-bg);
-  --input-border: var(--neon-input-border);
-  --input-glow: var(--neon-input-glow);
-  --button-bg: var(--neon-button-bg);
-  --text-color: var(--neon-text);
-  --text-secondary: var(--neon-text-secondary);
-}
-
-.theme-medical {
-  --bg-primary: var(--medical-bg-primary);
-  --card-bg: var(--medical-card-bg);
-  --card-border: var(--medical-card-border);
-  --card-glow-user: var(--medical-card-glow-user);
-  --card-glow-bot: var(--medical-card-glow-bot);
-  --input-bg: var(--medical-input-bg);
-  --input-border: var(--medical-input-border);
-  --input-glow: var(--medical-input-glow);
-  --button-bg: var(--medical-button-bg);
-  --text-color: var(--medical-text);
-  --text-secondary: var(--medical-text-secondary);
+  /* Default to Comic Theme */
+  --bg-primary: var(--comic-bg-primary);
+  --card-bg: var(--comic-card-bg);
+  --card-border: var(--comic-card-border);
+  --card-glow-user: var(--comic-card-shadow);
+  --card-glow-bot: var(--comic-card-shadow);
+  --input-bg: var(--comic-input-bg);
+  --input-border: var(--comic-input-border);
+  --input-glow: var(--comic-input-shadow);
+  --button-bg: var(--comic-button-bg);
+  --text-color: var(--comic-text);
+  --text-secondary: var(--comic-text-secondary);
 }
 
 /* ==================== LAYERED CHAT CONTAINER ==================== */
@@ -62,12 +37,12 @@
   width: 100%;
   height: 600px;
   background: var(--bg-primary);
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: inset 0 0 60px rgba(0, 255, 255, 0.1),
-              0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
 }
 
 .cards-viewport {
@@ -125,12 +100,10 @@
   padding: 1.5rem;
   margin-bottom: -60px;
   background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
+  border: 4px solid var(--card-border);
   border-radius: 16px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: var(--card-glow-user);
   cursor: pointer;
   min-height: fit-content;
   overflow: hidden;
@@ -145,11 +118,13 @@
 }
 
 .chat-card:hover {
-  box-shadow: 0 8px 30px rgba(0, 255, 255, 0.4);
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 #000;
 }
 
 .theme-medical .chat-card:hover {
-  box-shadow: 0 8px 30px rgba(0, 122, 204, 0.3);
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 #000;
 }
 
 .card-content {
@@ -177,19 +152,21 @@
 }
 
 .user-card {
-  border-left: 3px solid rgba(0, 150, 255, 0.6);
+  background: var(--comic-pink);
+  border: 4px solid #000;
 }
 
 .user-card .user-glow {
-  box-shadow: var(--card-glow-user);
+  box-shadow: none;
 }
 
 .bot-card {
-  border-left: 3px solid rgba(138, 43, 226, 0.6);
+  background: var(--comic-beige);
+  border: 4px solid #000;
 }
 
 .bot-card .bot-glow {
-  box-shadow: var(--card-glow-bot);
+  box-shadow: none;
 }
 
 .chat-card:hover .card-glow {
@@ -202,9 +179,8 @@
   position: relative;
   width: 100%;
   padding: 1.5rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--comic-yellow);
+  border-top: 4px solid #000;
 }
 
 .chat-input-container {
@@ -212,17 +188,17 @@
   gap: 0.75rem;
   align-items: center;
   background: var(--input-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--input-border);
-  border-radius: 16px;
+  border: 3px solid var(--input-border);
+  border-radius: 12px;
   padding: 0.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  box-shadow: var(--input-glow);
 }
 
 .chat-input-container:focus-within {
-  border-color: var(--input-border);
-  box-shadow: var(--input-glow);
+  border-color: var(--comic-pink);
+  box-shadow: 6px 6px 0 var(--comic-pink);
+  transform: translate(-2px, -2px);
 }
 
 .glass-input {
@@ -245,22 +221,25 @@
   align-items: center;
   gap: 0.5rem;
   background: var(--button-bg);
-  border: none;
-  border-radius: 12px;
+  border: 3px solid #000;
+  border-radius: 10px;
   padding: 0.75rem 1.5rem;
-  color: var(--neon-text);
-  font-family: 'Orbitron', monospace;
-  font-weight: 600;
-  font-size: 0.85rem;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0 #000;
 }
 
 .send-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.send-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 #000;
 }
 
 .send-button svg {

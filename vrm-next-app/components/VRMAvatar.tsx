@@ -232,7 +232,7 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
     const container = containerRef.current;
 
     const scene = new THREE.Scene();
-    scene.background = null;
+    scene.background = new THREE.Color(0xFFF4D7); // Bright beige background
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(
@@ -256,13 +256,23 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
     renderer.setClearColor(0x000000, 0);
     rendererRef.current = renderer;
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new THREE.AmbientLight(0xfff8e1, 1.2); // Warm white, much brighter
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const directionalLight = new THREE.DirectionalLight(0xfff5e6, 1.4); // Warm light, much brighter
     directionalLight.position.set(1, 1, 1);
     directionalLight.castShadow = true;
     scene.add(directionalLight);
+
+    // Add fill light from the left for better illumination
+    const fillLight = new THREE.DirectionalLight(0xfff0d9, 0.8);
+    fillLight.position.set(-1, 0.5, 0.5);
+    scene.add(fillLight);
+
+    // Add rim light from behind for depth
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    rimLight.position.set(0, 1, -1);
+    scene.add(rimLight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.target.set(0, 1, 0);
@@ -282,16 +292,16 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
     gradientCanvas.height = 128;
     const ctx = gradientCanvas.getContext('2d')!;
     const gradient = ctx.createRadialGradient(128, 64, 0, 128, 64, 128);
-    gradient.addColorStop(0, '#1a0033');
-    gradient.addColorStop(0.5, '#0d001a');
-    gradient.addColorStop(1, 'rgba(0, 10, 30, 0)');
+    gradient.addColorStop(0, 'rgba(236, 167, 255, 0.3)'); // Soft pink shadow
+    gradient.addColorStop(0.5, 'rgba(236, 167, 255, 0.15)');
+    gradient.addColorStop(1, 'rgba(236, 167, 255, 0)');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, 256, 128);
     const shadowTexture = new THREE.CanvasTexture(gradientCanvas);
     const shadowMaterial = new THREE.MeshBasicMaterial({
       map: shadowTexture,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.4,
       depthWrite: false
     });
     const shadow = new THREE.Mesh(shadowGeometry, shadowMaterial);

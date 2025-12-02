@@ -1,0 +1,545 @@
+/* ==================== SUPER HELLO THEME - GLOBALS ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: #F7D774;
+    min-height: 100vh;
+    color: #000000;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    min-height: 100vh;
+    padding: 0;
+    z-index: 10;
+    background: #F7D774;
+}
+
+/* Background Shapes - Simplified for comic style */
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.ring,
+.cube {
+    display: none;
+}
+
+/* ==================== CLEAN COMIC HEADER SECTION ==================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Baloo+2:wght@700;800&family=Poppins:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+.comic-header {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(180deg, #fce4a4 0%, #F7D774 100%);
+    border-bottom: 4px solid #000;
+    overflow: hidden;
+}
+
+.header-content {
+    position: relative;
+    z-index: 5;
+}
+
+/* Simple Decorative Elements */
+.header-deco {
+    position: absolute;
+    z-index: 3;
+    animation: float-gentle 3s ease-in-out infinite;
+}
+
+.deco-star-left {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.deco-circle-right {
+    top: 25%;
+    right: 12%;
+    animation-delay: 0.5s;
+}
+
+.deco-sparkle-left {
+    bottom: 30%;
+    left: 15%;
+    animation-delay: 1s;
+}
+
+.deco-star-right {
+    bottom: 35%;
+    right: 10%;
+    animation-delay: 1.5s;
+}
+
+@keyframes float-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* HealthTok Tagline - Gen-Z Energy */
+.healthtok-tagline {
+    font-family: 'Fredoka One', 'Baloo 2', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #000;
+    margin: 0 0 1.5rem 0;
+    font-weight: 700;
+    text-shadow: 
+        2px 2px 0 #fff,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.healthtok-highlight {
+    background: linear-gradient(135deg, #ff6b9d, #F7A547);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    text-shadow: none;
+    filter: drop-shadow(2px 2px 0 #000);
+    display: inline-block;
+}
+
+/* Clean Comic Title Styling */
+.comic-title-clean {
+    font-family: 'Fredoka One', 'Baloo 2', sans-serif;
+    margin: 0;
+    line-height: 1.2;
+    color: #000;
+    position: relative;
+}
+
+.title-small-clean {
+    font-size: 2rem;
+    font-weight: 800;
+    display: block;
+    text-shadow: 
+        2px 2px 0 #fff,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    margin-bottom: 0.2rem;
+}
+
+.title-big-clean {
+    font-size: 4rem;
+    font-weight: 800;
+    display: block;
+    text-shadow: 
+        3px 3px 0 #fff,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        2px 2px 0 #000;
+    letter-spacing: -1px;
+}
+
+/* Clean Comic Subtitle */
+.comic-subtitle-clean {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.2rem;
+    color: #000;
+    margin-top: 1rem;
+    font-weight: 700;
+}
+
+/* Responsive Design for Clean Comic Header */
+@media (max-width: 768px) {
+    .comic-header {
+        padding: 2rem 1.5rem;
+    }
+
+    .healthtok-tagline {
+        font-size: 1.1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .title-small-clean {
+        font-size: 1.5rem;
+    }
+
+    .title-big-clean {
+        font-size: 3rem;
+        text-shadow: 
+            2px 2px 0 #fff,
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+    }
+
+    .comic-subtitle-clean {
+        font-size: 1rem;
+    }
+
+    .header-deco {
+        transform: scale(0.7);
+    }
+}
+
+@media (max-width: 480px) {
+    .healthtok-tagline {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .title-small-clean {
+        font-size: 1.3rem;
+    }
+
+    .title-big-clean {
+        font-size: 2.5rem;
+    }
+
+    .comic-subtitle-clean {
+        font-size: 0.95rem;
+    }
+
+    .header-deco {
+        display: none;
+    }
+}
+
+/* Main Content */
+.main-content {
+    position: relative;
+    z-index: 10;
+    background: #F7D774;
+    min-height: calc(100vh - 100px);
+}
+
+.panels-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Back Button - Comic Style */
+.back-button {
+    position: absolute;
+    top: -4.5rem;
+    left: 0;
+    background: #F7A547;
+    border: 4px solid #000;
+    border-radius: 12px;
+    color: #000;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    z-index: 100;
+    box-shadow: 6px 6px 0 #000;
+}
+
+.back-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0 #000;
+}
+
+.back-button:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0 0 0 #000;
+}
+
+/* Glass Panels - Comic Cards */
+.glass-panel {
+    background: #FFF4D7;
+    border: 4px solid #000;
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 8px 8px 0 #000;
+}
+
+.glass-panel::before {
+    display: none;
+}
+
+/* Panel Styling */
+.panel-left {
+    box-shadow: 8px 8px 0 #000;
+}
+
+.panel-right {
+    box-shadow: 8px 8px 0 #000;
+}
+
+.panel-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #000;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+/* Input Sections - Comic Style */
+.input-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.futuristic-input {
+    flex: 1;
+    background: #ffffff;
+    border: 3px solid #000;
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.futuristic-input:focus {
+    outline: none;
+    border-color: #ECA7FF;
+    box-shadow: 6px 6px 0 #ECA7FF;
+    background: #ffffff;
+    transform: translate(-2px, -2px);
+}
+
+.futuristic-input::placeholder {
+    color: #999;
+    font-weight: 500;
+}
+
+.neon-button {
+    background: #F7A547;
+    border: 4px solid #000;
+    border-radius: 12px;
+    padding: 0.9rem 1.8rem;
+    color: #000;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 6px 6px 0 #000;
+    font-size: 0.95rem;
+}
+
+.neon-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0 #000;
+}
+
+.neon-button:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0 0 0 #000;
+}
+
+/* Result Areas - Comic Style */
+.result-area {
+    min-height: 200px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0 #000;
+}
+
+/* Chat Content */
+.chat-content {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    min-height: 0;
+}
+
+.message {
+    margin-bottom: 1rem;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.message.user {
+    background: #ECA7FF;
+    margin-left: 2rem;
+}
+
+.message.bot {
+    background: #ffffff;
+    margin-right: 2rem;
+}
+
+.welcome-message {
+    background: #F7A547;
+    border: 3px solid #000;
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    box-shadow: 4px 4px 0 #000;
+    font-weight: 600;
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 1rem;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.chat-input-container .futuristic-input {
+    flex: 1;
+}
+
+/* VRM Container - Comic Style */
+.vrm-container {
+    height: 700px;
+    background: #FFF4D7;
+    border-radius: 20px;
+    border: 4px solid #000;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 8px 8px 0 #000;
+}
+
+.vrm-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 16px;
+}
+
+.vrm-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #000;
+    z-index: 10;
+}
+
+.vrm-loading.hidden {
+    display: none;
+}
+
+.vrm-loading p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.upload-hint {
+    background: #ECA7FF;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    border: 3px solid #000;
+    display: inline-block;
+    font-size: 0.9rem;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.upload-hint span {
+    color: #000;
+    font-weight: 700;
+}
+
+/* Scrollbar Styling - Comic */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FFF4D7;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ECA7FF;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #F7A547;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .panels-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .title {
+        font-size: 2.2rem;
+    }
+    
+    .container {
+        padding: 0;
+    }
+    
+    .input-section {
+        flex-direction: column;
+    }
+
+    .back-button {
+        top: 1rem;
+        left: 1rem;
+        position: fixed;
+    }
+}
+
+@media (max-width: 640px) {
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .glass-panel {
+        padding: 1.5rem;
+        box-shadow: 6px 6px 0 #000;
+    }
+
+    .message {
+        box-shadow: 3px 3px 0 #000;
+    }
+
+    .neon-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,637 @@
+/* ==================== SUPER HELLO STYLE ==================== */
+
+.superhello-container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+/* Utility class for thick outlines */
+.thick-outline {
+  border: 4px solid #000000;
+}
+
+/* ==================== HERO SECTION - PINK ==================== */
+
+.hero-pink {
+  background: #ECA7FF;
+  padding: 2rem 2rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text {
+  z-index: 10;
+}
+
+.superhello-title {
+  font-family: 'Fredoka One', 'Baloo 2', sans-serif;
+  margin: 1.5rem 0 1.5rem 0;
+  color: #000;
+  letter-spacing: -0.03em;
+}
+
+.title-super {
+  font-family: 'Fredoka One', 'Baloo 2', sans-serif;
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0;
+  letter-spacing: -0.03em;
+}
+
+.title-hello {
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+  font-size: 170px;
+  font-weight: 800;
+  display: block;
+  color: #fff;
+  text-shadow: 2px 2px 0px #000;
+  line-height: 0.85;
+  margin-top: -2.5rem;
+  letter-spacing: -0.04em;
+}
+
+.hero-subtitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 0.5rem 0;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+.cta-orange {
+  background: #F7A547;
+  border: 4px solid #000;
+  border-radius: 12px;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 #000;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.cta-orange:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.cta-orange:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 #000;
+}
+
+/* Hero Illustration */
+.hero-illustration {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+}
+
+.robot-main {
+  font-size: 12rem;
+  filter: drop-shadow(8px 8px 0 #000);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  max-width: 280px;
+  display: block;
+  filter: drop-shadow(8px 8px 0 #000);
+}
+
+.character {
+  position: absolute;
+  font-size: 4rem;
+  filter: drop-shadow(4px 4px 0 #000);
+}
+
+.character-image {
+  width: 100%;
+  height: auto;
+  max-width: 120px;
+  display: block;
+  filter: drop-shadow(4px 4px 0 #000);
+}
+
+.character-1 {
+  bottom: 20%;
+  left: 10%;
+}
+
+.character-2 {
+  bottom: 15%;
+  right: 15%;
+}
+
+.character-3 {
+  top: 20%;
+  right: 10%;
+}
+
+.character-4 {
+  top: 5%;
+  left: 15%;
+}
+
+.character-5 {
+  top: 0%;
+  left: 40%;
+  transform: translateX(-50%);
+}
+
+.character-6 {
+  bottom: 5%;
+  left: 40%;
+  transform: translateX(-50%);
+}
+
+/* ==================== WAVY DIVIDER ==================== */
+
+.wavy-divider {
+  position: relative;
+  height: 0;
+  overflow: visible;
+}
+
+.wavy-divider svg {
+  display: block;
+  width: 100%;
+  height: 120px;
+}
+
+/* ==================== FEATURE SECTION - YELLOW ==================== */
+
+.feature-yellow {
+  background: #F7D774;
+  padding: 6rem 2rem 8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.feature-illustration {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+
+.robot-secondary {
+  font-size: 18rem;
+  filter: drop-shadow(8px 8px 0 #000);
+  position: relative;
+  z-index: 2;
+}
+
+.feature-left-icon {
+  font-size: 18rem;
+  filter: drop-shadow(8px 8px 0 #000);
+  position: absolute;
+  left: -10%;
+  z-index: 2;
+}
+
+.feature-main-image {
+  width: 100%;
+  height: auto;
+  max-width: 192px;
+  display: block;
+  filter: drop-shadow(8px 8px 0 #000);
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 4rem;
+  filter: drop-shadow(4px 4px 0 #000);
+}
+
+.floating-icon-image {
+  width: 100%;
+  height: auto;
+  max-width: 100px;
+  display: block;
+  filter: drop-shadow(4px 4px 0 #000);
+}
+
+.icon-1 .floating-icon-image {
+  max-width: 150px;
+}
+
+.icon-2 .floating-icon-image {
+  max-width: 135px;
+}
+
+.icon-1 {
+  top: 10%;
+  left: 20%;
+}
+
+.icon-2 {
+  top: 20%;
+  right: -2%;
+}
+
+.icon-3 {
+  bottom: 10%;
+  left: 10%;
+}
+
+.section-heading {
+  font-family: 'Fredoka One', 'Baloo 2', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 0.9;
+  color: #000;
+  margin: 0 0 2rem 0;
+  letter-spacing: -0.02em;
+}
+
+.section-heading.centered {
+  text-align: center;
+}
+
+.section-description {
+  font-size: 1.15rem;
+  color: #333;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Floating Decorations */
+.floating-decorations {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.deco-element {
+  position: absolute;
+  font-size: 3rem;
+  filter: drop-shadow(4px 4px 0 #000);
+}
+
+.deco-1 {
+  top: 10%;
+  right: 10%;
+}
+
+.deco-2 {
+  bottom: 15%;
+  right: 5%;
+}
+
+/* ==================== HOW IT WORKS - COMIC CARDS ==================== */
+
+.how-it-works-comic {
+  background: #F7D774;
+  padding: 4rem 2rem 6rem;
+  position: relative;
+}
+
+.cards-container {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.comic-card {
+  background: #FFF4D7;
+  border: 4px solid #000;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: 8px 8px 0 #000;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.comic-card:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.card-icon-wrapper {
+  background: #ECA7FF;
+  border: 4px solid #000;
+  border-radius: 16px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.card-icon {
+  font-size: 4rem;
+  filter: drop-shadow(2px 2px 0 #000);
+}
+
+.card-icon-image {
+  width: 80px;
+  height: 80px;
+  display: block;
+  filter: none;
+}
+
+.comic-card:first-child .card-icon-image {
+  width: 151px;
+  height: 151px;
+  filter: none;
+}
+
+.comic-card:nth-child(2) .card-icon-image {
+  width: 120px;
+  height: 120px;
+}
+
+.comic-card:nth-child(3) .card-icon-image {
+  width: 140px;
+  height: 140px;
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #000;
+  margin: 0 0 1rem 0;
+}
+
+.card-description {
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Bottom Decoration Arrows */
+.bottom-arrows {
+  position: absolute;
+  width: 100%;
+  bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  pointer-events: none;
+}
+
+.arrow-deco {
+  font-size: 4rem;
+  filter: drop-shadow(4px 4px 0 #000);
+}
+
+.arrow-deco.left {
+  transform: rotate(-45deg);
+}
+
+.arrow-deco.right {
+  transform: rotate(45deg);
+}
+
+/* ==================== BOTTOM SECTION ==================== */
+
+.bottom-text {
+  background: #F7D774;
+  padding: 3rem 2rem 4rem;
+  text-align: center;
+}
+
+.bottom-heading {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #000;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.bottom-heading .highlight {
+  color: #ECA7FF;
+  text-shadow: 3px 3px 0 #000;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 968px) {
+  .hero-content,
+  .feature-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hero-illustration,
+  .feature-illustration {
+    height: 300px;
+  }
+
+  .robot-main {
+    font-size: 12rem;
+  }
+
+  .hero-image {
+    max-width: 220px;
+  }
+
+  .character-image {
+    max-width: 90px;
+  }
+
+  .robot-secondary {
+    font-size: 10rem;
+  }
+
+  .feature-main-image {
+    max-width: 132px;
+  }
+
+  .floating-icon-image {
+    max-width: 75px;
+  }
+
+  .icon-1 .floating-icon-image {
+    max-width: 112px;
+  }
+
+  .icon-2 .floating-icon-image {
+    max-width: 101px;
+  }
+
+  .superhello-title {
+    margin: 1.2rem 0 1.2rem 0;
+  }
+
+  .title-super {
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+    letter-spacing: -0.03em;
+  }
+
+  .title-hello {
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-size: 130px;
+    font-weight: 800;
+    line-height: 0.85;
+    margin-top: -2rem;
+    letter-spacing: -0.04em;
+    text-shadow: 2px 2px 0px #000;
+  }
+
+  .section-heading {
+    font-size: 2.5rem;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .character {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-pink {
+    padding: 1.5rem 1.5rem 4rem;
+  }
+
+  .superhello-title {
+    margin: 1rem 0 1rem 0;
+  }
+
+  .title-super {
+    font-size: 54px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+    letter-spacing: -0.03em;
+  }
+
+  .title-hello {
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 0.85;
+    margin-top: -1.5rem;
+    letter-spacing: -0.04em;
+    text-shadow: 2px 2px 0px #000;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .robot-main {
+    font-size: 8rem;
+  }
+
+  .hero-image {
+    max-width: 160px;
+  }
+
+  .character-image {
+    max-width: 70px;
+  }
+
+  .robot-secondary {
+    font-size: 6rem;
+  }
+
+  .feature-main-image {
+    max-width: 84px;
+  }
+
+  .floating-icon-image {
+    max-width: 50px;
+  }
+
+  .icon-1 .floating-icon-image {
+    max-width: 75px;
+  }
+
+  .icon-2 .floating-icon-image {
+    max-width: 67px;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+  }
+
+  .section-description {
+    font-size: 1rem;
+  }
+
+  .comic-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .card-icon-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .card-icon {
+    font-size: 3rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .bottom-heading {
+    font-size: 1.8rem;
+  }
+}
