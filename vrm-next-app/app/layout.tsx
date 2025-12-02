@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/layered-chat.css'
 
 export const metadata = {
   title: 'VRM Chat - Nutrition Bot',

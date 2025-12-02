@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import VRMAvatar from '../components/VRMAvatar';
-import ChatBot from '../components/ChatBot';
+import LayeredChat from '../components/LayeredChat';
 
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
@@ -51,7 +51,7 @@ export default function Home() {
             <div className="panel-header">
               <h2>Nutrition Chat</h2>
             </div>
-            <ChatBot onTypingChange={setIsTyping} onGreeting={handleGreeting} onCaloriesDetected={handleCaloriesDetected} />
+            <LayeredChat onTypingChange={setIsTyping} onGreeting={handleGreeting} onCaloriesDetected={handleCaloriesDetected} />
           </div>
         </div>
       </main>

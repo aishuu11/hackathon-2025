@@ -1,0 +1,396 @@
+/* ==================== LAYERED CHAT THEME SYSTEM ==================== */
+
+:root {
+  /* Neon Theme */
+  --neon-bg-primary: linear-gradient(135deg, #0c011d 0%, #060047 50%, #0c011d 100%);
+  --neon-card-bg: rgba(15, 5, 40, 0.6);
+  --neon-card-border: rgba(0, 234, 255, 0.3);
+  --neon-card-glow-user: 0 0 20px rgba(0, 150, 255, 0.4), 0 0 40px rgba(0, 150, 255, 0.2);
+  --neon-card-glow-bot: 0 0 20px rgba(138, 43, 226, 0.4), 0 0 40px rgba(138, 43, 226, 0.2);
+  --neon-input-bg: rgba(255, 255, 255, 0.05);
+  --neon-input-border: rgba(0, 255, 255, 0.3);
+  --neon-input-glow: 0 0 20px rgba(0, 255, 255, 0.3);
+  --neon-button-bg: linear-gradient(135deg, #00ffff, #ff00ff);
+  --neon-text: #ffffff;
+  --neon-text-secondary: rgba(255, 255, 255, 0.7);
+
+  /* Medical Theme */
+  --medical-bg-primary: linear-gradient(135deg, #e8f4ff 0%, #f0f8ff 50%, #e8f4ff 100%);
+  --medical-card-bg: rgba(255, 255, 255, 0.8);
+  --medical-card-border: rgba(0, 122, 204, 0.3);
+  --medical-card-glow-user: 0 2px 8px rgba(0, 122, 204, 0.15);
+  --medical-card-glow-bot: 0 2px 8px rgba(100, 100, 255, 0.15);
+  --medical-input-bg: rgba(255, 255, 255, 0.9);
+  --medical-input-border: rgba(0, 122, 204, 0.4);
+  --medical-input-glow: 0 0 0 3px rgba(0, 122, 204, 0.1);
+  --medical-button-bg: linear-gradient(135deg, #007acc, #0066b3);
+  --medical-text: #1a1a2e;
+  --medical-text-secondary: rgba(26, 26, 46, 0.7);
+
+  /* Default to Neon Theme */
+  --bg-primary: var(--neon-bg-primary);
+  --card-bg: var(--neon-card-bg);
+  --card-border: var(--neon-card-border);
+  --card-glow-user: var(--neon-card-glow-user);
+  --card-glow-bot: var(--neon-card-glow-bot);
+  --input-bg: var(--neon-input-bg);
+  --input-border: var(--neon-input-border);
+  --input-glow: var(--neon-input-glow);
+  --button-bg: var(--neon-button-bg);
+  --text-color: var(--neon-text);
+  --text-secondary: var(--neon-text-secondary);
+}
+
+.theme-medical {
+  --bg-primary: var(--medical-bg-primary);
+  --card-bg: var(--medical-card-bg);
+  --card-border: var(--medical-card-border);
+  --card-glow-user: var(--medical-card-glow-user);
+  --card-glow-bot: var(--medical-card-glow-bot);
+  --input-bg: var(--medical-input-bg);
+  --input-border: var(--medical-input-border);
+  --input-glow: var(--medical-input-glow);
+  --button-bg: var(--medical-button-bg);
+  --text-color: var(--medical-text);
+  --text-secondary: var(--medical-text-secondary);
+}
+
+/* ==================== LAYERED CHAT CONTAINER ==================== */
+
+.layered-chat-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: var(--bg-primary);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 60px rgba(0, 255, 255, 0.1),
+              0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.cards-viewport {
+  position: relative;
+  flex: 1;
+  padding: 2rem 2rem 1rem 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  scroll-behavior: smooth;
+  padding-bottom: 6rem;
+}
+
+.cards-viewport::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cards-viewport::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.cards-viewport::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.cards-viewport::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.5);
+}
+
+.theme-medical .cards-viewport::-webkit-scrollbar-track {
+  background: rgba(0, 122, 204, 0.1);
+}
+
+.theme-medical .cards-viewport::-webkit-scrollbar-thumb {
+  background: rgba(0, 122, 204, 0.4);
+}
+
+.theme-medical .cards-viewport::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 122, 204, 0.6);
+}
+
+/* ==================== CHAT CARDS ==================== */
+
+.chat-card {
+  position: relative;
+  width: 85%;
+  max-width: 500px;
+  padding: 1.5rem;
+  margin-bottom: -60px;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  min-height: fit-content;
+  overflow: hidden;
+}
+
+.chat-card:first-child {
+  margin-top: 2rem;
+}
+
+.chat-card:last-child {
+  margin-bottom: 6rem;
+}
+
+.chat-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 255, 255, 0.4);
+}
+
+.theme-medical .chat-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 122, 204, 0.3);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.card-content p {
+  margin: 0;
+}
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+.user-card {
+  border-left: 3px solid rgba(0, 150, 255, 0.6);
+}
+
+.user-card .user-glow {
+  box-shadow: var(--card-glow-user);
+}
+
+.bot-card {
+  border-left: 3px solid rgba(138, 43, 226, 0.6);
+}
+
+.bot-card .bot-glow {
+  box-shadow: var(--card-glow-bot);
+}
+
+.chat-card:hover .card-glow {
+  opacity: 0.9;
+}
+
+/* ==================== CHAT INPUT ==================== */
+
+.chat-input-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  background: var(--input-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--input-border);
+  border-radius: 16px;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.chat-input-container:focus-within {
+  border-color: var(--input-border);
+  box-shadow: var(--input-glow);
+}
+
+.glass-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.75rem 1rem;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.glass-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.send-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--button-bg);
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  color: var(--neon-text);
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.send-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+}
+
+.send-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.theme-medical .send-button {
+  color: #ffffff;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .layered-chat-container {
+    height: 500px;
+  }
+
+  .chat-card {
+    width: 90%;
+    padding: 1.25rem;
+  }
+
+  .cards-viewport {
+    padding: 1.5rem 1rem 0.75rem 1rem;
+  }
+
+  .chat-input-wrapper {
+    padding: 1rem;
+  }
+
+  .glass-input {
+    font-size: 0.9rem;
+  }
+
+  .send-button {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cardHover {
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+/* Medical Theme Overrides */
+.theme-medical .layered-chat-container {
+  box-shadow: inset 0 0 60px rgba(0, 122, 204, 0.08),
+              0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.theme-medical .user-card {
+  border-left: 3px solid rgba(0, 122, 204, 0.6);
+}
+
+.theme-medical .bot-card {
+  border-left: 3px solid rgba(100, 100, 255, 0.5);
+}
+
+.theme-medical .send-button:hover {
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
+}
+
+/* ==================== THEME TOGGLE ==================== */
+
+.theme-toggle-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.theme-toggle-container .theme-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-container .theme-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.theme-toggle-container .theme-btn.active {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 255, 0.3));
+  border-color: rgba(0, 255, 255, 0.6);
+  color: #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.theme-medical .theme-toggle-container .theme-btn {
+  color: rgba(26, 26, 46, 0.7);
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(0, 122, 204, 0.3);
+}
+
+.theme-medical .theme-toggle-container .theme-btn:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 122, 204, 0.5);
+  color: #007acc;
+}
+
+.theme-medical .theme-toggle-container .theme-btn.active {
+  background: rgba(0, 122, 204, 0.2);
+  border-color: #007acc;
+  color: #007acc;
+  box-shadow: 0 2px 8px rgba(0, 122, 204, 0.2);
+}

@@ -75,9 +75,9 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
     const nutritionColor = getNutritionColor(calories);
     targetColorRef.current.setHex(nutritionColor);
     
-    // Create hologram panel (background) - color based on nutrition
+    // Create hologram panel (background) - color based on nutrition using MeshStandardMaterial for emissive
     const panelGeometry = new THREE.PlaneGeometry(0.25, 0.15);
-    const panelMaterial = new THREE.MeshBasicMaterial({
+    const panelMaterial = new THREE.MeshStandardMaterial({
       color: nutritionColor,
       transparent: true,
       opacity: 0.35,
@@ -364,7 +364,7 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
               const rightUpperArm = vrm.humanoid.getNormalizedBoneNode('rightUpperArm');
               const leftLowerArm = vrm.humanoid.getNormalizedBoneNode('leftLowerArm');
               const rightLowerArm = vrm.humanoid.getNormalizedBoneNode('rightLowerArm');
-              const leftHand = vrm.humanoid.getBoneNode('leftHand');
+              const leftHandBone = vrm.humanoid.getBoneNode('leftHand');
               const rightHand = vrm.humanoid.getNormalizedBoneNode('rightHand');
               
               // Left arm - hanging down naturally
@@ -379,8 +379,8 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
               }
               
               // Rotate left hand and finger bases to create palm-up holding pose
-              if (leftHand) {
-                leftHand.rotation.x = -0.4; // Rotate hand upward
+              if (leftHandBone) {
+                leftHandBone.rotation.x = -0.4; // Rotate hand upward
               }
               
               const leftIndex1 = vrm.humanoid.getBoneNode('leftIndexProximal');
@@ -763,7 +763,7 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
             const panel = calorieHologramRef.current.children[0];
             const border = calorieHologramRef.current.children[1];
             
-            if (panel instanceof THREE.Mesh && panel.material instanceof THREE.MeshBasicMaterial) {
+            if (panel instanceof THREE.Mesh && panel.material instanceof THREE.MeshStandardMaterial) {
               panel.material.color.copy(hologramColorRef.current);
               
               if (panel.material.emissive) {
