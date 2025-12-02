@@ -10,9 +10,10 @@ interface Message {
 interface ChatBotProps {
   onTypingChange?: (isTyping: boolean) => void;
   onGreeting?: () => void;
+  onCaloriesDetected?: (calories: number, foodName: string) => void;
 }
 
-export default function ChatBot({ onTypingChange, onGreeting }: ChatBotProps) {
+export default function ChatBot({ onTypingChange, onGreeting, onCaloriesDetected }: ChatBotProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -62,6 +63,15 @@ export default function ChatBot({ onTypingChange, onGreeting }: ChatBotProps) {
         type: 'bot' 
       };
       setMessages(prev => [...prev, botMessage]);
+      
+      // Extract calories from response
+      const calorieMatch = botMessage.text.match(/(\d+)\s*(?:kcal|calories|cal)/i);
+      if (calorieMatch && onCaloriesDetected) {
+        const calories = parseInt(calorieMatch[1], 10);
+        // Try to extract food name from the user's input or response
+        const foodName = currentInput.trim() || 'Food';
+        onCaloriesDetected(calories, foodName);
+      }
     } catch (error) {
       console.error('Error calling API:', error);
       // Fallback error message

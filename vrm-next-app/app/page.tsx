@@ -7,6 +7,7 @@ import ChatBot from '../components/ChatBot';
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
   const [isWaving, setIsWaving] = useState(false);
+  const [calorieData, setCalorieData] = useState<{ calories: number; foodName: string } | null>(null);
 
   const handleGreeting = () => {
     console.log('Greeting received! Triggering wave...');
@@ -15,6 +16,11 @@ export default function Home() {
     setTimeout(() => {
       setIsWaving(false);
     }, 2100); // Slightly longer than animation duration
+  };
+
+  const handleCaloriesDetected = (calories: number, foodName: string) => {
+    console.log(`Calories detected: ${calories} for ${foodName}`);
+    setCalorieData({ calories, foodName });
   };
 
   return (
@@ -46,7 +52,11 @@ export default function Home() {
             <div className="panel-header">
               <h2>Nutrition Chat</h2>
             </div>
-            <ChatBot onTypingChange={setIsTyping} onGreeting={handleGreeting} />
+            <ChatBot 
+              onTypingChange={setIsTyping} 
+              onGreeting={handleGreeting}
+              onCaloriesDetected={handleCaloriesDetected}
+            />
           </div>
         </div>
       </main>
