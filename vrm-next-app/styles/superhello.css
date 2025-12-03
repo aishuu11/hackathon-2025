@@ -1,25 +1,50 @@
-/* ==================== SUPER HELLO STYLE ==================== */
+/* ==================== SUPER HELLO STYLE - SPACE THEME ==================== */
 
 .superhello-container {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  background: #fff;
+  background: transparent;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
 }
 
-/* Utility class for thick outlines */
+/* Utility class for neon outlines */
 .thick-outline {
-  border: 4px solid #000000;
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 10px rgba(0,255,255,0.5), inset 0 0 10px rgba(0,255,255,0.1);
 }
 
-/* ==================== HERO SECTION - PINK ==================== */
+/* ==================== HERO SECTION - SPACE PURPLE ==================== */
 
 .hero-pink {
-  background: #ECA7FF;
+  background: 
+    radial-gradient(1px 1px at 18% 22%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 82% 15%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 35% 45%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 68% 72%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 92% 58%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 48% 12%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 25% 68%, rgba(255,255,255,0.6), transparent),
+    #000000;
+  background-size: 100% 100%;
   padding: 2rem 2rem 6rem;
   position: relative;
   overflow: hidden;
+  border: 2px solid #ff5faf;
+  border-top: none;
+  box-shadow: 
+    0 0 30px rgba(255,95,175,0.4),
+    inset 0 0 80px rgba(255,95,175,0.03);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 15px) 0,
+    100% 15px,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0 calc(100% - 15px)
+  );
 }
 
 .hero-content {
@@ -36,70 +61,99 @@
 }
 
 .superhello-title {
-  font-family: 'Fredoka One', 'Baloo 2', sans-serif;
+  font-family: 'Press Start 2P', monospace;
   margin: 1.5rem 0 1.5rem 0;
-  color: #000;
-  letter-spacing: -0.03em;
+  color: #ff5faf;
+  letter-spacing: 2px;
+  image-rendering: pixelated;
+  text-rendering: optimizeLegibility;
 }
 
 .title-super {
-  font-family: 'Fredoka One', 'Baloo 2', sans-serif;
-  font-size: 96px;
-  font-weight: 600;
-  line-height: 1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.4;
   display: block;
   margin-bottom: 0;
-  letter-spacing: -0.03em;
+  letter-spacing: 3px;
+  color: #ffffff;
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.8);
 }
 
 .title-hello {
-  font-family: 'Poppins', 'Montserrat', sans-serif;
-  font-size: 170px;
-  font-weight: 800;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 5rem;
+  font-weight: 400;
   display: block;
-  color: #fff;
-  text-shadow: 2px 2px 0px #000;
-  line-height: 0.85;
-  margin-top: -2.5rem;
-  letter-spacing: -0.04em;
+  color: #ff5faf;
+  text-shadow: 5px 5px 0 rgba(0,0,0,0.8);
+  line-height: 1.2;
+  margin-top: -1rem;
+  letter-spacing: 4px;
 }
 
 .hero-subtitle {
   font-size: 1.8rem;
-  font-weight: 700;
-  color: #000;
+  font-weight: 400;
+  color: #ffffff;
   margin: 0 0 0.5rem 0;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 2px;
 }
 
 .hero-description {
   font-size: 1.1rem;
-  color: #333;
+  color: #cccccc;
   margin: 0 0 2rem 0;
-  line-height: 1.6;
+  line-height: 1.8;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .cta-orange {
-  background: #F7A547;
-  border: 4px solid #000;
-  border-radius: 12px;
+  background: #000000;
+  border: 2px solid #ff5faf;
+  border-radius: 0;
   padding: 1rem 2.5rem;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #000;
+  color: #ff5faf;
   cursor: pointer;
-  box-shadow: 6px 6px 0 #000;
+  box-shadow: 
+    0 0 20px rgba(255,95,175,0.4),
+    inset 0 0 20px rgba(255,95,175,0.05);
   transition: all 0.2s ease;
   position: relative;
+  font-family: 'Orbitron', monospace;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
 }
 
 .cta-orange:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 4px 4px 0 #000;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 0 30px rgba(255,95,175,0.8),
+    0 0 60px rgba(255,95,175,0.6),
+    0 0 90px rgba(255,95,175,0.4),
+    inset 0 0 30px rgba(255,95,175,0.1);
+  background: rgba(255,95,175,0.1);
+  color: #ffffff;
 }
 
 .cta-orange:active {
-  transform: translate(6px, 6px);
-  box-shadow: 0 0 0 #000;
+  transform: translateY(0);
+  box-shadow: 
+    0 0 15px rgba(255,95,175,0.5),
+    0 0 30px rgba(255,95,175,0.3);
 }
 
 /* Hero Illustration */
@@ -186,13 +240,28 @@
   height: 120px;
 }
 
-/* ==================== FEATURE SECTION - YELLOW ==================== */
+/* ==================== FEATURE SECTION - SPACE CYAN ==================== */
 
 .feature-yellow {
-  background: #F7D774;
+  background: 
+    radial-gradient(1px 1px at 22% 15%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 78% 28%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 42% 52%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 65% 78%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 12% 88%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 88% 62%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 55% 18%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 32% 72%, rgba(255,255,255,0.6), transparent),
+    #000000;
+  background-size: 100% 100%;
   padding: 6rem 2rem 8rem;
   position: relative;
   overflow: hidden;
+  border-top: 2px solid #ff5faf;
+  border-bottom: 2px solid #ff5faf;
+  box-shadow: 
+    0 0 30px rgba(255,95,175,0.3),
+    inset 0 0 100px rgba(255,95,175,0.02);
 }
 
 .feature-content {
@@ -273,13 +342,16 @@
 }
 
 .section-heading {
-  font-family: 'Fredoka One', 'Baloo 2', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 900;
-  line-height: 0.9;
-  color: #000;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ff5faf;
   margin: 0 0 2rem 0;
-  letter-spacing: -0.02em;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.8);
+  image-rendering: pixelated;
+  text-rendering: optimizeLegibility;
 }
 
 .section-heading.centered {
@@ -288,9 +360,10 @@
 
 .section-description {
   font-size: 1.15rem;
-  color: #333;
+  color: #cccccc;
   line-height: 1.8;
   margin: 0;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 /* Floating Decorations */
@@ -320,12 +393,26 @@
   right: 5%;
 }
 
-/* ==================== HOW IT WORKS - COMIC CARDS ==================== */
+/* ==================== HOW IT WORKS - SPACE CARDS ==================== */
 
 .how-it-works-comic {
-  background: #F7D774;
+  background: 
+    radial-gradient(1px 1px at 25% 20%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 75% 32%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 38% 58%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 62% 75%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 18% 82%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 82% 48%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 52% 12%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 28% 65%, rgba(255,255,255,0.6), transparent),
+    #000000;
+  background-size: 100% 100%;
   padding: 4rem 2rem 6rem;
   position: relative;
+  border-top: 2px solid #ff5faf;
+  box-shadow: 
+    0 0 30px rgba(255,95,175,0.3),
+    inset 0 0 80px rgba(255,95,175,0.02);
 }
 
 .cards-container {
@@ -337,11 +424,14 @@
 }
 
 .comic-card {
-  background: #FFF4D7;
-  border: 4px solid #000;
-  border-radius: 20px;
+  background: rgba(20, 0, 10, 0.6);
+  border: 2px solid #ff5faf;
+  border-radius: 0;
   padding: 2.5rem 2rem;
-  box-shadow: 8px 8px 0 #000;
+  box-shadow: 
+    0 0 20px rgba(255,95,175,0.4),
+    0 0 40px rgba(255,95,175,0.2),
+    inset 0 0 50px rgba(255,95,175,0.05);
   transition: all 0.3s ease;
   position: relative;
   min-height: 320px;
@@ -349,42 +439,67 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    12px 100%,
+    0 calc(100% - 12px)
+  );
 }
 
 .comic-card:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 6px 6px 0 #000;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 0 30px rgba(255,95,175,0.6),
+    0 0 60px rgba(255,95,175,0.4),
+    0 0 90px rgba(255,95,175,0.2),
+    inset 0 0 60px rgba(255,95,175,0.08);
+  background: rgba(30, 0, 15, 0.8);
 }
 
 .card-icon-wrapper {
-  background: #ECA7FF;
-  border: 4px solid #000;
-  border-radius: 16px;
+  background: rgba(255, 95, 175, 0.1);
+  border: 2px solid #ff5faf;
+  border-radius: 0;
   width: 120px;
   height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  box-shadow: 4px 4px 0 #000;
+  box-shadow: 
+    0 0 20px rgba(255,95,175,0.5),
+    inset 0 0 30px rgba(255,95,175,0.1);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
 }
 
 .card-icon {
   font-size: 4rem;
-  filter: drop-shadow(2px 2px 0 #000);
+  filter: drop-shadow(0 0 10px rgba(255,95,175,0.6));
 }
 
 .card-icon-image {
   width: 80px;
   height: 80px;
   display: block;
-  filter: none;
+  filter: drop-shadow(0 0 10px rgba(255,95,175,0.4));
 }
 
 .comic-card:first-child .card-icon-image {
   width: 151px;
   height: 151px;
-  filter: none;
+  filter: drop-shadow(0 0 15px rgba(255,95,175,0.4));
 }
 
 .comic-card:nth-child(2) .card-icon-image {
@@ -398,18 +513,25 @@
 }
 
 .card-title {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #000;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #ff5faf;
   margin: 0 0 1rem 0;
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+  line-height: 1.6;
+  image-rendering: pixelated;
+  text-rendering: optimizeLegibility;
 }
 
 .card-description {
   font-size: 1.05rem;
-  color: #333;
+  color: #cccccc;
   line-height: 1.6;
   margin: 0;
   flex-grow: 1;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 /* Bottom Decoration Arrows */
@@ -439,22 +561,39 @@
 /* ==================== BOTTOM SECTION ==================== */
 
 .bottom-text {
-  background: #F7D774;
+  background: 
+    radial-gradient(1px 1px at 20% 25%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 80% 35%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 45% 60%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 90% 55%, rgba(255,255,255,0.6), transparent),
+    #000000;
+  background-size: 100% 100%;
   padding: 3rem 2rem 4rem;
   text-align: center;
+  border-top: 2px solid #ff5faf;
+  box-shadow: 
+    0 0 30px rgba(255,95,175,0.3),
+    inset 0 0 80px rgba(255,95,175,0.02);
 }
 
 .bottom-heading {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #000;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #ffffff;
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: 2px;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.8);
+  line-height: 1.6;
+  image-rendering: pixelated;
+  text-rendering: optimizeLegibility;
 }
 
 .bottom-heading .highlight {
-  color: #ECA7FF;
-  text-shadow: 3px 3px 0 #000;
+  color: #ff5faf;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.8);
 }
 
 /* ==================== RESPONSIVE ==================== */

@@ -102,7 +102,14 @@ export default function SuperHelloHome({ onGetStarted }: SuperHelloHomeProps) {
       {/* Wavy Divider */}
       <div className="wavy-divider">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-          <path d="M0,64 C240,96 480,96 720,64 C960,32 1200,32 1440,64 L1440,0 L0,0 Z" fill="#ECA7FF"></path>
+          <path d="M0,64 C240,96 480,96 720,64 C960,32 1200,32 1440,64 L1440,0 L0,0 Z" fill="url(#spaceGradient)"></path>
+          <defs>
+            <linearGradient id="spaceGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(236,167,255,0.6)" stopOpacity="1" />
+              <stop offset="50%" stopColor="rgba(255,235,153,0.6)" stopOpacity="1" />
+              <stop offset="100%" stopColor="rgba(236,167,255,0.6)" stopOpacity="1" />
+            </linearGradient>
+          </defs>
         </svg>
       </div>
 
