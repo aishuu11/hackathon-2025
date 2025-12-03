@@ -509,12 +509,12 @@ body::after {
 /* VRM Container - Comic Style */
 .vrm-container {
     height: 700px;
-    background: #FFF4D7;
+    background: transparent;
     border-radius: 20px;
-    border: 4px solid #000;
+    border: none;
     position: relative;
     overflow: hidden;
-    box-shadow: 8px 8px 0 #000;
+    box-shadow: none;
 }
 
 .vrm-canvas {

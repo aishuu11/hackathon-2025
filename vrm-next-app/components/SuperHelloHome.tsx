@@ -55,7 +55,7 @@ export default function SuperHelloHome({ onGetStarted }: SuperHelloHomeProps) {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              Real answers, zero BS, and a flat-out smart AI.
+              Accurate answers, evidence-based insights, and intelligent AI guidance.
             </motion.p>
             <motion.button
               className="cta-orange"
@@ -152,9 +152,10 @@ export default function SuperHelloHome({ onGetStarted }: SuperHelloHomeProps) {
             >
               Tired of "drink lemon water and lose 20kg" advice? Same.
               <br /><br />
-              Ask us anything — food myths, macros, calories — we'll hit you with the truth fast.
+              We filter the entire nutrition dataset by relevance, accuracy, and source credibility before the AI even speaks.
               <br /><br />
-              Super Healthy brings real science, zero judgement, and all vibes.
+              
+Only clean, verified data makes it through — zero fluff, zero misinformation.”
             </motion.p>
           </div>
         </div>
@@ -201,12 +202,6 @@ export default function SuperHelloHome({ onGetStarted }: SuperHelloHomeProps) {
               <p className="card-description">{step.desc}</p>
             </motion.div>
           ))}
-        </div>
-
-        {/* Bottom decoration arrows */}
-        <div className="bottom-arrows">
-          <motion.div className="arrow-deco left" animate={{ x: [-5, 5, -5] }} transition={{ duration: 2, repeat: Infinity }}>↙</motion.div>
-          <motion.div className="arrow-deco right" animate={{ x: [5, -5, 5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}>↗</motion.div>
         </div>
       </section>
 

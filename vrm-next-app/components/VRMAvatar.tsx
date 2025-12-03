@@ -248,7 +248,7 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
     const container = containerRef.current;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xFFF4D7); // Bright beige background
+    scene.background = null; // Transparent background
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(
@@ -301,23 +301,23 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
     controls.enablePan = false;
     controlsRef.current = controls;
 
-    // Fake ground shadow
+    // Fake ground shadow - Pink neon gradient
     const shadowGeometry = new THREE.PlaneGeometry(1.5, 0.8);
     const gradientCanvas = document.createElement('canvas');
     gradientCanvas.width = 256;
     gradientCanvas.height = 128;
     const ctx = gradientCanvas.getContext('2d')!;
     const gradient = ctx.createRadialGradient(128, 64, 0, 128, 64, 128);
-    gradient.addColorStop(0, 'rgba(236, 167, 255, 0.3)'); // Soft pink shadow
-    gradient.addColorStop(0.5, 'rgba(236, 167, 255, 0.15)');
-    gradient.addColorStop(1, 'rgba(236, 167, 255, 0)');
+    gradient.addColorStop(0, 'rgba(255, 95, 175, 0.6)'); // Bright pink center
+    gradient.addColorStop(0.5, 'rgba(255, 95, 175, 0.3)'); // Medium pink
+    gradient.addColorStop(1, 'rgba(255, 95, 175, 0)'); // Fade to transparent
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, 256, 128);
     const shadowTexture = new THREE.CanvasTexture(gradientCanvas);
     const shadowMaterial = new THREE.MeshBasicMaterial({
       map: shadowTexture,
       transparent: true,
-      opacity: 0.4,
+      opacity: 0.8,
       depthWrite: false
     });
     const shadow = new THREE.Mesh(shadowGeometry, shadowMaterial);
