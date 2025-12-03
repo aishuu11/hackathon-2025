@@ -65,7 +65,7 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
       }
 
       const data = await response.json();
-      const botText = data.response || data.message || 'Sorry, I could not process that.';
+      const botText = data.answer || data.response || data.message || 'Sorry, I could not process that.';
 
       // Extract calorie information - improved regex to catch multiple formats
       const calorieMatch = botText.match(/(\d+)\s*(?:kcal|calories|cal)|calories[^\d]*?(\d+)/i);

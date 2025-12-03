@@ -1,12 +1,15 @@
-from groq import Groq
-from config import GROQ_API_KEY
+from openai import OpenAI
+from config import DEEPSEEK_API_KEY
 import json
 
-client = Groq(api_key=GROQ_API_KEY)
+client = OpenAI(
+    api_key=DEEPSEEK_API_KEY,
+    base_url="https://api.deepseek.com"
+)
 
 def llm_understand_query(user_msg: str) -> dict:
     """
-    Use Groq ONLY to understand the question.
+    Use DeepSeek to understand the question.
     It must return JSON: { intent, keywords, diet_topic }.
     It does NOT answer the nutrition question.
     """
@@ -20,16 +23,14 @@ def llm_understand_query(user_msg: str) -> dict:
         "VERY IMPORTANT: Respond with ONLY valid JSON. No text before or after."
     )
 
-    resp = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+    response = client.chat.completions.create(
+        model="deepseek-chat",
         messages=[
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_msg},
-        ],
-        temperature=0,
+            {"role": "user", "content": user_msg}
+        ]
     )
-
-    raw = resp.choices[0].message.content.strip()
+    raw = response.choices[0].message.content.strip()
 
     try:
         data = json.loads(raw)

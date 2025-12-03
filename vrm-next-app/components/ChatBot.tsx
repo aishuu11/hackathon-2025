@@ -55,7 +55,7 @@ export default function ChatBot({
     onTypingChange?.(false);
 
     try {
-      const response = await fetch('http://127.0.0.1:5001/api/chat', {
+      const response = await fetch('http://127.0.0.1:5002/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: currentInput }),
@@ -104,7 +104,7 @@ export default function ChatBot({
       const errorMessage: Message = {
         text:
           "Sorry, I'm having trouble connecting to the server. " +
-          'Please make sure the backend is running on port 5001.',
+          'Please make sure the backend is running on port 5002.',
         type: 'bot',
       };
       setMessages(prev => [...prev, errorMessage]);

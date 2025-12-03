@@ -271,7 +271,7 @@ class NutritionBot {
 
         try {
             // Call the Python backend API
-            const response = await fetch('/api/chat', {
+            const response = await fetch('http://localhost:5001/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
