@@ -1,0 +1,642 @@
+[
+  {
+    "id": "carbs_weight_gain_001",
+    "myth": "Carbs make you gain fat automatically.",
+    "fact": "Weight gain happens when you eat more calories than you burn, no matter whether they come from carbs, fat, or protein.",
+    "explanation": "Large portions of refined carbs like sweets, cakes, and white bread can easily push you into a calorie surplus, but fibre-rich carbs from fruits, vegetables, legumes, and whole grains are linked with better weight control and lower disease risk when eaten in sensible amounts.",
+    "category": "carbohydrates_and_weight",
+    "tags": [
+      "carbs",
+      "weight_loss",
+      "calories"
+    ],
+    "source_title": "10 nutrition myths debunked",
+    "source_url": "https://www.mayoclinichealthsystem.org/hometown-health/speaking-of-health/10-nutrition-myths-debunked",
+    "source_type": "hospital",
+    "year": 2022
+  },
+  {
+    "id": "carbs_avoid_all_002",
+    "myth": "You must avoid all carbs if you want to be healthy.",
+    "fact": "Carbohydrates are an important fuel source; the quality of carbs matters more than cutting them out completely.",
+    "explanation": "Health guidance from major clinics and universities emphasises limiting refined and ultra-processed carbs while encouraging whole grains, beans, fruits, and vegetables, which provide fibre, vitamins, and long\u2011lasting energy.",
+    "category": "carbohydrates_and_weight",
+    "tags": [
+      "carbs",
+      "healthy_diet",
+      "whole_grains"
+    ],
+    "source_title": "Feeding body and soul",
+    "source_url": "https://www.health.harvard.edu/nutrition/feeding-body-and-soul",
+    "source_type": "university_medical_school",
+    "year": 2023
+  },
+  {
+    "id": "rice_poison_003",
+    "myth": "White rice is basically poison and must be eliminated.",
+    "fact": "White rice is a refined grain with less fibre than brown rice, but small portions can fit into a balanced diet.",
+    "explanation": "The main concern with white rice is when it is eaten in very large portions with few vegetables or sources of protein; when total calories and portion sizes are reasonable, rice can be combined with fibre\u2011rich foods to form a healthy meal pattern.",
+    "category": "staple_foods",
+    "tags": [
+      "rice",
+      "carbs",
+      "portions"
+    ],
+    "source_title": "Carbohydrates: How carbs fit into a healthy diet",
+    "source_url": "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/carbohydrates/art-20045705",
+    "source_type": "hospital",
+    "year": 2025
+  },
+  {
+    "id": "fruit_sugar_004",
+    "myth": "Fruit is unhealthy because it is full of sugar.",
+    "fact": "Whole fruits are linked with lower risk of obesity, diabetes, and heart disease despite containing natural sugars.",
+    "explanation": "Unlike sweets or sugary drinks, fruit comes packaged with fibre, water, vitamins, and phytonutrients that slow sugar absorption and support gut and metabolic health, so most people are encouraged to eat several servings of fruit per day.",
+    "category": "fruit_and_sugar",
+    "tags": [
+      "fruit",
+      "sugar",
+      "diabetes_risk"
+    ],
+    "source_title": "Debunking 10 common nutrition myths",
+    "source_url": "https://habs.uq.edu.au/blog/2023/10/debunking-10-common-nutrition-myths",
+    "source_type": "university",
+    "year": 2023
+  },
+  {
+    "id": "bananas_fattening_005",
+    "myth": "Bananas are fattening and should be avoided when dieting.",
+    "fact": "A medium banana has around 100 calories, very little fat, and can be part of a weight\u2011loss plan.",
+    "explanation": "Bananas provide fibre and potassium and are not uniquely fattening; weight gain only occurs when total calories from all foods consistently exceed what you burn, regardless of whether those calories include bananas.",
+    "category": "fruit_and_sugar",
+    "tags": [
+      "bananas",
+      "snacks",
+      "weight_loss"
+    ],
+    "source_title": "Bananas and weight management (consumer health article summarising research)",
+    "source_url": "https://www.healthline.com/nutrition/bananas-weight-loss",
+    "source_type": "health_information_website",
+    "year": 2023
+  },
+  {
+    "id": "fat_all_bad_006",
+    "myth": "All dietary fat is bad and should be cut as low as possible.",
+    "fact": "Your body needs fats, and unsaturated fats from plants and fish are associated with better heart health.",
+    "explanation": "Guidelines recommend limiting trans fats and keeping saturated fat moderate while encouraging sources of monounsaturated and polyunsaturated fats such as olive oil, nuts, seeds, and oily fish, which support hormone production, vitamin absorption, and heart health.",
+    "category": "dietary_fats",
+    "tags": [
+      "fat",
+      "heart_health",
+      "unsaturated_fat"
+    ],
+    "source_title": "Dietary fats: Know which types to choose",
+    "source_url": "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/fat/art-20045550",
+    "source_type": "hospital",
+    "year": 2022
+  },
+  {
+    "id": "seed_oils_toxic_007",
+    "myth": "All seed oils are toxic and always cause inflammation.",
+    "fact": "Human studies generally find that replacing saturated fat with polyunsaturated fats from many seed oils improves cholesterol levels and heart\u2011disease risk.",
+    "explanation": "Oils such as canola and soybean oil are rich in linoleic acid, an omega\u20116 fat that, within normal intake ranges, is associated with lower cardiovascular risk when it replaces sources like butter or lard; problems arise mainly from over\u2011all high calorie intake and heavily fried, ultra\u2011processed foods.",
+    "category": "dietary_fats",
+    "tags": [
+      "seed_oils",
+      "heart_health",
+      "omega_6"
+    ],
+    "source_title": "The truth about fats: the good, the bad, and the in\u2011between",
+    "source_url": "https://www.health.harvard.edu/staying-healthy/the-truth-about-fats-bad-and-good",
+    "source_type": "university_medical_school",
+    "year": 2015
+  },
+  {
+    "id": "olive_oil_makes_fat_008",
+    "myth": "Olive oil makes you gain weight because it is pure fat.",
+    "fact": "Olive oil is calorie\u2011dense but is consistently linked with better heart health when it replaces saturated fats in typical portions.",
+    "explanation": "Mediterranean\u2011diet studies show that using olive oil as a main added fat is associated with lower cardiovascular risk and does not cause excess weight gain when overall calorie intake is balanced.",
+    "category": "dietary_fats",
+    "tags": [
+      "olive_oil",
+      "mediterranean_diet",
+      "heart_health"
+    ],
+    "source_title": "Mediterranean diet for heart health",
+    "source_url": "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/mediterranean-diet/art-20047801",
+    "source_type": "hospital",
+    "year": 2021
+  },
+  {
+    "id": "high_protein_kidneys_009",
+    "myth": "Any high\u2011protein diet will destroy healthy kidneys.",
+    "fact": "For people with normal kidney function, higher protein intakes within recommended ranges have not been shown to damage kidneys.",
+    "explanation": "Nephrology and nutrition reviews note that people with existing chronic kidney disease need to limit protein, but healthy individuals can safely follow moderate higher\u2011protein diets as long as overall diet quality is good and they stay hydrated.",
+    "category": "protein_and_muscle",
+    "tags": [
+      "protein",
+      "kidney_health",
+      "high_protein_diet"
+    ],
+    "source_title": "Dietary protein intake and renal function",
+    "source_url": "https://www.kidney.org/atoz/content/protein",
+    "source_type": "nonprofit_medical_foundation",
+    "year": 2016
+  },
+  {
+    "id": "protein_shakes_dangerous_010",
+    "myth": "Protein shakes are dangerous chemicals that should be avoided.",
+    "fact": "Reputable protein powders are processed foods made from dairy or plants and are generally safe when used as part of a balanced diet.",
+    "explanation": "Concerns mainly arise when people rely only on supplements instead of meals, use very high doses, or buy unregulated products that may contain contaminants; sports nutrition guidance encourages prioritising whole foods and using shakes as convenient extras.",
+    "category": "protein_and_muscle",
+    "tags": [
+      "protein_powder",
+      "supplements",
+      "sports_nutrition"
+    ],
+    "source_title": "Sports nutrition: Facts on protein powders",
+    "source_url": "https://www.eatright.org/fitness/sports-and-performance/fueling-your-workout/protein-powder-and-muscle-building",
+    "source_type": "professional_dietetic_association",
+    "year": 2020
+  },
+  {
+    "id": "vegan_cant_build_muscle_011",
+    "myth": "You cannot build muscle on a vegetarian or vegan diet.",
+    "fact": "Well\u2011planned plant\u2011based diets can support muscle gain and athletic performance when total protein and calorie needs are met.",
+    "explanation": "Research in athletes shows that soy, legumes, grains, nuts, and specialised plant protein products can supply enough essential amino acids; the key is eating a variety of sources and sufficient total protein across the day.",
+    "category": "protein_and_muscle",
+    "tags": [
+      "vegan",
+      "vegetarian",
+      "muscle_gain"
+    ],
+    "source_title": "Position of the Academy of Nutrition and Dietetics: Vegetarian Diets",
+    "source_url": "https://www.eatrightpro.org/practice/position-and-practice-papers/position-papers/vegetarian-diets",
+    "source_type": "professional_dietetic_association",
+    "year": 2016
+  },
+  {
+    "id": "breakfast_boosts_metabolism_012",
+    "myth": "Eating breakfast automatically boosts metabolism and causes weight loss.",
+    "fact": "Breakfast can help some people manage hunger, but it does not magically speed metabolism or guarantee weight change.",
+    "explanation": "Randomised trials comparing breakfast eaters and skippers show little consistent difference in metabolic rate or weight loss; the overall pattern of eating and activity across the whole day matters more.",
+    "category": "meal_timing",
+    "tags": [
+      "breakfast",
+      "metabolism",
+      "weight_loss"
+    ],
+    "source_title": "The effects of breakfast on weight and energy intake",
+    "source_url": "https://www.bmj.com/content/364/bmj.l42",
+    "source_type": "medical_journal",
+    "year": 2019
+  },
+  {
+    "id": "skipping_breakfast_fat_013",
+    "myth": "Skipping breakfast always makes you gain fat.",
+    "fact": "Some people function well without breakfast and do not automatically gain weight if total calories and food quality stay appropriate.",
+    "explanation": "Systematic reviews find that breakfast skipping is associated with weight gain in some observational studies but not when total daily intake is controlled in experiments, suggesting behaviour patterns rather than breakfast itself drive the outcome.",
+    "category": "meal_timing",
+    "tags": [
+      "breakfast",
+      "intermittent_fasting",
+      "weight"
+    ],
+    "source_title": "Is breakfast the most important meal of the day?",
+    "source_url": "https://www.health.harvard.edu/blog/is-breakfast-the-most-important-meal-of-the-day-2018031613709",
+    "source_type": "university_medical_school",
+    "year": 2018
+  },
+  {
+    "id": "late_night_eating_014",
+    "myth": "Eating after 8 pm automatically turns into fat.",
+    "fact": "Your body burns calories all day and night; late eating is only a problem when it leads to extra calories or poor food choices.",
+    "explanation": "Wellness articles from medical schools explain that night\u2011time snacking often involves high\u2011calorie, low\u2011nutrient foods and distracted eating, but the clock itself does not change how calories are stored; overall intake and sleep quality matter more.",
+    "category": "meal_timing",
+    "tags": [
+      "late_night",
+      "snacking",
+      "weight"
+    ],
+    "source_title": "Debunking common wellness myths",
+    "source_url": "https://www.health.harvard.edu/staying-healthy/debunking-common-wellness-myths",
+    "source_type": "university_medical_school",
+    "year": 2023
+  },
+  {
+    "id": "skipping_meals_weight_loss_015",
+    "myth": "Skipping meals is an easy way to lose weight.",
+    "fact": "Skipping meals often backfires by leading to stronger hunger, overeating later, and lower energy for activity.",
+    "explanation": "Weight\u2011management guidance from health services recommends regular, balanced meals and snacks instead of extreme restriction, which can disrupt blood sugar control and make long\u2011term adherence harder.",
+    "category": "meal_patterns",
+    "tags": [
+      "skipping_meals",
+      "hunger",
+      "weight_loss"
+    ],
+    "source_title": "Weight loss: 6 strategies for success",
+    "source_url": "https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/weight-loss/art-20047752",
+    "source_type": "hospital",
+    "year": 2021
+  },
+  {
+    "id": "starvation_diets_best_016",
+    "myth": "Very low\u2011calorie starvation diets are the fastest healthy way to lose weight.",
+    "fact": "Extreme calorie restriction may cause rapid initial loss but also muscle loss, nutrient deficiencies, and high risk of weight regain.",
+    "explanation": "Clinical obesity guidelines warn that severe crash diets can slow metabolic rate, worsen mood and energy, and are rarely sustainable; moderate deficits with behaviour support are safer and more effective long term.",
+    "category": "meal_patterns",
+    "tags": [
+      "crash_diets",
+      "very_low_calorie",
+      "metabolism"
+    ],
+    "source_title": "Clinical guidelines for the management of overweight and obesity",
+    "source_url": "https://www.nhlbi.nih.gov/health/educational/lose_wt/index.htm",
+    "source_type": "government_health_agency",
+    "year": 2013
+  },
+  {
+    "id": "detox_tea_flushes_toxins_017",
+    "myth": "Detox teas flush toxins from your body and burn belly fat.",
+    "fact": "Your liver, kidneys, lungs, and gut already detoxify your body; most detox teas act mainly as laxatives or diuretics and do not remove toxins or body fat.",
+    "explanation": "Cancer centres and liver specialists explain that there is no good evidence that commercial detox products improve organ function; side\u2011effects can include dehydration, electrolyte imbalance, and interference with medicines.",
+    "category": "detox_and_cleanses",
+    "tags": [
+      "detox_tea",
+      "toxins",
+      "belly_fat"
+    ],
+    "source_title": "The facts behind detox myths",
+    "source_url": "https://www.mdanderson.org/cancerwise/the-facts-behind-4-detox-myths-should-you-detox-your-body.h00-159385890.html",
+    "source_type": "cancer_center",
+    "year": 2020
+  },
+  {
+    "id": "juice_cleanse_reset_018",
+    "myth": "Multi\u2011day juice cleanses reset your system and remove toxins.",
+    "fact": "There is little scientific evidence that juice cleanses detoxify the body, and they often lack protein and fibre while delivering a lot of sugar.",
+    "explanation": "Nutrition reviews note that the body naturally eliminates waste through organs and that long juice fasts may cause blood\u2011sugar swings, headaches, and fatigue rather than lasting health benefits.",
+    "category": "detox_and_cleanses",
+    "tags": [
+      "juice_cleanse",
+      "detox",
+      "fasting"
+    ],
+    "source_title": "Full body detox: Misconceptions and how to support your body",
+    "source_url": "https://www.healthline.com/nutrition/how-to-detox-your-body",
+    "source_type": "health_information_website",
+    "year": 2023
+  },
+  {
+    "id": "lemon_water_burns_fat_019",
+    "myth": "Drinking lemon water melts fat and detoxes your liver.",
+    "fact": "Lemon water is simply water with flavour and vitamin C; it supports hydration but does not directly burn fat or cleanse the liver.",
+    "explanation": "Liver specialists emphasise that marketed detox drinks cannot enhance a healthy liver\u2019s normal functions; weight change from lemon water usually comes from replacing higher\u2011calorie beverages, not from any special fat\u2011burning action.",
+    "category": "detox_and_cleanses",
+    "tags": [
+      "lemon_water",
+      "liver",
+      "fat_loss"
+    ],
+    "source_title": "Detoxing your liver: fact versus fiction",
+    "source_url": "https://www.hopkinsmedicine.org/health/wellness-and-prevention/detoxing-your-liver-fact-versus-fiction",
+    "source_type": "hospital",
+    "year": 2024
+  },
+  {
+    "id": "acv_melts_fat_020",
+    "myth": "Apple cider vinegar on its own will make you slim.",
+    "fact": "Some small studies show vinegar might slightly affect appetite or blood sugar, but the effect on weight is small and it does not replace overall diet changes.",
+    "explanation": "Dietitians warn that drinking large amounts of vinegar can damage tooth enamel and irritate the throat and stomach; it is best used in food, not as a miracle weight\u2011loss shot.",
+    "category": "detox_and_cleanses",
+    "tags": [
+      "apple_cider_vinegar",
+      "weight_loss",
+      "blood_sugar"
+    ],
+    "source_title": "Vinegar: Uses and potential benefits",
+    "source_url": "https://www.health.harvard.edu/staying-healthy/vinegar-and-health",
+    "source_type": "university_medical_school",
+    "year": 2016
+  },
+  {
+    "id": "green_tea_burns_belly_021",
+    "myth": "Green tea burns belly fat even if you change nothing else.",
+    "fact": "Green tea may slightly increase fat oxidation, but studies show only modest and inconsistent effects on body weight.",
+    "explanation": "Meta\u2011analyses of green\u2011tea catechin supplements find small average changes in weight at best, so health experts view it as a helpful beverage choice, not a stand\u2011alone fat\u2011burning solution.",
+    "category": "metabolism_and_fat_burners",
+    "tags": [
+      "green_tea",
+      "belly_fat",
+      "fat_burner"
+    ],
+    "source_title": "Green tea and weight loss",
+    "source_url": "https://www.mayoclinic.org/healthy-lifestyle/weight-loss/expert-answers/green-tea/faq-20057771",
+    "source_type": "hospital",
+    "year": 2014
+  },
+  {
+    "id": "spot_reduction_abs_022",
+    "myth": "Doing lots of ab exercises will burn fat only from your stomach.",
+    "fact": "Spot reduction is largely a myth; exercise burns energy from the whole body, not just the area you are working.",
+    "explanation": "Sports\u2011science reviews explain that targeted exercises build muscle under the fat but do not preferentially reduce nearby subcutaneous fat; overall fat loss comes from total activity and diet changes.",
+    "category": "exercise_and_weight_loss",
+    "tags": [
+      "spot_reduction",
+      "abs",
+      "body_fat"
+    ],
+    "source_title": "Spot reduction: why targeting weight loss to a specific area is a myth",
+    "source_url": "https://www.sydney.edu.au/news-opinion/news/2023/11/07/spot-reduction--why-targeting-weight-loss-to-a-specific-area-is-.html",
+    "source_type": "university",
+    "year": 2023
+  },
+  {
+    "id": "energy_drinks_safe_023",
+    "myth": "Energy drinks are just strong soft drinks and are safe to use every day.",
+    "fact": "Energy drinks often contain very high caffeine and sugar levels and have been linked with heart rhythm problems, high blood pressure, and sleep issues, especially in young people.",
+    "explanation": "Paediatric and cardiology groups advise limiting or avoiding energy drinks, particularly for children, teens, and people with heart conditions, because of reports of adverse events with heavy use.",
+    "category": "beverages_and_stimulants",
+    "tags": [
+      "energy_drinks",
+      "caffeine",
+      "heart_health"
+    ],
+    "source_title": "Health effects of energy drinks on children, adolescents, and young adults",
+    "source_url": "https://publications.aap.org/pediatrics/article/127/3/511/65641/Health-Effects-of-Energy-Drinks-on-Children",
+    "source_type": "medical_journal",
+    "year": 2011
+  },
+  {
+    "id": "sugar_free_energy_harmless_024",
+    "myth": "Sugar\u2011free energy drinks are harmless because they have no sugar.",
+    "fact": "Even without sugar, many energy drinks provide large doses of caffeine and other stimulants that can still stress the heart and nervous system.",
+    "explanation": "Clinical reviews describe cases of palpitations, insomnia, and blood\u2011pressure spikes linked to high intake of sugar\u2011free energy drinks, so moderation and awareness of total caffeine from all sources are still important.",
+    "category": "beverages_and_stimulants",
+    "tags": [
+      "energy_drinks",
+      "sugar_free",
+      "caffeine"
+    ],
+    "source_title": "Energy drinks and their adverse health effects",
+    "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5682726/",
+    "source_type": "medical_journal",
+    "year": 2017
+  },
+  {
+    "id": "sweeteners_cause_cancer_025",
+    "myth": "Any use of artificial sweeteners will definitely cause cancer.",
+    "fact": "Cancer agencies state that approved sweeteners are safe at normal intakes, although some, such as aspartame, are classified as 'possibly carcinogenic' at very high long\u2011term doses.",
+    "explanation": "Fact sheets from the WHO and national cancer institutes explain that evidence of cancer risk in humans is limited and that most people consume levels far below the acceptable daily intake, though moderation and varied choices are encouraged.",
+    "category": "sweeteners_and_diet_drinks",
+    "tags": [
+      "artificial_sweeteners",
+      "cancer_risk",
+      "aspartame"
+    ],
+    "source_title": "Artificial sweeteners and cancer",
+    "source_url": "https://www.cancer.gov/about-cancer/causes-prevention/risk/diet/artificial-sweeteners-fact-sheet",
+    "source_type": "government_cancer_agency",
+    "year": 2023
+  },
+  {
+    "id": "sweeteners_completely_safe_026",
+    "myth": "Artificial sweeteners are completely risk\u2011free so you can drink unlimited diet soda.",
+    "fact": "Observational studies associate very high intake of some sweeteners with possible increases in metabolic or cardiovascular risk, and research is still evolving.",
+    "explanation": "Health organisations recommend keeping intakes within established safety limits and prioritising water and unsweetened drinks rather than relying on large amounts of any single sweetener.",
+    "category": "sweeteners_and_diet_drinks",
+    "tags": [
+      "diet_soda",
+      "sweeteners",
+      "moderation"
+    ],
+    "source_title": "Aspartame hazard and risk assessment results released",
+    "source_url": "https://www.who.int/news/item/14-07-2023-aspartame-hazard-and-risk-assessment-results-released",
+    "source_type": "world_health_organization",
+    "year": 2023
+  },
+  {
+    "id": "instant_noodles_wax_027",
+    "myth": "Instant noodles are coated with wax that stays in your stomach for days.",
+    "fact": "Food\u2011safety authorities and manufacturers report no evidence of wax coatings; the smooth texture comes from steaming and drying the noodles.",
+    "explanation": "Health concerns around instant noodles are mainly their high sodium and refined starch content, which become an issue when eaten very frequently, not because of mythical wax layers.",
+    "category": "processed_foods",
+    "tags": [
+      "instant_noodles",
+      "food_safety",
+      "sodium"
+    ],
+    "source_title": "Myths and facts about instant noodles",
+    "source_url": "https://www.straitstimes.com/singapore/health/are-instant-noodles-bad-for-you",
+    "source_type": "news_outlet_interviewing_dietitians",
+    "year": 2014
+  },
+  {
+    "id": "granola_bars_healthy_028",
+    "myth": "Granola and cereal bars are always a healthy snack.",
+    "fact": "Many commercial bars are high in added sugar and saturated fat and are closer to sweets than to whole\u2011food snacks.",
+    "explanation": "Dietitians advise checking labels for fibre, protein, and sugar; bars with lots of whole nuts and seeds and limited sweeteners are preferable, but fruit, yoghurt, or a handful of nuts are often better choices.",
+    "category": "processed_foods",
+    "tags": [
+      "granola_bar",
+      "snacks",
+      "added_sugar"
+    ],
+    "source_title": "Are granola bars good for you?",
+    "source_url": "https://www.health.harvard.edu/blog/are-granola-bars-good-for-you-202203082706",
+    "source_type": "university_medical_school",
+    "year": 2022
+  },
+  {
+    "id": "dark_chocolate_unlimited_029",
+    "myth": "Dark chocolate is a health food you can eat in unlimited amounts.",
+    "fact": "Dark chocolate contains beneficial cocoa compounds but is still energy\u2011dense and often contains sugar.",
+    "explanation": "Heart\u2011health articles note that small portions of high\u2011cocoa dark chocolate can fit into a balanced diet, but large daily servings add many calories and may contribute to weight gain.",
+    "category": "treats_and_desserts",
+    "tags": [
+      "dark_chocolate",
+      "heart_health",
+      "calories"
+    ],
+    "source_title": "Chocolate and your heart",
+    "source_url": "https://www.heart.org/en/news/2019/02/12/chocolate-and-your-heart",
+    "source_type": "heart_association",
+    "year": 2019
+  },
+  {
+    "id": "coconut_water_detox_030",
+    "myth": "Coconut water is a miracle detox drink that burns fat.",
+    "fact": "Coconut water is a hydrating drink with electrolytes, but its benefits are mainly fluid and potassium replacement, not detox or fat burning.",
+    "explanation": "Nutrition reviews describe coconut water as similar in calories to other fruit juices; it can be useful after exercise but still adds sugar and should be consumed in moderate portions.",
+    "category": "beverages",
+    "tags": [
+      "coconut_water",
+      "hydration",
+      "electrolytes"
+    ],
+    "source_title": "Is coconut water good for you?",
+    "source_url": "https://www.mayoclinichealthsystem.org/hometown-health/speaking-of-health/is-coconut-water-good-for-you",
+    "source_type": "hospital",
+    "year": 2021
+  },
+  {
+    "id": "milk_required_bones_031",
+    "myth": "All adults must drink milk or their bones will crumble.",
+    "fact": "Dairy is one convenient source of calcium and protein, but adults can meet their needs through other foods if they choose not to drink milk.",
+    "explanation": "Large cohort studies show that moderate dairy intake is generally safe and may benefit bone health, yet plant sources such as fortified drinks, leafy greens, tofu set with calcium, and nuts can also contribute when combined sensibly.",
+    "category": "dairy_and_bones",
+    "tags": [
+      "milk",
+      "calcium",
+      "bone_health"
+    ],
+    "source_title": "Calcium and calcium supplements: Achieving the right balance",
+    "source_url": "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/calcium-supplements/art-20047097",
+    "source_type": "hospital",
+    "year": 2022
+  },
+  {
+    "id": "eggs_bad_cholesterol_032",
+    "myth": "Eggs massively raise cholesterol and should be avoided.",
+    "fact": "For most healthy people, eating up to about one egg per day is not associated with increased heart\u2011disease risk.",
+    "explanation": "Recent meta\u2011analyses and heart\u2011association statements suggest that the overall dietary pattern and saturated\u2011fat intake matter more than the cholesterol from moderate egg consumption, though people with diabetes or existing heart disease may need personalised advice.",
+    "category": "dairy_and_bones",
+    "tags": [
+      "eggs",
+      "cholesterol",
+      "heart_disease"
+    ],
+    "source_title": "Eggs and your health",
+    "source_url": "https://www.hsph.harvard.edu/nutritionsource/eggs/",
+    "source_type": "university_school_of_public_health",
+    "year": 2020
+  },
+  {
+    "id": "gluten_toxic_all_033",
+    "myth": "Gluten is toxic for everyone.",
+    "fact": "Gluten is harmful for people with coeliac disease or diagnosed gluten sensitivity, but most others can eat gluten\u2011containing whole grains as part of a healthy diet.",
+    "explanation": "Gastroenterology organisations report that unnecessary gluten avoidance can reduce fibre and nutrient intake and make diets more restrictive without proven health benefits for the general population.",
+    "category": "gluten_and_grains",
+    "tags": [
+      "gluten",
+      "coeliac_disease",
+      "grains"
+    ],
+    "source_title": "Celiac disease and non\u2011celiac gluten sensitivity",
+    "source_url": "https://gastro.org/practice-guidance/gi-patient-center/topic/celiac-disease/",
+    "source_type": "professional_gastroenterology_association",
+    "year": 2021
+  },
+  {
+    "id": "organic_always_better_034",
+    "myth": "Organic food is always more nutritious and healthier than conventional food.",
+    "fact": "Systematic reviews show little consistent difference in vitamin and mineral content between organic and conventional produce; the main difference is lower pesticide residues.",
+    "explanation": "Public\u2011health agencies state that both organic and conventional fruits and vegetables are safe to eat and that the benefits of eating enough produce outweigh potential risks from typical pesticide residues.",
+    "category": "organic_and_pesticides",
+    "tags": [
+      "organic",
+      "pesticides",
+      "produce"
+    ],
+    "source_title": "Organic foods: health and environmental advantages and disadvantages",
+    "source_url": "https://www.health.harvard.edu/staying-healthy/organic-foods-is-it-safer-or-healthier",
+    "source_type": "university_medical_school",
+    "year": 2012
+  },
+  {
+    "id": "supplements_replace_food_035",
+    "myth": "Vitamin and mineral supplements can replace a healthy diet.",
+    "fact": "Supplements are designed to fill specific gaps, not to substitute for eating a variety of whole foods.",
+    "explanation": "Large trials have found that most vitamin pills do not reduce heart disease or cancer risk in well\u2011nourished people, and some high\u2011dose supplements can even increase health risks; nutrition guidelines emphasise food first.",
+    "category": "supplements_and_superfoods",
+    "tags": [
+      "supplements",
+      "multivitamins",
+      "diet_quality"
+    ],
+    "source_title": "Dietary supplements: What you need to know",
+    "source_url": "https://www.nccih.nih.gov/health/dietary-and-herbal-supplements",
+    "source_type": "government_health_agency",
+    "year": 2023
+  },
+  {
+    "id": "superfood_cures_disease_036",
+    "myth": "Single superfoods can cure or prevent disease by themselves.",
+    "fact": "\u201cSuperfood\u201d is a marketing term; no single food can cancel out an otherwise unhealthy lifestyle.",
+    "explanation": "Cancer and heart foundations explain that patterns like the Mediterranean or DASH diet, which emphasise many plant foods, whole grains, nuts, and healthy fats, are what consistently reduce disease risk, not isolated trendy ingredients.",
+    "category": "supplements_and_superfoods",
+    "tags": [
+      "superfoods",
+      "chronic_disease",
+      "diet_pattern"
+    ],
+    "source_title": "Can superfoods prevent cancer?",
+    "source_url": "https://www.cancerresearchuk.org/about-cancer/causes-of-cancer/diet-and-cancer/can-superfoods-prevent-cancer",
+    "source_type": "cancer_charity",
+    "year": 2018
+  },
+  {
+    "id": "bmi_perfect_metric_037",
+    "myth": "BMI perfectly tells you whether you are healthy.",
+    "fact": "BMI is a simple screening tool that does not distinguish between muscle and fat or show where fat is stored.",
+    "explanation": "Researchers note that people with normal BMI can still have high visceral fat and metabolic risk, while some with higher BMI but good fitness and metabolic markers have lower risk; clinicians therefore combine BMI with waist measurements, blood tests, and lifestyle assessment.",
+    "category": "weight_and_health",
+    "tags": [
+      "BMI",
+      "metabolic_health",
+      "risk_assessment"
+    ],
+    "source_title": "Body mass index (BMI): A flawed but useful measure",
+    "source_url": "https://www.health.harvard.edu/blog/body-mass-index-bmi-a-flawed-but-useful-measure-2019032916400",
+    "source_type": "university_medical_school",
+    "year": 2019
+  },
+  {
+    "id": "diet_soda_weight_loss_038",
+    "myth": "Switching to diet soda guarantees weight loss.",
+    "fact": "Diet sodas remove sugar calories but do not automatically improve overall eating habits or weight.",
+    "explanation": "Some studies show that people who drink diet beverages still gain weight over time, likely because of other lifestyle factors; health agencies suggest using diet drinks, if at all, as a stepping\u2011stone toward mainly drinking water and unsweetened beverages.",
+    "category": "sweeteners_and_diet_drinks",
+    "tags": [
+      "diet_soda",
+      "weight",
+      "sweeteners"
+    ],
+    "source_title": "Artificial sweeteners and diabetes",
+    "source_url": "https://www.diabetes.org/healthy-living/recipes-nutrition/eating-well/artificial-sweeteners",
+    "source_type": "diabetes_charity",
+    "year": 2021
+  },
+  {
+    "id": "nuts_unlimited_039",
+    "myth": "Healthy snacks like nuts can be eaten without limits because they are good fats.",
+    "fact": "Nuts are nutrient\u2011dense and heart\u2011healthy but also high in calories, so large handfuls can easily exceed energy needs.",
+    "explanation": "Guidelines for heart health typically recommend small daily portions, such as a small handful, as part of an overall calorie\u2011balanced diet instead of finishing a whole large bag in one sitting.",
+    "category": "snacks_and_portions",
+    "tags": [
+      "nuts",
+      "snacking",
+      "calories"
+    ],
+    "source_title": "Nuts and your heart: Eating nuts for heart health",
+    "source_url": "https://www.mayoclinic.org/diseases-conditions/heart-disease/in-depth/nuts/art-20046635",
+    "source_type": "hospital",
+    "year": 2019
+  },
+  {
+    "id": "traditional_staples_unhealthy_040",
+    "myth": "Traditional staples like rice and noodles are automatically worse than imported 'superfoods'.",
+    "fact": "Many traditional dietary patterns built around grains, legumes, and vegetables are associated with long life and low chronic\u2011disease rates when eaten in appropriate portions.",
+    "explanation": "Public\u2011health nutrition research on Mediterranean, Asian, and other heritage diets shows that simple, locally familiar staples combined with plenty of vegetables, pulses, and modest amounts of animal foods can be just as healthy as fashionable imported foods.",
+    "category": "cultural_food_patterns",
+    "tags": [
+      "traditional_diets",
+      "rice",
+      "heritage_foods"
+    ],
+    "source_title": "Traditional diets and health",
+    "source_url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",
+    "source_type": "world_health_organization",
+    "year": 2020
+  }
+]

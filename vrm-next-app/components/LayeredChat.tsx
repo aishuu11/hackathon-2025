@@ -52,7 +52,7 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
 
     try {
       // Call the backend API
-      const response = await fetch('http://localhost:3001/api/chat', {
+      const response = await fetch('http://localhost:5001/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,12 +67,16 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
       const data = await response.json();
       const botText = data.response || data.message || 'Sorry, I could not process that.';
 
-      // Extract calorie information
-      const calorieMatch = botText.match(/calories[^\d]*?(\d+)/i);
+      // Extract calorie information - improved regex to catch multiple formats
+      const calorieMatch = botText.match(/(\d+)\s*(?:kcal|calories|cal)|calories[^\d]*?(\d+)/i);
       if (calorieMatch && onCaloriesDetected) {
-        const calories = parseInt(calorieMatch[1]);
-        const foodName = text.toLowerCase().replace(/calories|how many|what|about|in|a|the/g, '').trim();
-        onCaloriesDetected(calories, foodName || 'food');
+        const calories = parseInt(calorieMatch[1] || calorieMatch[2]);
+        // Try to extract food name from user input
+        const foodName = text.toLowerCase()
+          .replace(/calories|how many|what|about|in|a|the|nutritional|value|of/gi, '')
+          .trim() || 'food';
+        console.log(`🔍 Detected calories: ${calories} for ${foodName}`);
+        onCaloriesDetected(calories, foodName);
       } else if (onCaloriesDetected) {
         onCaloriesDetected(null, '');
       }
@@ -88,7 +92,7 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
       console.error('Error calling API:', error);
       const errorMessage: Message = {
         id: `error-${Date.now()}`,
-        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 3001.',
+        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 5001.',
         type: 'bot'
       };
       setMessages(prev => [...prev, errorMessage]);

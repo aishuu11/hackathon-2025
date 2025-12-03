@@ -206,6 +206,17 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
 
   useEffect(() => {
     if (vrmRef.current && calories !== null && calories > 0) {
+      console.log(`🔮 Creating hologram for ${calories} calories of ${foodName}`);
+      
+      // Remove existing hologram if any
+      if (calorieHologramRef.current && hologramAnchorRef.current) {
+        const leftHandBone = vrmRef.current.humanoid.getBoneNode('leftHand');
+        if (leftHandBone && hologramAnchorRef.current.parent === leftHandBone) {
+          leftHandBone.remove(hologramAnchorRef.current);
+          console.log('✓ Removed old hologram');
+        }
+      }
+      
       const hologram = createCalorieHologram(vrmRef.current, calories, foodName);
       calorieHologramRef.current = hologram;
       
@@ -215,12 +226,17 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
       if (!hologramColorRef.current || hologramColorRef.current.getHex() === 0x00ffff) {
         hologramColorRef.current.setHex(nutritionColor);
       }
+      
+      console.log('✅ Hologram created and attached!');
     } else if (vrmRef.current && calorieHologramRef.current && calories === null) {
-      const leftHandBone = vrmRef.current.humanoid.getBoneNode('leftHand');
-      if (leftHandBone) {
-        leftHandBone.remove(calorieHologramRef.current);
-        calorieHologramRef.current = null;
-        console.log('✓ Calorie hologram removed');
+      if (hologramAnchorRef.current) {
+        const leftHandBone = vrmRef.current.humanoid.getBoneNode('leftHand');
+        if (leftHandBone && hologramAnchorRef.current.parent === leftHandBone) {
+          leftHandBone.remove(hologramAnchorRef.current);
+          calorieHologramRef.current = null;
+          hologramAnchorRef.current = null;
+          console.log('✓ Calorie hologram removed');
+        }
       }
     }
   }, [calories, foodName]);
