@@ -5,12 +5,15 @@
   height: 600px;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, 
-    #0a0a0a 0%, 
-    #1a0a1a 50%, 
+  background: linear-gradient(
+    135deg,
+    #0a0a0a 0%,
+    #1a0a1a 50%,
     #0a0a0a 100%
   );
+  animation: backgroundPulse 10s ease-in-out infinite;
 }
+
 /* ==================== SCROLLABLE VIEWPORT ==================== */
 
 .neon-chat-viewport {
@@ -27,10 +30,10 @@
   scroll-behavior: smooth;
 }
 
-/* Custom neon scrollbar */
 .neon-scroll-area::-webkit-scrollbar {
   width: 4px;
 }
+
 /* ==================== CARD STYLES ==================== */
 
 .neon-card {
@@ -50,11 +53,11 @@
   font-size: 15px;
   line-height: 1.6;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   white-space: pre-wrap;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
 }
 
-/* Bold text in messages */
 .neon-card-text strong,
 .neon-card-text b {
   color: #ffffff;
@@ -73,7 +76,6 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* Send button */
 .neon-send-btn {
   display: flex;
   align-items: center;
@@ -98,7 +100,7 @@
   cursor: not-allowed;
 }
 
-/* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+/* ==================== RESPONSIVE ==================== */
 
 @media (max-width: 640px) {
   .neon-card {
@@ -116,49 +118,36 @@
   }
 }
 
-/* ==================== EMOJI & TEXT FORMATTING ==================== */
-
-.neon-card-text {
-  /* Support emojis */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-}
-
-/* Markdown-style formatting support */
-.neon-card-text strong::before {
-  content: '';
-}
-
-/* List styling */
-.neon-card-text {
-  white-space: pre-wrap;
-}
-
-/* ==================== BACKGROUND ANIMATIONS ==================== */
+/* ==================== ANIMATIONS ==================== */
 
 @keyframes backgroundPulse {
-  0%, 100% {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a0a 100%);
+  0%,
+  100% {
+    background: linear-gradient(
+      135deg,
+      #0a0a0a 0%,
+      #1a0a1a 50%,
+      #0a0a0a 100%
+    );
   }
   50% {
-    background: linear-gradient(135deg, #0a0a0a 0%, #250a25 50%, #0a0a0a 100%);
+    background: linear-gradient(
+      135deg,
+      #0a0a0a 0%,
+      #250a25 50%,
+      #0a0a0a 100%
+    );
   }
 }
 
-.neon-chat-container {
-  animation: backgroundPulse 10s ease-in-out infinite;
-}
+/* ==================== GLASS CARD SUPPORT ==================== */
 
-/* Support for markdown-style formatting */
 .glass-card p {
   white-space: pre-wrap;
+  line-height: 1.6;
 }
 
 .glass-card strong::before {
-  content: '';
+  content: "";
   margin-right: 2px;
-}
-
-/* Emoji sizing */
-.glass-card p {
-  line-height: 1.6;
 }
