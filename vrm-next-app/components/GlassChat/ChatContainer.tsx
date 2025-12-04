@@ -23,7 +23,8 @@ export default function ChatContainer({ messages }: ChatContainerProps) {
   }, [messages]);
 
   return (
-    <div className="neon-chat-viewport">
+    <div className={styles["neon-chat-container"]}>
+
       <div
         ref={scrollRef}
         className="neon-scroll-area"

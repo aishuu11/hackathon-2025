@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import ChatContainer from './ChatContainer';
 import ChatInput from './ChatInput';
-import './styles.css';
+import styles from "./styles.module.css";
+
+
 
 interface Message {
   id: string;
