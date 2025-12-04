@@ -5,15 +5,12 @@ import ChatContainer from './ChatContainer';
 import ChatInput from './ChatInput';
 import styles from "./styles.module.css";
 
-
-
 interface Message {
   id: string;
   text: string;
   isUser: boolean;
 }
 
-// Example initial messages showing stacked layered effect
 const initialMessages: Message[] = [
   {
     id: '1',
@@ -53,7 +50,6 @@ export default function GlassChat() {
     };
     setMessages((prev) => [...prev, newMessage]);
 
-    // Simulate bot response
     setTimeout(() => {
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
@@ -65,7 +61,7 @@ export default function GlassChat() {
   };
 
   return (
-    <div className="neon-chat-container">
+    <div className={styles["neon-chat-container"]}>
       <ChatContainer messages={messages} />
       <ChatInput onSend={handleSend} placeholder="Ask about nutrition..." />
     </div>
