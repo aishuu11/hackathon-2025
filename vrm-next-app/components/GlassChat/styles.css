@@ -58,16 +58,16 @@
     sans-serif;
 }
 
+/* Markdown & bold styling */
 .neon-card-text strong,
 .neon-card-text b {
-  color: #ffffff;
   font-weight: 700;
+  color: #ffffff;
 }
 
-/* ==================== FIXED INPUT BAR ==================== */
+/* ==================== INPUT BAR ==================== */
 
 .neon-input-bar {
-  position: relative;
   width: 100%;
   padding: 20px;
   background: rgba(0, 0, 0, 0.6);
@@ -75,6 +75,8 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+
+/* ==================== SEND BUTTON ==================== */
 
 .neon-send-btn {
   display: flex;
@@ -118,7 +120,7 @@
   }
 }
 
-/* ==================== ANIMATIONS ==================== */
+/* ==================== BACKGROUND ANIMATION ==================== */
 
 @keyframes backgroundPulse {
   0%,
