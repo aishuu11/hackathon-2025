@@ -463,56 +463,55 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
           } else {
             // ======= IDLE POSE =======
 
-            // Left arm - relaxed pose for holding hologram
+            // Left arm - hanging away from body
             if (leftShoulder) {
-              leftShoulder.rotation.set(inhale * 0.5, 0, 0);
+              leftShoulder.rotation.set(0.2, 0, 0.5);
             }
             if (leftUpperArm) {
-              leftUpperArm.rotation.z = 0.1;
-              leftUpperArm.rotation.x = 0.3 + breathCycle * 0.02;
-              leftUpperArm.rotation.y = 0.1;
+              leftUpperArm.rotation.z = 1.2;  // bring arm down
+              leftUpperArm.rotation.x = 0.2;
+              leftUpperArm.rotation.y = -0.7;  // push further outward
             }
             if (leftLowerArm) {
-              leftLowerArm.rotation.z = -0.1;
-              leftLowerArm.rotation.x = -0.15;
-              leftLowerArm.rotation.y = 0;
+              leftLowerArm.rotation.z = -0.2;
+              leftLowerArm.rotation.x = 0.1;
+              leftLowerArm.rotation.y = -0.3;
             }
             if (leftHand) {
-              leftHand.rotation.x = -0.3;
-              leftHand.rotation.y = 0.1;
-              leftHand.rotation.z = 0.2;
+              leftHand.rotation.x = 0.2;
+              leftHand.rotation.y = -0.3;
+              leftHand.rotation.z = 0.15;
             }
             
-            // Left hand fingers for palm-up pose
+            // Left hand fingers slightly relaxed
             const leftThumb = vrm.humanoid.getBoneNode('leftThumbProximal');
             const leftIndex = vrm.humanoid.getBoneNode('leftIndexProximal');
             const leftMiddle = vrm.humanoid.getBoneNode('leftMiddleProximal');
             const leftRing = vrm.humanoid.getBoneNode('leftRingProximal');
             
-            if (leftThumb) leftThumb.rotation.x = -0.3;
-            if (leftIndex) leftIndex.rotation.x = -0.6;
-            if (leftMiddle) leftMiddle.rotation.x = -0.6;
-            if (leftRing) leftRing.rotation.x = -0.6;
+            if (leftThumb) leftThumb.rotation.x = 0.1;
+            if (leftIndex) leftIndex.rotation.x = 0.1;
+            if (leftMiddle) leftMiddle.rotation.x = 0.1;
+            if (leftRing) leftRing.rotation.x = 0.1;
             
-            // *** RIGHT ARM: "hi" pose ***
+            // *** RIGHT ARM: Hanging away from body ***
             if (rightShoulder) {
-              rightShoulder.rotation.set(0.05, 0.05, 0);
+              rightShoulder.rotation.set(0.2, 0, -0.5);
             }
             if (rightUpperArm) {
-              // arm slightly forward and not fully sideways
-              rightUpperArm.rotation.set(-0.35, 0.35, -0.15);
+              rightUpperArm.rotation.z = -1.2;  // bring arm down
+              rightUpperArm.rotation.x = 0.2;
+              rightUpperArm.rotation.y = 0.7;  // push further outward
             }
             if (rightLowerArm) {
-              // elbow bent so forearm comes up
-              rightLowerArm.rotation.set(-1.1, 0.05, 0.1);
+              rightLowerArm.rotation.z = 0.2;
+              rightLowerArm.rotation.x = 0.1;
+              rightLowerArm.rotation.y = 0.3;
             }
             if (rightHand) {
-              // palm generally facing camera but tilted inward, fingers relaxed
-              rightHand.rotation.set(
-                0.25,                    // slight upward tilt
-                -Math.PI / 2 + 0.35,     // face towards camera, slight inward
-                0.15                     // small sideways tilt
-              );
+              rightHand.rotation.x = 0.2;
+              rightHand.rotation.y = 0.3;
+              rightHand.rotation.z = -0.15;
             }
           }
 
@@ -541,11 +540,18 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
             }
           });
 
-          // Left hand fidget only (right hand stays hi)
+          // Minimal hand movement - keep formal
           if (!isWavingRef.current && leftHand && !calorieHologramRef.current) {
-            leftHand.rotation.x = 0.2 + Math.sin(time * 0.6) * 0.08;
-            leftHand.rotation.y = Math.sin(time * 0.5) * 0.05;
-            leftHand.rotation.z = Math.cos(time * 0.7) * 0.06;
+            leftHand.rotation.x = Math.sin(time * 0.3) * 0.02;
+            leftHand.rotation.y = 0;
+            leftHand.rotation.z = 0;
+          }
+          
+          // Right hand minimal movement - keep formal
+          if (!isWavingRef.current && rightHand) {
+            rightHand.rotation.x = Math.sin(time * 0.3) * 0.02;
+            rightHand.rotation.y = 0;
+            rightHand.rotation.z = 0;
           }
           
           // Update hologram position and animation

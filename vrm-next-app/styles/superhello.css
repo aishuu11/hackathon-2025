@@ -5,7 +5,7 @@
   min-height: 100vh;
   overflow-x: hidden;
   background: transparent;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: 'Share Tech Mono', 'VT323', 'Press Start 2P', monospace;
 }
 
 /* Utility class for neon outlines */
@@ -655,7 +655,7 @@
   }
 
   .title-hello {
-    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-family: 'Press Start 2P', monospace;
     font-size: 130px;
     font-weight: 800;
     line-height: 0.85;
@@ -696,7 +696,7 @@
   }
 
   .title-hello {
-    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-family: 'Press Start 2P', monospace;
     font-size: 96px;
     font-weight: 800;
     line-height: 0.85;

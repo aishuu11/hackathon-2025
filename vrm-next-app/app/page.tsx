@@ -101,7 +101,7 @@ export default function Home() {
               foodName={calorieData?.foodName ?? ''}
             />
 
-            <div className="glass-panel panel-right" style={{ border: 'none', background: 'transparent', boxShadow: 'none' }}>
+            <div className="glass-panel panel-right">
               <LayeredChat 
                 onTypingChange={setIsTyping} 
                 onGreeting={handleGreeting}

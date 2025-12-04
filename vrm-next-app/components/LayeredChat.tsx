@@ -9,6 +9,11 @@ interface Message {
   text: string;
   type: 'user' | 'bot';
   id: string;
+  buttons?: Array<{
+    label: string;
+    value: string;
+  }>;
+  originalQuery?: string;
 }
 
 interface LayeredChatProps {
@@ -25,6 +30,8 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
       type: 'bot'
     }
   ]);
+  const [isWaitingForSelection, setIsWaitingForSelection] = useState(false);
+  const [userPreferences, setUserPreferences] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom when new messages arrive
@@ -34,13 +41,65 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
     }
   }, [messages]);
 
-  const handleSend = async (text: string) => {
-    // Check for greetings
-    const greetingPattern = /\b(hi|hello|hey|hola|greetings|howdy|yo|sup|what's up|whats up)\b/i;
-    if (greetingPattern.test(text)) {
-      console.log('Greeting detected! Triggering wave animation');
-      onGreeting?.();
+  const handleButtonClick = async (buttonValue: string, originalQuery: string, messageId: string) => {
+    // Add user selection as a message
+    const userMessage: Message = {
+      id: `user-${Date.now()}`,
+      text: buttonValue,
+      type: 'user'
+    };
+    setMessages(prev => [...prev, userMessage]);
+    setIsWaitingForSelection(false);
+    
+    // Store user preference
+    setUserPreferences(prev => [...prev, buttonValue]);
+
+    try {
+      // Send selection to backend
+      const response = await fetch('http://localhost:5002/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          message: originalQuery,
+          userSelection: buttonValue,
+          userPreferences: userPreferences
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const botText = data.answer || data.response || data.message || 'Sorry, I could not process that.';
+
+      // Add personalized bot response
+      const botMessage: Message = {
+        id: `bot-${Date.now()}`,
+        text: botText,
+        type: 'bot'
+      };
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error calling API:', error);
+      const errorMessage: Message = {
+        id: `error-${Date.now()}`,
+        text: 'Sorry, I\'m having trouble connecting to the server.',
+        type: 'bot'
+      };
+      setMessages(prev => [...prev, errorMessage]);
     }
+  };
+
+  const handleSend = async (text: string) => {
+    // Greeting detection disabled - no wave animation
+    // const greetingPattern = /\b(hi|hello|hey|hola|greetings|howdy|yo|sup|what's up|whats up)\b/i;
+    // if (greetingPattern.test(text)) {
+    //   console.log('Greeting detected! Triggering wave animation');
+    //   onGreeting?.();
+    // }
 
     // Add user message
     const userMessage: Message = {
@@ -52,12 +111,15 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
 
     try {
       // Call the backend API
-      const response = await fetch('http://localhost:5001/api/chat', {
+      const response = await fetch('http://localhost:5002/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ 
+          message: text,
+          userPreferences: userPreferences
+        }),
       });
 
       if (!response.ok) {
@@ -66,6 +128,8 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
 
       const data = await response.json();
       const botText = data.answer || data.response || data.message || 'Sorry, I could not process that.';
+      const buttons = data.buttons || null;
+      const originalQuery = data.originalQuery || null;
 
       // Extract calorie information - improved regex to catch multiple formats
       const calorieMatch = botText.match(/(\d+)\s*(?:kcal|calories|cal)|calories[^\d]*?(\d+)/i);
@@ -85,14 +149,21 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
       const botMessage: Message = {
         id: `bot-${Date.now()}`,
         text: botText,
-        type: 'bot'
+        type: 'bot',
+        buttons: buttons,
+        originalQuery: originalQuery
       };
       setMessages(prev => [...prev, botMessage]);
+      
+      // Set waiting state if buttons are present
+      if (buttons && buttons.length > 0) {
+        setIsWaitingForSelection(true);
+      }
     } catch (error) {
       console.error('Error calling API:', error);
       const errorMessage: Message = {
         id: `error-${Date.now()}`,
-        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 5001.',
+        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on port 5002.',
         type: 'bot'
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -110,6 +181,9 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
               type={msg.type}
               index={index}
               total={messages.length}
+              buttons={msg.buttons}
+              onButtonClick={(value) => handleButtonClick(value, msg.originalQuery || '', msg.id)}
+              disabled={isWaitingForSelection && index !== messages.length - 1}
             />
           ))}
         </AnimatePresence>

@@ -329,14 +329,14 @@ body::after {
     0 0 0 #000;
 }/* Glass Panels - Dark Pixel Mode */
 .glass-panel {
-  background: #121212;
+  background: rgba(18, 18, 18, 0.3);
   border: 6px solid #ff4fa7;
   border-radius: 20px;
   padding: 2rem;
   position: relative;
   overflow: hidden;
   box-shadow: 
-    0 0 30px rgba(255, 79, 167, 0.4),
+    0 0 15px rgba(255, 79, 167, 0.2),
     0 8px 16px rgba(0, 0, 0, 0.8),
     inset 0 0 60px rgba(0, 0, 0, 0.5);
   animation: panelShimmer 4s ease-in-out infinite;
@@ -345,13 +345,13 @@ body::after {
 @keyframes panelShimmer {
   0%, 100% {
     box-shadow: 
-      0 0 30px rgba(255, 79, 167, 0.4),
+      0 0 15px rgba(255, 79, 167, 0.2),
       0 8px 16px rgba(0, 0, 0, 0.8),
       inset 0 0 60px rgba(0, 0, 0, 0.5);
   }
   50% {
     box-shadow: 
-      0 0 40px rgba(255, 79, 167, 0.6),
+      0 0 20px rgba(255, 79, 167, 0.3),
       0 10px 20px rgba(0, 0, 0, 0.9),
       inset 0 0 60px rgba(0, 0, 0, 0.5);
   }
@@ -364,13 +364,13 @@ body::after {
 /* Panel Styling - Dark Mode */
 .panel-left {
   box-shadow: 
-    0 0 30px rgba(255, 79, 167, 0.4),
+    0 0 15px rgba(255, 79, 167, 0.2),
     0 8px 16px rgba(0, 0, 0, 0.8);
 }
 
 .panel-right {
   box-shadow: 
-    0 0 30px rgba(255, 79, 167, 0.4),
+    0 0 15px rgba(255, 79, 167, 0.2),
     0 8px 16px rgba(0, 0, 0, 0.8);
 }
 
