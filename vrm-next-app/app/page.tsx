@@ -1,15 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import VRMAvatar from '../components/VRMAvatar';
 import LayeredChat from '../components/LayeredChat';
 import SuperHelloHome from '../components/SuperHelloHome';
+import MythFlipSection from '../components/MythFlipSection';
 
 export default function Home() {
   const [showHomePage, setShowHomePage] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
   const [isWaving, setIsWaving] = useState(false);
   const [calorieData, setCalorieData] = useState<{ calories: number; foodName: string } | null>(null);
+  const [answerType, setAnswerType] = useState<'myth' | 'fact' | 'general'>('general');
+  const [externalMessage, setExternalMessage] = useState<string>('');
+  const [myTake, setMyTake] = useState<string | null>(null);
 
   const handleGreeting = () => {
     console.log('Greeting received! Triggering wave...');
@@ -27,6 +31,20 @@ export default function Home() {
     } else {
       setCalorieData(null);
     }
+  };
+
+  const handleLearnMore = (question: string) => {
+    // Scroll to chat section
+    const chatPanel = document.querySelector('.panel-right');
+    if (chatPanel) {
+      chatPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Send question to chat
+    setExternalMessage(question);
+  };
+
+  const handleExternalMessageProcessed = () => {
+    setExternalMessage('');
   };
 
   return (
@@ -99,6 +117,8 @@ export default function Home() {
               isWaving={isWaving}
               calories={calorieData?.calories ?? null}
               foodName={calorieData?.foodName ?? ''}
+              answerType={answerType}
+              myTake={myTake}
             />
 
             <div className="glass-panel panel-right">
@@ -106,9 +126,18 @@ export default function Home() {
                 onTypingChange={setIsTyping} 
                 onGreeting={handleGreeting}
                 onCaloriesDetected={handleCaloriesDetected}
+                onAnswerTypeChange={setAnswerType}
+                externalMessage={externalMessage}
+                onExternalMessageProcessed={handleExternalMessageProcessed}
+                onMyTakeChange={setMyTake}
               />
             </div>
           </div>
+        )}
+
+        {/* Myth Flip Section - Only show when not on home page */}
+        {!showHomePage && (
+          <MythFlipSection onLearnMore={handleLearnMore} />
         )}
       </main>
     </div>

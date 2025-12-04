@@ -321,7 +321,7 @@ body {
     border-radius: 15px;
     border: none;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .vrm-canvas {
@@ -421,4 +421,43 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #00cccc, #cc00cc);
+}
+
+/* Myth Flip Section - 3D Card Animations */
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+.transform-style-3d {
+    transform-style: preserve-3d;
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+/* Smooth transitions for flip cards */
+.perspective-1000 > div {
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.perspective {
+  perspective: 1200px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }

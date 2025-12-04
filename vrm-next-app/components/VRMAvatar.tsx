@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
+import AvatarSpeechBubble from './AvatarSpeechBubble';
 
 // @ts-ignore - Type mismatch between three-stdlib and @types/three
 import { GLTFLoader } from 'three-stdlib';
@@ -14,9 +15,11 @@ interface VRMAvatarProps {
   isWaving?: boolean;
   calories?: number | null;
   foodName?: string;
+  answerType?: 'myth' | 'fact' | 'general';
+  myTake?: string | null;
 }
 
-export default function VRMAvatar({ isTyping = false, isWaving = false, calories = null, foodName = '' }: VRMAvatarProps) {
+export default function VRMAvatar({ isTyping = false, isWaving = false, calories = null, foodName = '', answerType = 'general', myTake = null }: VRMAvatarProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loading, setLoading] = useState(true);
@@ -62,7 +65,7 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
     return 0xff0000;
   };
 
-  const createCalorieHologram = (vrm: any, calories: number, foodName: string): THREE.Group => {
+  const createCalorieHologram = (vrm: any, calories: number, foodName: string, isMythOrFact: 'myth' | 'fact' | 'general' = 'general'): THREE.Group => {
     const hologramGroup = new THREE.Group();
     const leftHandBone = vrm.humanoid.getBoneNode('leftHand');
     
@@ -76,110 +79,244 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
     leftHandBone.add(hologramAnchor);
     hologramAnchorRef.current = hologramAnchor;
 
-    const nutritionColor = getNutritionColor(calories);
-    targetColorRef.current.setHex(nutritionColor);
+    // Determine colors based on myth/fact status
+    let primaryColor: THREE.Color;
+    let secondaryColor: THREE.Color;
     
-    const panelGeometry = new THREE.CircleGeometry(0.15, 32);
-    const panelMaterial = new THREE.MeshBasicMaterial({
-      color: nutritionColor,
+    if (isMythOrFact === 'myth') {
+      // RED for myths
+      primaryColor = new THREE.Color(0xff0044);
+      secondaryColor = new THREE.Color(0xff3366);
+    } else if (isMythOrFact === 'fact') {
+      // GREEN for facts
+      primaryColor = new THREE.Color(0x00ff88);
+      secondaryColor = new THREE.Color(0x00ffaa);
+    } else {
+      // CYAN for general/calorie info
+      primaryColor = new THREE.Color(0x00ffff);
+      secondaryColor = new THREE.Color(0x00ff88);
+    }
+    
+    targetColorRef.current.copy(primaryColor);
+
+    // OUTER AURA - Soft glow
+    const auraGeometry = new THREE.CircleGeometry(0.12, 64);
+    const auraMaterial = new THREE.MeshBasicMaterial({
+      color: primaryColor,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.08,
       side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      emissive: nutritionColor,
-      emissiveIntensity: 0.5
+      depthWrite: false
     });
-    const panel = new THREE.Mesh(panelGeometry, panelMaterial);
-    hologramGroup.add(panel);
+    const aura = new THREE.Mesh(auraGeometry, auraMaterial);
+    aura.position.z = -0.002;
+    hologramGroup.add(aura);
 
-    const borderGeometry = new THREE.EdgesGeometry(panelGeometry);
-    const borderMaterial = new THREE.LineBasicMaterial({ color: nutritionColor, linewidth: 3 });
-    const border = new THREE.LineSegments(borderGeometry, borderMaterial);
-    hologramGroup.add(border);
+    // MULTIPLE TRANSPARENT GLOWING RINGS - Depth layers
+    const ringLayers = [
+      { radius: 0.095, thickness: 0.001, opacity: 0.6, color: primaryColor },
+      { radius: 0.085, thickness: 0.0015, opacity: 0.7, color: secondaryColor },
+      { radius: 0.075, thickness: 0.001, opacity: 0.5, color: primaryColor },
+      { radius: 0.065, thickness: 0.002, opacity: 0.8, color: secondaryColor }
+    ];
 
+    ringLayers.forEach((ring, index) => {
+      const ringGeometry = new THREE.RingGeometry(ring.radius - ring.thickness, ring.radius + ring.thickness, 64);
+      const ringMaterial = new THREE.MeshBasicMaterial({
+        color: ring.color,
+        transparent: true,
+        opacity: ring.opacity,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      });
+      const ringMesh = new THREE.Mesh(ringGeometry, ringMaterial);
+      ringMesh.position.z = index * 0.0005;
+      hologramGroup.add(ringMesh);
+    });
+
+    // ROTATING HUD ARCS - Iron Man style
+    const arcSegments = new THREE.Group();
+    const arcConfigs = [
+      { start: 0, length: Math.PI / 3, radius: 0.098, speed: 0.8 },
+      { start: Math.PI, length: Math.PI / 3, radius: 0.098, speed: -0.6 },
+      { start: Math.PI / 2, length: Math.PI / 4, radius: 0.088, speed: 1.2 },
+      { start: 3 * Math.PI / 2, length: Math.PI / 4, radius: 0.088, speed: -0.9 }
+    ];
+
+    arcConfigs.forEach((config, i) => {
+      const arcGeometry = new THREE.RingGeometry(config.radius - 0.002, config.radius + 0.002, 64, 1, config.start, config.length);
+      const arcMaterial = new THREE.MeshBasicMaterial({
+        color: i % 2 === 0 ? primaryColor : secondaryColor,
+        transparent: true,
+        opacity: 0.85,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending
+      });
+      const arc = new THREE.Mesh(arcGeometry, arcMaterial);
+      arc.userData.rotationSpeed = config.speed;
+      arcSegments.add(arc);
+    });
+    arcSegments.userData.isArcGroup = true;
+    hologramGroup.add(arcSegments);
+
+    // SMALL ANIMATED TICKS - Clean minimal sci-fi
+    const ticksGroup = new THREE.Group();
+    for (let i = 0; i < 16; i++) {
+      const angle = (i / 16) * Math.PI * 2;
+      const tickGeometry = new THREE.PlaneGeometry(0.002, i % 4 === 0 ? 0.012 : 0.008);
+      const tickMaterial = new THREE.MeshBasicMaterial({
+        color: i % 4 === 0 ? secondaryColor : primaryColor,
+        transparent: true,
+        opacity: i % 4 === 0 ? 0.9 : 0.6,
+        side: THREE.DoubleSide
+      });
+      const tick = new THREE.Mesh(tickGeometry, tickMaterial);
+      const radius = 0.092;
+      tick.position.x = Math.cos(angle) * radius;
+      tick.position.y = Math.sin(angle) * radius;
+      tick.rotation.z = angle + Math.PI / 2;
+      tick.userData.baseAngle = angle;
+      tick.userData.highlight = i % 4 === 0;
+      ticksGroup.add(tick);
+    }
+    ticksGroup.userData.animationOffset = 0;
+    hologramGroup.add(ticksGroup);
+
+    // FLOATING PARTICLES - AR projection feel
+    const particlesGroup = new THREE.Group();
+    for (let i = 0; i < 12; i++) {
+      const particleGeometry = new THREE.CircleGeometry(0.001, 8);
+      const particleMaterial = new THREE.MeshBasicMaterial({
+        color: Math.random() > 0.5 ? primaryColor : secondaryColor,
+        transparent: true,
+        opacity: 0.5,
+        blending: THREE.AdditiveBlending
+      });
+      const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+      const angle = (i / 12) * Math.PI * 2;
+      const radius = 0.05 + Math.random() * 0.03;
+      particle.position.x = Math.cos(angle) * radius;
+      particle.position.y = Math.sin(angle) * radius;
+      particle.position.z = 0.001 + Math.random() * 0.002;
+      particle.userData.baseAngle = angle;
+      particle.userData.orbitSpeed = 0.2 + Math.random() * 0.3;
+      particle.userData.floatSpeed = 1 + Math.random() * 2;
+      particlesGroup.add(particle);
+    }
+    particlesGroup.userData.isParticles = true;
+    hologramGroup.add(particlesGroup);
+
+    // SCANLINE TEXTURE - Subtle cyberpunk effect
+    const scanlineCanvas = document.createElement('canvas');
+    scanlineCanvas.width = 256;
+    scanlineCanvas.height = 256;
+    const scanCtx = scanlineCanvas.getContext('2d')!;
+    
+    // Create scanline pattern
+    for (let y = 0; y < 256; y += 3) {
+      scanCtx.fillStyle = y % 6 === 0 ? 'rgba(0, 255, 136, 0.03)' : 'rgba(0, 255, 255, 0.02)';
+      scanCtx.fillRect(0, y, 256, 1);
+    }
+    
+    const scanlineTexture = new THREE.CanvasTexture(scanlineCanvas);
+    const scanlineMaterial = new THREE.MeshBasicMaterial({
+      map: scanlineTexture,
+      transparent: true,
+      opacity: 0.3,
+      side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending
+    });
+    const scanlineMesh = new THREE.Mesh(new THREE.CircleGeometry(0.1, 64), scanlineMaterial);
+    scanlineMesh.position.z = 0.003;
+    hologramGroup.add(scanlineMesh);
+
+    // MAIN CONTENT - Bold number with neon outline
     const canvas = document.createElement('canvas');
     canvas.width = 512;
-    canvas.height = 256;
-    const ctx = canvas.getContext('2d');
+    canvas.height = 512;
+    const ctx = canvas.getContext('2d')!;
     
-    if (ctx) {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      const colorString = '#' + nutritionColor.toString(16).padStart(6, '0');
-      
-      ctx.strokeStyle = colorString;
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2, canvas.height / 2, 100, 0, Math.PI * 2);
-      ctx.stroke();
-      
-      const pulseRadius = 90 + Math.sin(Date.now() * 0.003) * 5;
-      ctx.strokeStyle = colorString + '88';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2, canvas.height / 2, pulseRadius, 0, Math.PI * 2);
-      ctx.stroke();
-      
-      ctx.strokeStyle = colorString;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2, canvas.height / 2, 70, 0, Math.PI * 2);
-      ctx.stroke();
-      
-      for (let y = -100; y <= 100; y += 8) {
-        ctx.fillStyle = colorString + '33';
-        ctx.fillRect(canvas.width / 2 - 100, canvas.height / 2 + y, 200, 2);
-      }
-      
-      const corners = [
-        [canvas.width / 2 - 95, canvas.height / 2 - 95],
-        [canvas.width / 2 + 95, canvas.height / 2 - 95],
-        [canvas.width / 2 - 95, canvas.height / 2 + 95],
-        [canvas.width / 2 + 95, canvas.height / 2 + 95]
-      ];
-      
-      ctx.strokeStyle = colorString;
-      ctx.lineWidth = 3;
-      corners.forEach(([x, y]) => {
-        const size = 15;
-        const isRight = x > canvas.width / 2;
-        const isBottom = y > canvas.height / 2;
-        
-        ctx.beginPath();
-        ctx.moveTo(x + (isRight ? -size : size), y);
-        ctx.lineTo(x, y);
-        ctx.lineTo(x, y + (isBottom ? -size : size));
-        ctx.stroke();
-      });
-      
-      for (let i = 0; i < 8; i++) {
-        const angle = (i / 8) * Math.PI * 2;
-        const x = canvas.width / 2 + Math.cos(angle) * 95;
-        const y = canvas.height / 2 + Math.sin(angle) * 95;
-        ctx.fillStyle = colorString;
-        ctx.beginPath();
-        ctx.arc(x, y, 3, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      
-      ctx.fillStyle = colorString;
-      ctx.font = 'bold 80px Arial';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Get color strings
+    const primaryHex = '#' + primaryColor.getHexString();
+    const secondaryHex = '#' + secondaryColor.getHexString();
+    
+    if (isMythOrFact === 'myth' || isMythOrFact === 'fact') {
+      // Show MYTH or FACT label prominently
+      ctx.shadowColor = primaryHex;
+      ctx.shadowBlur = 25;
+      ctx.fillStyle = primaryHex;
+      ctx.strokeStyle = secondaryHex;
+      ctx.lineWidth = 4;
+      ctx.font = 'bold 120px "Courier New", monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(`${calories}`, canvas.width / 2, canvas.height / 2 - 30);
       
-      ctx.fillStyle = colorString + 'cc';
-      ctx.font = '24px Arial';
-      ctx.fillText('CALORIES', canvas.width / 2, canvas.height / 2 + 30);
+      const statusText = isMythOrFact === 'myth' ? 'MYTH' : 'FACT';
+      ctx.strokeText(statusText, canvas.width / 2, canvas.height / 2 - 30);
+      ctx.fillText(statusText, canvas.width / 2, canvas.height / 2 - 30);
       
-      ctx.font = '18px Arial';
-      ctx.fillStyle = colorString + '99';
-      const maxWidth = 180;
-      const truncatedName = foodName.length > 20 ? foodName.substring(0, 20) + '...' : foodName;
-      ctx.fillText(truncatedName, canvas.width / 2, canvas.height / 2 + 60);
+      // Show ✗ or ✓ symbol
+      ctx.shadowBlur = 20;
+      ctx.font = 'bold 80px Arial';
+      const symbol = isMythOrFact === 'myth' ? '✗' : '✓';
+      ctx.fillText(symbol, canvas.width / 2, canvas.height / 2 + 50);
+      
+      // Food name
+      ctx.shadowBlur = 8;
+      ctx.font = '20px "Courier New", monospace';
+      ctx.fillStyle = primaryHex + 'cc';
+      const truncatedName = foodName.length > 15 ? foodName.substring(0, 15) + '...' : foodName;
+      ctx.fillText(truncatedName.toUpperCase(), canvas.width / 2, canvas.height / 2 + 100);
+    } else {
+      // Show calorie number for general queries
+      ctx.shadowColor = primaryHex;
+      ctx.shadowBlur = 20;
+      ctx.fillStyle = primaryHex;
+      ctx.strokeStyle = secondaryHex;
+      ctx.lineWidth = 3;
+      ctx.font = 'bold 140px "Courier New", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      // Number with outline
+      ctx.strokeText(`${calories}`, canvas.width / 2, canvas.height / 2 - 40);
+      ctx.fillText(`${calories}`, canvas.width / 2, canvas.height / 2 - 40);
+      
+      // CALORIES label
+      ctx.shadowBlur = 10;
+      ctx.font = 'bold 28px "Courier New", monospace';
+      ctx.fillStyle = secondaryHex;
+      ctx.fillText('CALORIES', canvas.width / 2, canvas.height / 2 + 40);
+      
+      // Food name
+      ctx.shadowBlur = 8;
+      ctx.font = '20px "Courier New", monospace';
+      ctx.fillStyle = primaryHex + 'cc';
+      const truncatedName = foodName.length > 15 ? foodName.substring(0, 15) + '...' : foodName;
+      ctx.fillText(truncatedName.toUpperCase(), canvas.width / 2, canvas.height / 2 + 80);
     }
+    
+    // Corner brackets for Iron Man HUD style
+    const drawCornerBracket = (x: number, y: number, flipX: number, flipY: number) => {
+      ctx.strokeStyle = secondaryHex;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x + flipX * 25, y);
+      ctx.lineTo(x, y);
+      ctx.lineTo(x, y + flipY * 25);
+      ctx.stroke();
+    };
+    
+    const margin = 100;
+    drawCornerBracket(margin, margin, 1, 1);
+    drawCornerBracket(canvas.width - margin, margin, -1, 1);
+    drawCornerBracket(margin, canvas.height - margin, 1, -1);
+    drawCornerBracket(canvas.width - margin, canvas.height - margin, -1, -1);
     
     const textTexture = new THREE.CanvasTexture(canvas);
     textTexture.needsUpdate = true;
@@ -190,23 +327,54 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
       side: THREE.DoubleSide,
       depthWrite: false
     });
-    const textMesh = new THREE.Mesh(new THREE.CircleGeometry(0.14, 32), textMaterial);
-    textMesh.position.z = 0.001;
+    const textMesh = new THREE.Mesh(new THREE.CircleGeometry(0.095, 64), textMaterial);
+    textMesh.position.z = 0.004;
     hologramGroup.add(textMesh);
+
+    // SCANNING BAR - Medical scanner effect
+    const scanBarGeometry = new THREE.PlaneGeometry(0.19, 0.003);
+    const scanBarMaterial = new THREE.MeshBasicMaterial({
+      color: secondaryColor,
+      transparent: true,
+      opacity: 0.7,
+      side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending
+    });
+    const scanBar = new THREE.Mesh(scanBarGeometry, scanBarMaterial);
+    scanBar.position.z = 0.005;
+    scanBar.userData.isScanBar = true;
+    hologramGroup.add(scanBar);
+
+    // LIGHT REFRACTIONS - Inner glow effects
+    for (let i = 0; i < 3; i++) {
+      const glowGeometry = new THREE.RingGeometry(0.04 + i * 0.015, 0.041 + i * 0.015, 64);
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        color: i % 2 === 0 ? primaryColor : secondaryColor,
+        transparent: true,
+        opacity: 0.15 - i * 0.03,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending
+      });
+      const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+      glow.position.z = 0.001 + i * 0.0003;
+      glow.userData.pulseOffset = i * 0.5;
+      glow.userData.isGlow = true;
+      hologramGroup.add(glow);
+    }
     
     hologramGroup.rotation.set(0, 0, 0);
-    hologramGroup.rotation.x = -0.4;
-    hologramGroup.scale.set(1.5, 1.5, 1.5);
+    hologramGroup.rotation.x = -0.25;
+    hologramGroup.scale.set(1, 1, 1);
     
     hologramAnchor.add(hologramGroup);
-    console.log(`✓ Calorie hologram created: ${calories} cal for ${foodName}`);
+    console.log(`✓ High-tech hologram created: ${calories} cal for ${foodName}`);
     
     return hologramGroup;
   };
 
   useEffect(() => {
     if (vrmRef.current && calories !== null && calories > 0) {
-      console.log(`🔮 Creating hologram for ${calories} calories of ${foodName}`);
+      console.log(`🔮 Creating hologram for ${calories} calories of ${foodName} (Type: ${answerType})`);
       
       // Remove existing hologram if any
       if (calorieHologramRef.current && hologramAnchorRef.current) {
@@ -217,15 +385,8 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
         }
       }
       
-      const hologram = createCalorieHologram(vrmRef.current, calories, foodName);
+      const hologram = createCalorieHologram(vrmRef.current, calories, foodName, answerType);
       calorieHologramRef.current = hologram;
-      
-      const nutritionColor = getNutritionColor(calories);
-      targetColorRef.current.setHex(nutritionColor);
-      
-      if (!hologramColorRef.current || hologramColorRef.current.getHex() === 0x00ffff) {
-        hologramColorRef.current.setHex(nutritionColor);
-      }
       
       console.log('✅ Hologram created and attached!');
     } else if (vrmRef.current && calorieHologramRef.current && calories === null) {
@@ -239,7 +400,7 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
         }
       }
     }
-  }, [calories, foodName]);
+  }, [calories, foodName, answerType]);
 
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return;
@@ -353,6 +514,15 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
             }
 
             console.log('VRM loaded successfully');
+            
+            // Create a test hologram immediately for visibility
+            setTimeout(() => {
+              if (vrmRef.current) {
+                const testHologram = createCalorieHologram(vrmRef.current, 250, 'Sample Food', 'general');
+                calorieHologramRef.current = testHologram;
+                console.log('✨ Test hologram created on load!');
+              }
+            }, 500);
           } else {
             scene.add(gltf.scene);
             console.log('GLTF model loaded successfully');
@@ -463,55 +633,55 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
           } else {
             // ======= IDLE POSE =======
 
-            // Left arm - hanging away from body
+            // Left arm - hanging naturally down the body
             if (leftShoulder) {
-              leftShoulder.rotation.set(0.2, 0, 0.5);
+              leftShoulder.rotation.set(0.05, 0, 0.15);
             }
             if (leftUpperArm) {
-              leftUpperArm.rotation.z = 1.2;  // bring arm down
-              leftUpperArm.rotation.x = 0.2;
-              leftUpperArm.rotation.y = -0.7;  // push further outward
+              leftUpperArm.rotation.z = 1.15;  // hang down with visible hands
+              leftUpperArm.rotation.x = 0.05;
+              leftUpperArm.rotation.y = -0.25;
             }
             if (leftLowerArm) {
-              leftLowerArm.rotation.z = -0.2;
-              leftLowerArm.rotation.x = 0.1;
-              leftLowerArm.rotation.y = -0.3;
+              leftLowerArm.rotation.z = -0.05;
+              leftLowerArm.rotation.x = 0;
+              leftLowerArm.rotation.y = 0;
             }
             if (leftHand) {
-              leftHand.rotation.x = 0.2;
-              leftHand.rotation.y = -0.3;
-              leftHand.rotation.z = 0.15;
+              leftHand.rotation.x = 0.15;
+              leftHand.rotation.y = 0;
+              leftHand.rotation.z = 0.1;
             }
             
-            // Left hand fingers slightly relaxed
+            // Left hand fingers relaxed
             const leftThumb = vrm.humanoid.getBoneNode('leftThumbProximal');
             const leftIndex = vrm.humanoid.getBoneNode('leftIndexProximal');
             const leftMiddle = vrm.humanoid.getBoneNode('leftMiddleProximal');
             const leftRing = vrm.humanoid.getBoneNode('leftRingProximal');
             
-            if (leftThumb) leftThumb.rotation.x = 0.1;
-            if (leftIndex) leftIndex.rotation.x = 0.1;
-            if (leftMiddle) leftMiddle.rotation.x = 0.1;
-            if (leftRing) leftRing.rotation.x = 0.1;
+            if (leftThumb) leftThumb.rotation.x = 0.15;
+            if (leftIndex) leftIndex.rotation.x = 0.2;
+            if (leftMiddle) leftMiddle.rotation.x = 0.2;
+            if (leftRing) leftRing.rotation.x = 0.2;
             
-            // *** RIGHT ARM: Hanging away from body ***
+            // Right arm - hanging naturally down the body
             if (rightShoulder) {
-              rightShoulder.rotation.set(0.2, 0, -0.5);
+              rightShoulder.rotation.set(0.05, 0, -0.15);
             }
             if (rightUpperArm) {
-              rightUpperArm.rotation.z = -1.2;  // bring arm down
-              rightUpperArm.rotation.x = 0.2;
-              rightUpperArm.rotation.y = 0.7;  // push further outward
+              rightUpperArm.rotation.z = -1.15;  // hang down with visible hands
+              rightUpperArm.rotation.x = 0.05;
+              rightUpperArm.rotation.y = 0.25;
             }
             if (rightLowerArm) {
-              rightLowerArm.rotation.z = 0.2;
-              rightLowerArm.rotation.x = 0.1;
-              rightLowerArm.rotation.y = 0.3;
+              rightLowerArm.rotation.z = 0.05;
+              rightLowerArm.rotation.x = 0;
+              rightLowerArm.rotation.y = 0;
             }
             if (rightHand) {
-              rightHand.rotation.x = 0.2;
-              rightHand.rotation.y = 0.3;
-              rightHand.rotation.z = -0.15;
+              rightHand.rotation.x = 0.15;
+              rightHand.rotation.y = 0;
+              rightHand.rotation.z = -0.1;
             }
           }
 
@@ -540,20 +710,15 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
             }
           });
 
-          // Minimal hand movement - keep formal
-          if (!isWavingRef.current && leftHand && !calorieHologramRef.current) {
-            leftHand.rotation.x = Math.sin(time * 0.3) * 0.02;
-            leftHand.rotation.y = 0;
-            leftHand.rotation.z = 0;
+          // Minimal hand movement - subtle fidget
+          if (!isWavingRef.current && leftHand) {
+            leftHand.rotation.x = 0.1 + Math.sin(time * 0.3) * 0.02;
           }
           
-          // Right hand minimal movement - keep formal
           if (!isWavingRef.current && rightHand) {
-            rightHand.rotation.x = Math.sin(time * 0.3) * 0.02;
-            rightHand.rotation.y = 0;
-            rightHand.rotation.z = 0;
+            rightHand.rotation.x = 0.1 + Math.sin(time * 0.3) * 0.02;
           }
-          
+
           // Update hologram position and animation
           if (calorieHologramRef.current && hologramAnchorRef.current) {
             const leftHandBone = vrm.humanoid.getBoneNode('leftHand');
@@ -578,10 +743,13 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
                 hologramAnchorRef.current.position.copy(finalPos);
                 
                 // 6. Add upward offset (higher to sit above palm, not in wrist)
-                hologramAnchorRef.current.position.y += 0.18;
+                hologramAnchorRef.current.position.y += 0.25;
                 
-                // 7. Shift toward thumb for gripping pose
-                hologramAnchorRef.current.position.x += 0.05;
+                // 7. Shift forward away from body
+                hologramAnchorRef.current.position.z += 0.15;
+                
+                // Shift to the side
+                hologramAnchorRef.current.position.x += 0.15;
               }
               
               // Gentle floating animation on hologram itself
@@ -597,30 +765,66 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
               
               // Add subtle rotation wiggle for floating effect
               calorieHologramRef.current.rotation.z += rotationWiggle;
+
+              // ANIMATE THE PREMIUM HIGH-TECH ELEMENTS
+              calorieHologramRef.current.children.forEach((child: any) => {
+                // 1. Rotate HUD arc segments (Iron Man style)
+                if (child.userData.isArcGroup && child.children) {
+                  child.children.forEach((arc: any) => {
+                    if (arc.userData.rotationSpeed) {
+                      arc.rotation.z += arc.userData.rotationSpeed * deltaTime;
+                    }
+                  });
+                }
+                
+                // 2. Pulse ticks with highlight effect
+                if (child.userData.animationOffset !== undefined && child.children.length > 0) {
+                  child.userData.animationOffset += deltaTime * 1.5;
+                  child.children.forEach((tick: any, index: number) => {
+                    const pulseIntensity = Math.sin(time * 3 + child.userData.animationOffset + index * 0.8) * 0.5 + 0.5;
+                    if (tick.material) {
+                      tick.material.opacity = tick.userData.highlight ? 0.7 + pulseIntensity * 0.3 : 0.4 + pulseIntensity * 0.3;
+                    }
+                  });
+                }
+                
+                // 3. Orbit floating particles with depth variation
+                if (child.userData.isParticles && child.children) {
+                  child.children.forEach((particle: any) => {
+                    const angle = particle.userData.baseAngle + time * particle.userData.orbitSpeed;
+                    const radius = 0.05 + Math.sin(time * particle.userData.floatSpeed) * 0.015;
+                    particle.position.x = Math.cos(angle) * radius;
+                    particle.position.y = Math.sin(angle) * radius;
+                    particle.material.opacity = 0.3 + Math.sin(time * 2 + particle.userData.floatSpeed) * 0.3;
+                  });
+                }
+                
+                // 4. Pulse inner glow rings
+                if (child.userData.isGlow) {
+                  const pulse = Math.sin(time * 2 + child.userData.pulseOffset) * 0.5 + 0.5;
+                  child.material.opacity = (0.15 - child.userData.pulseOffset * 0.03) * (0.6 + pulse * 0.4);
+                }
+                
+                // 5. Smooth scanning bar with easing
+                if (child.userData.isScanBar) {
+                  const scanCycle = 3.5;
+                  const scanTime = time % scanCycle;
+                  const normalizedTime = scanTime / scanCycle;
+                  // Smooth easing for scanning motion
+                  const eased = normalizedTime < 0.5 
+                    ? 2 * normalizedTime * normalizedTime 
+                    : 1 - Math.pow(-2 * normalizedTime + 2, 2) / 2;
+                  const yPos = (eased - 0.5) * 0.18;
+                  child.position.y = yPos;
+                  child.material.opacity = 0.5 + Math.sin(normalizedTime * Math.PI) * 0.3;
+                }
+              });
               
-              // Smooth color transition animation
-              if (hologramColorRef.current && targetColorRef.current) {
-                const currentColor = hologramColorRef.current;
-                currentColor.lerp(targetColorRef.current, 0.05);
-                
-                const panel = calorieHologramRef.current.children[0];
-                const border = calorieHologramRef.current.children[1];
-                
-                if (panel instanceof THREE.Mesh && panel.material instanceof THREE.MeshBasicMaterial) {
-                  panel.material.color.copy(currentColor);
-                  
-                  if (panel.material.emissive) {
-                    panel.material.emissive.copy(currentColor);
-                  }
-                  
-                  // Subtle glow pulse on background panel
-                  const pulseIntensity = 0.3 + Math.sin(time * 3) * 0.05;
-                  panel.material.opacity = pulseIntensity;
-                }
-                
-                if (border instanceof THREE.Mesh && border.material instanceof THREE.MeshBasicMaterial) {
-                  border.material.color.copy(currentColor);
-                }
+              // Subtle ambient glow pulse
+              const outerAura = calorieHologramRef.current.children[0];
+              if (outerAura instanceof THREE.Mesh && outerAura.material instanceof THREE.MeshBasicMaterial) {
+                const pulseIntensity = 0.08 + Math.sin(time * 1.5) * 0.03;
+                outerAura.material.opacity = pulseIntensity;
               }
             }
           }
@@ -723,7 +927,10 @@ export default function VRMAvatar({ isTyping = false, isWaving = false, calories
   }, []);
 
   return (
-    <div className="vrm-container" ref={containerRef}>
+    <div className="vrm-container" ref={containerRef} style={{ position: 'relative' }}>
+      {/* Speech Bubble - positioned absolutely relative to avatar */}
+      <AvatarSpeechBubble myTake={myTake} />
+      
       <canvas className="vrm-canvas" ref={canvasRef} />
       {loading && (
         <div className="vrm-loading">

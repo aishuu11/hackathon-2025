@@ -472,15 +472,47 @@ Make it feel like evidence-based advice from a knowledgeable friend, not a textb
             answer = completion.choices[0].message.content
             print(f"✅ Generated answer from Groq")
             
+            # Detect if this is a myth or fact based on the answer content
+            answer_lower = answer.lower()
+            if '❌' in answer or 'myth alert' in answer_lower or 'this is a myth' in answer_lower or "that's not quite right" in answer_lower or 'not true' in answer_lower or 'false' in answer_lower:
+                answer_type = "myth"
+            elif '✅' in answer or "that's right" in answer_lower or "this is true" in answer_lower or "this is correct" in answer_lower or 'correct' in answer_lower or 'yes' in answer_lower:
+                answer_type = "fact"
+            else:
+                answer_type = "general"
+            
+            # Generate a short myTake for the speech bubble
+            my_take_prompt = f"Based on this nutrition answer, write ONE SHORT sentence (max 15 words) that's a friendly personal take or key insight. Make it conversational and fun.\n\nAnswer: {answer[:200]}\n\nYour short take:"
+            
+            my_take_completion = client.chat.completions.create(
+                model="llama-3.1-8b-instant",
+                messages=[
+                    {"role": "user", "content": my_take_prompt}
+                ],
+                temperature=0.7,
+                max_tokens=50
+            )
+            
+            my_take = my_take_completion.choices[0].message.content.strip()
+            # Remove quotes if present
+            my_take = my_take.strip('"\'')
+            
+            print(f"🏷️ Detected answer type: {answer_type}")
+            print(f"💭 Generated myTake: {my_take}")
+            print(f"📝 Answer preview: {answer[:100]}...")
+            
             # Prepend correction note if spelling was corrected
             if correction_note:
                 answer = correction_note + answer
         else:
             answer = f"{correction_note}🤔 Hmm, I don't have specific information about that topic in my nutrition database yet.\n\n**Try asking about:**\n• Common nutrition myths (carbs, fats, protein)\n• Specific foods (rice, chicken, fruits)\n• Weight management questions\n• Healthy eating tips\n\nI'm here to help separate nutrition facts from fiction! 💪"
+            answer_type = "general"
+            my_take = "Let me know what nutrition topic you'd like to explore!"
         
         return jsonify({
             "answer": answer,
-            "type": "info",
+            "type": answer_type,
+            "myTake": my_take,
             "source": "groq_enhanced" if chunks else "fallback"
         })
     except Exception as e:

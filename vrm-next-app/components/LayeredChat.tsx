@@ -20,9 +20,13 @@ interface LayeredChatProps {
   onTypingChange?: (isTyping: boolean) => void;
   onGreeting?: () => void;
   onCaloriesDetected?: (calories: number | null, foodName: string) => void;
+  onAnswerTypeChange?: (answerType: 'myth' | 'fact' | 'general') => void;
+  externalMessage?: string;
+  onExternalMessageProcessed?: () => void;
+  onMyTakeChange?: (myTake: string | null) => void;
 }
 
-export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDetected }: LayeredChatProps) {
+export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDetected, onAnswerTypeChange, externalMessage, onExternalMessageProcessed, onMyTakeChange }: LayeredChatProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
@@ -40,6 +44,14 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, [messages]);
+
+  // Handle external messages from MythFlipSection
+  useEffect(() => {
+    if (externalMessage) {
+      handleSend(externalMessage);
+      onExternalMessageProcessed?.();
+    }
+  }, [externalMessage]);
 
   const handleButtonClick = async (buttonValue: string, originalQuery: string, messageId: string) => {
     // Add user selection as a message
@@ -130,6 +142,18 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
       const botText = data.answer || data.response || data.message || 'Sorry, I could not process that.';
       const buttons = data.buttons || null;
       const originalQuery = data.originalQuery || null;
+      const answerType = data.type === 'myth' || data.type === 'fact' ? data.type : 'general';
+      const myTake = data.myTake || null;
+      
+      // Notify parent of answer type
+      if (onAnswerTypeChange) {
+        onAnswerTypeChange(answerType);
+      }
+
+      // Extract and pass myTake to avatar
+      if (onMyTakeChange) {
+        onMyTakeChange(myTake);
+      }
 
       // Extract calorie information - improved regex to catch multiple formats
       const calorieMatch = botText.match(/(\d+)\s*(?:kcal|calories|cal)|calories[^\d]*?(\d+)/i);
@@ -139,8 +163,12 @@ export default function LayeredChat({ onTypingChange, onGreeting, onCaloriesDete
         const foodName = text.toLowerCase()
           .replace(/calories|how many|what|about|in|a|the|nutritional|value|of/gi, '')
           .trim() || 'food';
-        console.log(`🔍 Detected calories: ${calories} for ${foodName}`);
+        console.log(`🔍 Detected calories: ${calories} for ${foodName} (Type: ${answerType})`);
         onCaloriesDetected(calories, foodName);
+      } else if ((answerType === 'myth' || answerType === 'fact') && onCaloriesDetected) {
+        // For myth/fact without calories, use 0 to trigger hologram with just status
+        console.log(`🔍 Detected ${answerType} without calories for: ${text}`);
+        onCaloriesDetected(1, text); // Use 1 as placeholder, hologram will show MYTH/FACT text instead
       } else if (onCaloriesDetected) {
         onCaloriesDetected(null, '');
       }
