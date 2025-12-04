@@ -25,7 +25,7 @@ The nutrition bot now features a modern **Layered Cards** UI design with stackin
 - **AnimatePresence**: Smooth enter/exit animations for cards
 - **Greeting Detection**: Recognizes greetings to trigger avatar wave
 - **Calorie Extraction**: Parses bot responses for calorie data to trigger hologram
-- **Backend Integration**: Calls nutrition bot API on port 3001
+- **see  Integration**: Calls nutrition bot API on port 3001
 
 ### 4. **ThemeToggle.tsx**
 - Switch between **Neon** and **Medical** themes

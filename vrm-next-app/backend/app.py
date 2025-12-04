@@ -311,6 +311,13 @@ def pinecone_search(query):
         myth = m.metadata.get("myth", "")
         fact = m.metadata.get("fact", "")
         explanation = m.metadata.get("explanation", "")
+        # Get the actual source title from metadata
+        source_title = m.metadata.get("source_title", "")
+        source_url = m.metadata.get("source_url", "")
+        
+        # If no source_title, use category or a fallback
+        if not source_title:
+            source_title = m.metadata.get("category", "").replace("_", " ").title() or "Nutrition Research"
         
         # Combine into readable text
         if myth and fact:
@@ -327,7 +334,9 @@ def pinecone_search(query):
             chunks.append({
                 "id": m.id,
                 "score": m.score,
-                "text": text
+                "text": text,
+                "source_title": source_title,
+                "source_url": source_url
             })
 
     return chunks
@@ -426,47 +435,66 @@ def chat():
         
         if chunks and len(chunks) > 0:
             # Use Groq to generate a natural response based on the retrieved data
-            context = "\n\n".join([f"Source {i+1}:\n{c['text']}" for i, c in enumerate(chunks[:3])])
+            # Build context with actual source titles
+            context_parts = []
+            source_map = {}  # Map source names to their content
+            for i, c in enumerate(chunks[:3]):
+                source_name = c.get('source_title', f'Research Study {i+1}')
+                context_parts.append(f"[{source_name}]:\n{c['text']}")
+                source_map[f"source_{i+1}"] = source_name
+            
+            context = "\n\n".join(context_parts)
             
             # Add personalization note if context detected
             context_note = ""
             if user_context:
                 context_note = f"\n\n⚠️ IMPORTANT PERSONALIZATION: {user_context}\nTailor your advice specifically for this user's situation. Make recommendations that align with their goals/diet/conditions."
             
-            prompt = f"""You are a friendly, helpful nutrition expert. Based on the verified nutrition information below, answer the user's question in a warm, conversational way.
+            prompt = f"""You are a factual, evidence-based nutrition expert. Answer the user's question using ONLY the verified information provided below.
 
-Retrieved Information:
+Retrieved Information from Nutrition Database:
 {context}{context_note}
 
 User Question: {user_msg}
 
-Instructions:
-1. Start directly with the myth/fact assessment - NO greetings like "Hey there, friend!" or "Hello!"
-2. If it's a myth, start with "❌ Myth Alert!" followed by what's wrong
-3. If it's a fact, start with "✅ That's Right!" or similar positive affirmation
-4. ALWAYS reference the specific information from the Retrieved Information above - cite the myths/facts/explanations provided
-5. Use clear sections with headers like:
-   - **The Truth:** (directly quote or paraphrase from the retrieved information)
-   - **The Science:** (explain using the evidence from the database)
-   - **Bottom Line:** (practical takeaway based on the evidence)
-6. Include phrases like "According to nutrition research..." or "Studies show..." to emphasize evidence-based answers
-7. Add relevant food emojis where appropriate (🍚 for rice, 🍗 for chicken, 🥦 for vegetables, etc.)
-8. Keep it friendly and encouraging - use "you" to make it personal
-9. Keep response under 250 words but make it engaging
-10. If personalization context is provided, prioritize advice relevant to their specific needs (e.g., for weight loss focus on calories/portions, for vegans suggest plant alternatives, for diabetes mention blood sugar impact)
-11. NEVER start with greetings - jump straight into the answer
-12. Base your ENTIRE answer on the Retrieved Information - don't make up facts
+MANDATORY STRUCTURE - Follow this EXACT format with these EXACT section headers:
 
-Make it feel like evidence-based advice from a knowledgeable friend, not a textbook!"""
+**I understood:** [Restate the user's question in simple terms]
+
+**🧪 The Truth:** 
+[State whether this is a MYTH, HALF-TRUE, or FACT based ONLY on the retrieved evidence. Be direct and clear. Cite the source title.]
+
+**🔬 The Science:**
+[Explain the real science in 2-4 sentences using ONLY the retrieved information. Cite source titles like "According to [Source Title]..." Always reference which source you're using.]
+
+**🎯 Bottom Line:**
+[Give ONE clear, practical takeaway for everyday users. Keep it simple and actionable.]
+
+**📚 Evidence Sources:**
+- [List ONLY the headline/titles of sources you actually cited above]
+- [One source per line]
+- [Use the exact source title from the database]
+
+CRITICAL RULES:
+1. NEVER change this structure or section order
+2. NEVER add new sections or remove sections
+3. NEVER make up information - use ONLY what's in the Retrieved Information
+4. NEVER mix unrelated sources
+5. ALWAYS cite source titles in square brackets within the text
+6. Keep tone friendly, clear, and confident
+7. Use food emojis naturally 🍚🥦🍗
+8. If personalization context provided, tailor advice BUT still cite sources
+
+Remember: Use ONLY the 5 sections above in that EXACT order. Every claim must cite a source title from the Retrieved Information!"""
 
             completion = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 messages=[
-                    {"role": "system", "content": "You are a friendly, supportive nutrition expert who makes healthy eating feel approachable and fun. Use emojis naturally and structure your responses clearly with markdown formatting. NEVER use greetings like 'Hey there, friend!' or 'Hello!' - start directly with the answer. Always base your answers strictly on the provided Retrieved Information from the nutrition database - cite specific myths, facts, and explanations from the sources."},
+                    {"role": "system", "content": "You are a factual nutrition expert who ALWAYS uses this exact 5-section structure: (1) I understood: (2) 🧪 The Truth: (3) 🔬 The Science: (4) 🎯 Bottom Line: (5) 📚 Evidence Sources:. NEVER deviate from this structure. ALWAYS cite source titles in square brackets. Be friendly, clear, and confident."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.3,
-                max_tokens=600
+                temperature=0.2,
+                max_tokens=700
             )
             
             answer = completion.choices[0].message.content
